@@ -1,7 +1,10 @@
 import Image from 'next/image'
+import Singin from './signin/page'
 
 export default function Home() {
   return (
-    <p>Home</p>
+    <div>
+      <Singin />
+    </div>
   )
 }
