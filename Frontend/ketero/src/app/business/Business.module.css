@@ -1,0 +1,43 @@
+.ActivityContainer {
+    height:100vh;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.ActiveWindow{
+     height:94vh;
+     border: 1px solid black;
+     padding: 1rem;
+}
+
+.BottomNav{
+    display:flex;
+    justify-content: space-between;
+    padding: 0.2rem;
+    flex:1;
+
+}
+
+
+
+.BottomNav_Button{
+    text-align: center;
+    flex:1;
+    border: 1px solid black;
+    padding: 0.25rem;
+    border: 1px solid black;
+    display:grid;
+    place-items: center;
+
+}
+
+.Button_Icon{
+    font-size: 1.25rem !important;
+    color: #565D6D;
+}
+
+.Button_Text{
+    color: #565D6D;
+}
