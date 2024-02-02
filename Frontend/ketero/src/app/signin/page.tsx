@@ -1,11 +1,11 @@
 import { FaUser } from "react-icons/fa6";
-import Button from "../../components/button/button";
+import Button from "../../components/shared/buttons/button";
 
-export default function Singin() {
+export default function SignIn() {
     
   return (
     <div className="max-w-sm mx-auto h-screen sm:h bg-white text-black flex flex-col p-5 justify-center">
-      <div className="text-6xl  ">
+      <div className="text-6xl">
         logo
       </div>
 
@@ -13,7 +13,7 @@ export default function Singin() {
         <h1 className="font-semibold text-3xl py-3">Welcome!</h1>
         <p className="text-customColor text-sm">Hi, Enter your details to get sign in <br />to you account</p>
 
-            <div className=" border-b  border-b-black pt-5 ">
+            <div className="border-b  border-b-black pt-5 ">
                 <div className="flex items-center py-2">
                     <FaUser className="mr-2 "/>
                     <input type="email" name="email" id="email" title="Email" placeholder="Enter email/Phone no"

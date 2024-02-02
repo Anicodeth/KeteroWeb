@@ -17,7 +17,7 @@ const Button = ({name, link="/" }: {  name: string; link?: string }) => {
         <Link href={link}>
             
             <button 
-                className={`w-28 h-11 rounded-full border-2 border-black-500 flex justify-center  items-center`}
+                className={`w-24 h-11 rounded-full border-2 border-black-500 flex justify-center  items-center`}
             >
                 {icons[name]}
             </button>
