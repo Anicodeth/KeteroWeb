@@ -1,27 +1,26 @@
+/* Button.tsx */
 import React from 'react';
 import Link from 'next/link';
 import { FaGoogle, FaApple, FaFacebook } from 'react-icons/fa';
+import styles from './button.module.css';
 
-type IconType = {
-    [key: string]: JSX.Element;
+const icons = {
+    google: <FaGoogle className={styles.google} />,
+    apple: <FaApple className={styles.apple} />,
+    facebook: <FaFacebook className={styles.facebook} />,
 };
 
-const icons: IconType = {
-    google: <FaGoogle className={`text-red-500`}/>,
-    apple: <FaApple className={`text-white-500`}/>,
-    facebook: <FaFacebook className={`text-blue-500`}/>,
-};
+interface ButtonProps {
+    name: 'google' | 'apple' | 'facebook';
+    link?: string;
+}
 
-const Button = ({name, link="/" }: {  name: string; link?: string }) => {
+const Button: React.FC<ButtonProps> = ({name, link="/" }) => {
     return (
         <Link href={link}>
-            
-            <button 
-                className={`w-24 h-11 rounded-full border-2 border-black-500 flex justify-center  items-center`}
-            >
+            <button className={styles.button}>
                 {icons[name]}
             </button>
-        
         </Link>
     );
 };
