@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useState } from 'react';  // Import useState from React
-import AddService from '../../components/Business/AddService';
+import AddService from '../../components/business/AddService';
 import style from './Business.module.css';
 import { FaHome, FaPlus, FaUser } from 'react-icons/fa';
-import BusinessProfile from '@/components/Business/BusinessProfile';
-import Customers from '@/components/Business/Customers';
+import BusinessProfile from '@/components/business/BusinessProfile';
+import Customers from '@/components/business/Customers';
 
-const Business = () => {
+const Business: React.FC = () => {
   const [toggle, setToggle] = useState<string>('Customer');
 
   const handleClick = (activity: string) => {
@@ -15,36 +15,36 @@ const Business = () => {
   };
 
   return (
-    <div className={style.ActivityContainer}>
-      <div className={style.ActiveWindow}>
+    <div className={style.activityContainer}>
+      <div className={style.activeWindow}>
         {toggle === 'Customer' ? <Customers /> : ''}
         {toggle === 'Profile' ? <BusinessProfile /> : ''}
         {toggle === 'AddService' ? <AddService /> : ''}
       </div>
 
-      <div className={style.BottomNav}>
+      <div className={style.bottomNav}>
         <button
-          className={style.BottomNav_Button}
-          onClick={() => handleClick('Home')}
+          className={style.bottomNavButton}
+          onClick={() => handleClick('Customer')}
         >
-          <FaHome className={style.Button_Icon} />
-          <p className={style.Button_Text}>Home</p>
+          <FaHome className={style.buttonIcon} />
+          <p className={style.buttonText}>Home</p>
         </button>
 
         <button
-          className={style.BottomNav_Button}
+          className={style.bottomNavButton}
           onClick={() => handleClick('AddService')}
         >
-          <FaPlus className={style.Button_Icon} />
-          <p className={style.Button_Text}>Add</p>
+          <FaPlus className={style.buttonIcon} />
+          <p className={style.buttonText}>Add</p>
         </button>
 
         <button
-          className={style.BottomNav_Button}
+          className={style.bottomNavButton}
           onClick={() => handleClick('Profile')}
         >
-          <FaUser className={style.Button_Icon} />
-          <p className={style.Button_Text}>Profile</p>
+          <FaUser className={style.buttonIcon} />
+          <p className={style.buttonText}>Profile</p>
         </button>
       </div>
     </div>

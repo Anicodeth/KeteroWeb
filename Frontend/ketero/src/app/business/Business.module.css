@@ -1,4 +1,4 @@
-.ActivityContainer {
+.activityContainer {
     height:100vh;
     border: 1px solid black;
     display: flex;
@@ -6,13 +6,13 @@
 
 }
 
-.ActiveWindow{
+.activeWindow{
      height:94vh;
      border: 1px solid black;
      padding: 1rem;
 }
 
-.BottomNav{
+.bottomNav{
     display:flex;
     justify-content: space-between;
     padding: 0.2rem;
@@ -20,9 +20,7 @@
 
 }
 
-
-
-.BottomNav_Button{
+.bottomNavButton{
     text-align: center;
     flex:1;
     border: 1px solid black;
@@ -33,11 +31,11 @@
 
 }
 
-.Button_Icon{
+.buttonIcon{
     font-size: 1.25rem !important;
     color: #565D6D;
 }
 
-.Button_Text{
+.buttonText{
     color: #565D6D;
 }
