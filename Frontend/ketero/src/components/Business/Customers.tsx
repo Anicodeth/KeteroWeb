@@ -178,34 +178,35 @@ const Customers: React.FC = () => {
         className={[style.appointmentCards].join(" ")}
         id={style.customerComponent9}
       >
-        {appointmentData.map((appointment, index) => (
-          <div key={index} className={[style.appointmentCard].join(" ")}>
-            <p>{appointment.customer}</p>
-            <div className={[style.situation].join(" ")}>
-              <IoIosNotificationsOutline color="#DE3B40" />
-              <p>{appointment.status}</p>
-            </div>
-            <hr />
-            <div>
-              <IoIosNotificationsOutline />
-              <p>{appointment.time}</p>
-            </div>
-            <div>
-              <IoIosNotificationsOutline />
-              <p>{appointment.payment}</p>
-            </div>
-            <div>
-              <IoIosNotificationsOutline />
-              <p>{appointment.phone}</p>
-            </div>
-            <div>
-              <IoIosNotificationsOutline />
-              <p>{appointment.amount}</p>
-            </div>
-            <hr />
-            <button>Ready</button>
-          </div>
-        ))}
+         {appointmentData.map((appointment, index)=> (
+              <div key={index} className={[style.appointmentCard].join(" ")}>
+              <p>{appointment.customer}</p>
+              <div className={[style.situation].join(" ")}>
+                <IoIosNotificationsOutline color="#DE3B40" />
+                <p>{appointment.status}</p>
+              </div>
+              <hr />
+              <div>
+                <IoIosNotificationsOutline />
+                <p>{appointment.time}</p>
+              </div>
+              <div>
+                <IoIosNotificationsOutline />
+                <p>{appointment.payment}</p>
+              </div>
+              <div>
+                <IoIosNotificationsOutline />
+                <p>{appointment.phone}</p>
+              </div>
+              <div>
+                <IoIosNotificationsOutline />
+                <p>{appointment.amount}</p>
+              </div>
+              <hr />
+              <button>Ready</button>
+              </div>
+        ))} 
+
       </div>
       <div
         className={[style.taskCard].join(" ")}
