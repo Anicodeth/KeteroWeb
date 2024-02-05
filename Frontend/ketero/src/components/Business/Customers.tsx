@@ -107,10 +107,7 @@ const Customers: React.FC = () => {
               <hr />
               <button>Ready</button>
               </div>
-        ))}
-       
-        
-      
+        ))} 
         
       </div>
       <div

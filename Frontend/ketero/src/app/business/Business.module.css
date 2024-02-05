@@ -1,6 +1,5 @@
 .activityContainer {
     height:100vh;
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
 
@@ -8,7 +7,6 @@
 
 .activeWindow{
      height:94vh;
-     border: 1px solid black;
      overflow: scroll;
 }
 
@@ -23,9 +21,7 @@
 .bottomNavButton{
     text-align: center;
     flex:1;
-    border: 1px solid black;
     padding: 0.25rem;
-    border: 1px solid black;
     display:grid;
     place-items: center;
 
