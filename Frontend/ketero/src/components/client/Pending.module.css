@@ -1,0 +1,44 @@
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+}
+
+.reservationsContainer{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+
+}
+
+.reservationCard{
+    height:15rem;
+    background: #F1F8FD;
+    margin-bottom: 0.5rem;
+    padding:1rem;
+    border-radius: 1.5rem;
+}
+
+.reservationCardRow1{
+    display: flex;
+    justify-content: space-between;
+}
+
+.serviceName{
+    font-size: 1.75rem;
+}
+.serviceStatus{
+    background: #FDF2F2;
+    text-align: center;
+    padding:0.5rem;
+    border-radius: 0.5rem;
+    margin:0;
+
+}
+
+.reservationCardRow2{
+    display: flex;
+    
+}
