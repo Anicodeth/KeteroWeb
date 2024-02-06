@@ -6,6 +6,11 @@
 
 }
 
+.mainHeader{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 .reservationsContainer{
     display: flex;
     flex-direction: column;
@@ -24,6 +29,8 @@
 .reservationCardRow1{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 0.5rem;
+
 }
 
 .serviceName{
@@ -35,10 +42,43 @@
     padding:0.5rem;
     border-radius: 0.5rem;
     margin:0;
+    color: #DE3B40;
+    font-weight: bold;
 
 }
 
 .reservationCardRow2{
     display: flex;
-    
+    margin-bottom: 0.75rem;
+
+}
+
+.companyName{
+    font-weight: bolder;
+    font-size: large;
+}
+
+
+.reservationCardRow3{
+    display:flex;
+    justify-content: space-between;
+    color:gray;
+    margin-bottom: 0.5rem;
+}
+.cardBottomItem{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonsContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonCard{
+    background: #8E61F1;
+    color: white;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
 }

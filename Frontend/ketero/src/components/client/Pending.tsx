@@ -1,5 +1,8 @@
 import React from 'react';
 import style from './Pending.module.css';
+import { CiPhone } from "react-icons/ci";
+import { CiTimer } from "react-icons/ci";
+import { MdOutlinePayment } from "react-icons/md";
 
 
 interface Reservation {
@@ -16,7 +19,7 @@ const Pending: React.FC = () => {
         {
           serviceName: 'Service 1',
           companyName: 'Company A',
-          time: '2024-02-05T10:30:00',
+          time: '10:30',
           payment: '1500Birr',
           phone: '123-456-7890',
           status: 'Comfirmed',
@@ -24,7 +27,7 @@ const Pending: React.FC = () => {
         {
           serviceName: 'Service 2',
           companyName: 'Company B',
-          time: '2024-02-06T15:45:00',
+          time: '15:00',
           payment: '1500Birr',
           phone: '987-654-3210',
           status: 'Pending',
@@ -32,7 +35,7 @@ const Pending: React.FC = () => {
         {
           serviceName: 'Service 3',
           companyName: 'Company C',
-          time: '2024-02-07T12:00:00',
+          time: '12:00',
           payment: '1500Birr',
           phone: '555-123-4567',
           status: 'Pending',
@@ -40,7 +43,7 @@ const Pending: React.FC = () => {
         {
           serviceName: 'Service 4',
           companyName: 'Company D',
-          time: '2024-02-08T09:15:00',
+          time: '09:15',
           payment: '1500Birr',
           phone: '789-012-3456',
           status: 'Pending',
@@ -48,7 +51,7 @@ const Pending: React.FC = () => {
         {
           serviceName: 'Service 5',
           companyName: 'Company E',
-          time: '2024-02-09T17:30:00',
+          time: '17:30',
           payment: '1500Birr',
           phone: '444-555-6666',
           status: 'Pending',
@@ -61,8 +64,6 @@ const Pending: React.FC = () => {
                 </h1>
 
                 <div className = {style.reservationsContainer}>
-
-         
 
             {
 
@@ -89,18 +90,18 @@ const ReservationCard: React.FC<{reservation: Reservation}> = ({reservation}) =>
             </div>       
 
             <div className = {style.reservationCardRow2}>
-                <h1>{reservation.companyName}</h1>
+                <h1 className = {style.companyName}>{reservation.companyName}</h1>
             </div>
 
             <div className = {style.reservationCardRow3}>
                 <div className = {style.cardBottomItem}>
-                {reservation.time}
+                <CiTimer />{reservation.time}
                 </div>
                 <div className = {style.cardBottomItem}>
-                {reservation.phone}
+                <CiPhone />{reservation.phone}
                 </div>
                 <div className = {style.cardBottomItem}>
-                {reservation.payment}
+                <MdOutlinePayment /> {reservation.payment}
                 </div>             
             </div>
 
