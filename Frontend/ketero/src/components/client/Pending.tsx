@@ -6,12 +6,12 @@ import { MdOutlinePayment } from "react-icons/md";
 
 
 interface Reservation {
-    serviceName: string;
-    companyName: string;
-    time:string;
-    payment:string;
-    phone:string;
-    status:string;
+  serviceName: string;
+  companyName: string;
+  time: string;
+  payment: string;
+  phone: string;
+  status: string;
 }
 
 const Pending: React.FC = () => {
@@ -81,13 +81,15 @@ const Pending: React.FC = () => {
     );
 };
 
-const ReservationCard: React.FC<{reservation: Reservation}> = ({reservation}) => {
-    return (
-        <div className = {style.reservationCard}>
-            <div className = {style.reservationCardRow1}>
-                <h1 className = {style.serviceName}>{reservation.serviceName}</h1>
-                <h1  className = {style.serviceStatus}>{reservation.status}</h1>
-            </div>       
+const ReservationCard: React.FC<{ reservation: Reservation }> = ({
+  reservation,
+}) => {
+  return (
+    <div className={style.reservationCard}>
+      <div className={style.reservationCardRow1}>
+        <h1 className={style.serviceName}>{reservation.serviceName}</h1>
+        <h1 className={style.serviceStatus}>{reservation.status}</h1>
+      </div>
 
             <div className = {style.reservationCardRow2}>
                 <h1 className = {style.companyName}>{reservation.companyName}</h1>
@@ -105,14 +107,12 @@ const ReservationCard: React.FC<{reservation: Reservation}> = ({reservation}) =>
                 </div>             
             </div>
 
-            <div className = {style.buttonsContainer}>
-                <button className = {style.buttonCard}> Cancel Reservation</button>
-                <button className = {style.buttonCard}> Details</button>
-            </div>
-        </div>
-    )
-}
- 
-
+      <div className={style.buttonsContainer}>
+        <button className={style.buttonCard}> Cancel Reservation</button>
+        <button className={style.buttonCard}> Details</button>
+      </div>
+    </div>
+  );
+};
 
 export default Pending;
