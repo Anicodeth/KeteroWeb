@@ -17,7 +17,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({name, link="/" }) => {
     return (
-        <Link href={link}>
+        <Link href={link} >
             <button className={styles.button}>
                 {icons[name]}
             </button>

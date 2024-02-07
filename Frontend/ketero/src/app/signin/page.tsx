@@ -1,7 +1,7 @@
 import { FaUser } from "react-icons/fa6";
 import Image from 'next/image';
-import Button from "../../components/shared/buttons/button";
-import styles from "../../components/shared/buttons/button.module.css";
+import Button from "../../components/shared/Buttons/button";
+import styles from "./signIn.module.css";
 import logo from "../../Assets/logo.png";
 
 export default function SignIn() {
