@@ -68,7 +68,7 @@ const Pending: React.FC = () => {
             {
 
                 reservationData.map((reservation, index) => ( 
-                    <ReservationCard reservation = {reservation} />
+                    <ReservationCard key={index} reservation={reservation} />
                 )
                 )
 
