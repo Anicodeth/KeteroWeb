@@ -2,14 +2,14 @@ import { FaUser } from "react-icons/fa6";
 import Image from 'next/image';
 import Button from "../../components/shared/buttons/button";
 import styles from "../../components/shared/buttons/button.module.css";
-import logo from "../../Assets/logo.png";
+// import logo from "../../Assets/logo.png";
 
 export default function SignIn() {
     
   return (
     <div className={styles.container}>
       <div className={styles.logo}>
-        <Image src={logo} alt="logo" width={80} />
+        {/* <Image src={logo} alt="logo" width={80} /> */}
       </div>
 
       <div className={styles.welcome}>
