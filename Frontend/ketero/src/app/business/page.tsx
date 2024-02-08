@@ -6,7 +6,7 @@ import { FaHome, FaPlus, FaUser } from 'react-icons/fa';
 
 import BusinessProfile from '@/components/business/BusinessProfile';
 import Customers from '@/components/business/Customers';
-import AddService from '@/components/business/AddService';
+// import AddService from '@/components/business/AddService';
 
 const Business: React.FC = () => {
   const [toggle, setToggle] = useState<string>('Customer');
@@ -20,7 +20,7 @@ const Business: React.FC = () => {
       <div className={style.activeWindow}>
          {toggle === 'Customer' ? <Customers /> : ''} 
          {toggle === 'Profile' ? <BusinessProfile /> : ''} 
-         {toggle === 'AddService' ? <AddService /> : ''} 
+         {/* {toggle === 'AddService' ? <AddService /> : ''}  */}
       </div>
 
       <div className={style.bottomNav}>
