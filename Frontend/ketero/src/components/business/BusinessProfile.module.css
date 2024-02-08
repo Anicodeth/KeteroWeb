@@ -1,0 +1,198 @@
+.businessProfile {
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 0 0 auto;
+}
+
+.profileImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.profileTop {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.companyPerformance {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.companyPerformanceStructure {
+    padding: 0.25rem;
+    border-radius: 0.8rem;
+}
+
+.eliteWorker {
+    text-align: center;
+    margin: auto;
+    color: #7D6600;
+    background-color: rgba(125, 102, 0, 0.1);
+}
+
+.rate {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    color: rgb(21, 171, 255);
+    background-color: rgb(21, 171, 255, 0.1);
+}
+
+.rate p {
+    display: flex;
+}
+
+.companyName {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+}
+
+.description {
+    font-size: 12px;
+    font-weight: 200;
+    line-height: 20px;
+    color: #565D6D;
+    text-align: center;
+}
+
+.employee {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.employee p:nth-child(2) {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #565D6D;
+}
+
+.employee p:nth-child(3) {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #171A1F;
+}
+
+.serviceSection>p {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    color: #171A1F;
+    background-color: #F8F9FA;
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+.serviceSection {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.services {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.service img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.service {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: solid grey 0.2px;
+    padding: 0.4rem 0 0.4rem 0;
+}
+
+.service div p:nth-child(1) {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 22px;
+    color: #171A1F;
+}
+
+.service div p:nth-child(2) {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #565D6D;
+}
+
+.service p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #171A1F;
+}
+
+@media screen and (min-width: 529px) {
+    .businessProfile {
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .profile {
+        flex: 4;
+    }
+
+    .serviceSection {
+        flex: 6;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .services {
+        flex-grow: 1;
+        flex-shrink: 1;
+        overflow: scroll;
+    }
+
+    .profileTop {
+        flex-direction: column;
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+
+    .companyDetail {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+    .profileImage {
+        width: 100%;
+        flex-grow: 1;
+        flex-shrink: 1;
+        border-radius: 1rem;
+    }
+
+}
+
+@media screen and (max-width: 300px) {
+    .rate p:nth-child(2) {
+        display: none;
+    }
+}
