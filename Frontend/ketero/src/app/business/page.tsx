@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';  // Import useState from React
-import style from '@/Business.module.css';
+import style from '@/app/business/Business.module.css';
 import { FaHome, FaPlus, FaUser } from 'react-icons/fa';
 
 import BusinessProfile from '@/components/business/BusinessProfile';
