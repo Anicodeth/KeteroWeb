@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import style from "./Services.module.css";
 import { FaBuilding, FaUser, FaPhone, FaTag } from "react-icons/fa";
-import { ServiceImage } from "../../Assets";
+import { ServiceImage } from "../../assets";
 
 interface Service {
   serviceId: string;

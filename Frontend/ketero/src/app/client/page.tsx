@@ -2,11 +2,11 @@
 
 import React, { useState } from "react"; // Import useState from React
 import style from "./Client.module.css";
-import { FaHome, FaPlus, FaUser, FaMenu } from "react-icons/fa";
+import { FaHome, FaPlus, FaUser } from "react-icons/fa";
 
-import Pending from "../../components/client/Pending";
-import ClientProiile from "../../components/client/ClientProfile";
-import Services from "../../components/client/Services";
+import Pending from "@/components/client/Pending";
+import ClientProiile from "@/components/client/ClientProfile";
+import Services from "@/components/client/Services";
 
 const Client: React.FC = () => {
   const [toggle, setToggle] = useState<string>("Services");
