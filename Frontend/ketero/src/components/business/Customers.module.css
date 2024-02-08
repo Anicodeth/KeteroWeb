@@ -1,0 +1,377 @@
+#customerComponent1 {
+    grid-area: one;
+}
+
+#customerComponent2 {
+    grid-area: two;
+}
+
+#customerComponent3 {
+    grid-area: three;
+}
+
+#customerComponent4 {
+    grid-area: four;
+}
+
+
+#customerComponent5 {
+    grid-area: five;
+}
+
+#customerComponent6 {
+    grid-area: six;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* #customerComponent7 {
+    grid-area: seven;
+} */
+
+#customerComponent8 {
+    grid-area: eight;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    color: #171A1F;
+
+}
+
+#seeAll {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #9095A1;
+}
+
+#customerComponent9 {
+    grid-area: nine;
+}
+
+#customerComponent10 {
+    grid-area: ten;
+}
+
+#customerComponent11 {
+    grid-area: eleven;
+}
+
+.customerComponent {
+    overflow: hidden;
+    width: 98vw;
+    height: 100vh;
+    display: grid;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, min-content) 1fr repeat(2, min-content);
+    gap: 0.5rem;
+    grid-template-areas:
+        'one one three'
+        'two two four'
+        'five five five'
+        'six six six'
+        'eight eight eight'
+        'nine nine nine'
+        'ten ten ten'
+    ;
+}
+
+.messageWrapper {
+    display: flex;
+    margin-left: auto;
+}
+
+.goodMorning {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    color: #565D6D;
+}
+
+.ownerName {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+    color: #171A1F;
+}
+
+.profileImage {
+    border-radius: 50%;
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-left: auto;
+}
+
+.makeWidthFit {
+    width: fit-content;
+}
+
+.makeHightFit {
+    block-size: fit-content;
+}
+
+.makeFit {
+    block-size: fit-content;
+    width: fit-content;
+}
+
+.tabBarDate {
+    /* margin: auto; */
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: #F5F1FE;
+    border-radius: 2rem;
+    width: 100%;
+    /* padding: 0.5rem 1rem 0.5rem 1rem; */
+}
+
+.tabBarDate p {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #565D6D;
+}
+
+.selectedTabBarDate {
+    border-radius: 2rem;
+    background-color: #6D31EDBF;
+}
+
+.topCard {
+    background-color: #6D31EDBF;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    padding-left: 0.6rem;
+}
+
+.topCard p {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+    color: white;
+}
+
+.unselectedTopCard {
+    background-color: #D3C1FA;
+}
+
+.taskCard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    background-color: #DEE1E6;
+    padding: 0.5rem;
+}
+
+.taskCard div {
+    display: flex;
+    gap: 4px;
+}
+
+.taskCard p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #171A1F;
+}
+
+.taskCard P span {
+    color: #9095A1;
+}
+
+.bottomBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottomBar div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.appointmentCards {
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.appointmentCards button {
+    background-color: #8E61F1;
+    color: white;
+    border-radius: 2rem;
+    padding: 0.4rem 0 0.4rem 0;
+    grid-column: span 2;
+}
+
+.appointmentCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    background-color: #F3F4F6;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 1rem;
+}
+
+.appointmentCard .situation {
+    background-color: rgba(222, 59, 64, 0.1);
+    border-radius: 1rem;
+    padding: 0.4rem 0.9rem 0.4rem 0.9rem;
+    margin-left: auto;
+}
+
+.appointmentCard div {
+    display: flex;
+    align-items: center;
+}
+
+.appointmentCard hr {
+    grid-column: span 2;
+}
+
+.situation p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #DE3B40;
+}
+
+.home {
+    display: none;
+    grid-area: tweleve;
+}
+
+.task {
+    display: none;
+    grid-area: thirteen;
+}
+
+.profile {
+    display: none;
+    grid-area: fourteen;
+}
+
+.notShow {
+    display: none;
+}
+
+@media (min-width: 430px) {
+    .home {
+        display: block;
+    }
+    
+    .task {
+        display: block;
+    }
+    
+    .profile {
+        display: block;
+    }
+
+    .bottomBar {
+        display: none;
+    }
+
+    .tabBarDate {
+        margin: auto;
+        block-size: fit-content;
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 1;
+        padding: 1rem 0.5rem 1rem 0.5rem;
+    }
+
+    .tabBarDate p {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        white-space: nowrap;
+        padding: 1rem 0.5rem 1rem 0.5rem;
+    }
+
+    .notShow {
+        display: block;
+    }
+
+    #customerComponent3 {
+        display: none;
+    }
+
+    #customerComponent4, #customerComponent4 div{
+        display: flex;
+        gap: 0.8rem;
+    }
+
+    .customerComponent {
+        overflow: scroll;
+        grid-template-columns: min-content 1fr repeat(5, 1fr);
+        grid-template-rows: min-content max-content 1fr 1fr;
+        gap: 0.5rem;
+        grid-template-areas:
+            'one two tweleve thirteen fourteen four four'
+            'five . eight eight eight eight eight'
+            'five six nine nine nine nine nine'
+            'five ten nine nine nine nine nine'
+        ;
+    }
+
+    #customerComponent6 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .appointmentCards {
+        overflow: scroll;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .taskCard {
+        block-size: fit-content;
+        width: 100%;
+        margin: auto;
+    }
+
+    #customerComponent6 {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .topCard {
+        width: 100%;
+        padding: 0.5rem 0 0.5rem 0.5rem;
+    }
+
+    .profileImage {
+        margin: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .appointmentCards {
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
