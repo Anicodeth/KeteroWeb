@@ -19,7 +19,7 @@ const Business: React.FC = () => {
       <div className={style.activeWindow}>
         {toggle === 'Customer' ? <Customers /> : ''}
         {toggle === 'Profile' ? <BusinessProfile /> : ''}
-        {toggle === 'AddService' ? <AddService /> : ''}
+        {/* {toggle === 'AddService' ? <AddService /> : ''} */}
       </div>
 
       <div className={style.bottomNav}>
