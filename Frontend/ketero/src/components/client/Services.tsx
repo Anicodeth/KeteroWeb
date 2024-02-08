@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import style from "./Services.module.css";
 import { FaBuilding, FaUser, FaPhone, FaTag } from "react-icons/fa";
-import { ServiceImage } from "../../assets";
+// import { ServiceImage } from "../../assets";
 
 interface Service {
   serviceId: string;
@@ -100,11 +100,11 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
         <div className={style.contentContainer}>
           <div className={style.imageContainer}>
             <div className={style.imageCard}>
-              <Image
+              {/* <Image
                 className={style.image}
                 src={ServiceImage}
                 alt={service.serviceImageAlt}
-              />
+              /> */}
             </div>
             <h1 className={style.serviceName}>{service.serviceName}</h1>
           </div>
