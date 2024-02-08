@@ -107,7 +107,7 @@ const Customers: React.FC = () => {
       </p>
       <div id={style.customerComponent2}>
         <p className={[style.goodMorning].join(" ")}>Good morning!</p>
-        <p className={[style.ownerName].join(" ")}>Owner's Name</p>
+        <p className={[style.ownerName].join(" ")}>Owner&apos;s Name</p>
       </div>
       <p className={[style.home].join(" ")}>Home</p>
       <p className={[style.task].join(" ")}>Tasks</p>
