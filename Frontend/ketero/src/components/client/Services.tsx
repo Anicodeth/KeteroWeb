@@ -2,85 +2,6 @@ import React from "react";
 import { useState } from "react";
 import Image from "next/image";
 import style from "./Services.module.css";
-<<<<<<< HEAD
-import { FaBuilding, FaUser, FaPhone, FaTag } from "react-icons/fa";
-// import { ServiceImage } from "../../assets";
-
-interface Service {
-  serviceId: string;
-  serviceName: string;
-  companyName: string;
-  serviceImage: string;
-  serviceImageAlt: string;
-  serviceDetail: string;
-  companyAgentName: string;
-  companyContact: string;
-  servicePrice: number;
-}
-
-const serviceData: Service[] = [
-  {
-    serviceId: "1",
-    serviceName: "Men Hair Cut",
-    companyName: "Barber Shop",
-    serviceImage: "ServiceImage",
-    serviceImageAlt: "A Descriptive Image About The Service",
-    serviceDetail:
-      "Tailored haircuts, offer precise beard grooming, and provide specialized services like soothing scalp treatments and invigorating hot towel shaves.",
-    companyAgentName: "Solomon Hailu",
-    companyContact: "+251 911 556 9887",
-    servicePrice: 35,
-  },
-  {
-    serviceId: "2",
-    serviceName: "Service 2",
-    companyName: "Company B",
-    serviceImage: "ServiceImage",
-    serviceImageAlt: "Service 2 Image",
-    serviceDetail:
-      "Tailored haircuts, offer precise beard grooming, and provide specialized services like soothing scalp treatments and invigorating hot towel shaves.",
-    companyAgentName: "Agent B",
-    companyContact: "+251 911 556 9887",
-    servicePrice: 150,
-  },
-  {
-    serviceId: "3",
-    serviceName: "Service 3",
-    companyName: "Company C",
-    serviceImage: "ServiceImage",
-    serviceImageAlt: "ServiceImage",
-    serviceDetail:
-      "Tailored haircuts, offer precise beard grooming, and provide specialized services like soothing scalp treatments and invigorating hot towel shaves.",
-    companyAgentName: "Agent C",
-    companyContact: "+251 911 556 9887",
-    servicePrice: 120,
-  },
-  {
-    serviceId: "4",
-    serviceName: "Service 4",
-    companyName: "Company D",
-    serviceImage: "ServiceImage",
-    serviceImageAlt: "Service 4 Image",
-    serviceDetail:
-      "Tailored haircuts, offer precise beard grooming, and provide specialized services like soothing scalp treatments and invigorating hot towel shaves.",
-    companyAgentName: "Agent D",
-    companyContact: "+251 911 556 9887",
-    servicePrice: 180,
-  },
-  {
-    serviceId: "5",
-    serviceName: "Service 5",
-    companyName: "Company E",
-    serviceImage: "ServiceImage",
-    serviceImageAlt: "Service 5 Image",
-    serviceDetail:
-      "Tailored haircuts, offer precise beard grooming, and provide specialized services like soothing scalp treatments and invigorating hot towel shaves.",
-    companyAgentName: "Agent E",
-    companyContact: "+251 911 556 9887",
-    servicePrice: 130,
-  },
-];
-=======
 import {
   categoryData,
   serviceData,
@@ -94,7 +15,6 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { LuBellRing } from "react-icons/lu";
 import { Logo, ClientProfile } from "../../Assets";
 import { CiSearch } from "react-icons/ci";
->>>>>>> origin/nahom.service
 
 const Services: React.FC = () => {
   const [FormData, setFormData] = useState<FormData>({
@@ -120,25 +40,6 @@ const Services: React.FC = () => {
             <LuBellRing className={style.bellIcon} />
           </div>
         </div>
-<<<<<<< HEAD
-      </div>
-    </>
-  );
-};
-
-const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
-  return (
-    <>
-      <div className={style.cardContainer}>
-        <div className={style.contentContainer}>
-          <div className={style.imageContainer}>
-            <div className={style.imageCard}>
-              {/* <Image
-                className={style.image}
-                src={ServiceImage}
-                alt={service.serviceImageAlt}
-              /> */}
-=======
         <div className={style.greetings}>
           <div className={style.greetClient}>
             <h3>Good Morning!</h3>
@@ -151,7 +52,6 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
                 src={ClientProfile}
                 alt="Profile Image"
               />
->>>>>>> origin/nahom.service
             </div>
           </div>
         </div>
