@@ -1,12 +1,12 @@
 'use client'
 
 import React, { useState } from 'react';  // Import useState from React
-import AddService from '@/components/Business/AddService';
+import AddService from '@/components/business/AddService';
 import style from './Business.module.css';
 import { FaHome, FaPlus, FaUser } from 'react-icons/fa';
 
-import BusinessProfile from '@/components/Business/BusinessProfile';
-import Customers from '@/components/Business/Customers';
+import BusinessProfile from '@/components/business/BusinessProfile';
+import Customers from '@/components/business/Customers';
 
 const Business: React.FC = () => {
   const [toggle, setToggle] = useState<string>('Customer');
