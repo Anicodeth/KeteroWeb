@@ -1,6 +1,8 @@
 import React from "react";
+import { useState } from "react";
 import Image from "next/image";
 import style from "./Services.module.css";
+<<<<<<< HEAD
 import { FaBuilding, FaUser, FaPhone, FaTag } from "react-icons/fa";
 // import { ServiceImage } from "../../assets";
 
@@ -78,16 +80,47 @@ const serviceData: Service[] = [
     servicePrice: 130,
   },
 ];
+=======
+import {
+  categoryData,
+  serviceData,
+  FormData,
+  toggles,
+} from "./ServicesComponents";
+import ServiceCard from "./ServicesComponents/ServiceCard";
+import CategoryCard from "./ServicesComponents/CategoryCard";
+import CompanyCard from "./ServicesComponents/CompanyCard";
+import { AiOutlineMessage } from "react-icons/ai";
+import { LuBellRing } from "react-icons/lu";
+import { Logo, ClientProfile } from "../../Assets";
+import { CiSearch } from "react-icons/ci";
+>>>>>>> origin/nahom.service
 
 const Services: React.FC = () => {
+  const [FormData, setFormData] = useState<FormData>({
+    searchValue: "",
+  });
+
+  const [selectedBar, setSelectedBar] = useState<string>("Services");
+  const [toggleComponent, setToggleComponent] = useState<string>("Services");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, name: value }));
+  };
   return (
     <>
       <div className={style.mainContainer}>
-        <div className={style.serviceContainer}>
-          {serviceData.map((service, index) => (
-            <ServiceCard key={service.serviceId} service={service} />
-          ))}
+        <div className={style.header}>
+          <div className={style.logo}>
+            <Image className={style.imageLogo} src={Logo} alt="Ketero Logo" />
+          </div>
+          <div className={style.notificationIcons}>
+            <AiOutlineMessage className={style.messageIcon} />
+            <LuBellRing className={style.bellIcon} />
+          </div>
         </div>
+<<<<<<< HEAD
       </div>
     </>
   );
@@ -105,40 +138,83 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
                 src={ServiceImage}
                 alt={service.serviceImageAlt}
               /> */}
-            </div>
-            <h1 className={style.serviceName}>{service.serviceName}</h1>
+=======
+        <div className={style.greetings}>
+          <div className={style.greetClient}>
+            <h3>Good Morning!</h3>
+            <h3 className={style.client}>Client Name</h3>
           </div>
-          <div className={style.companyMessage}>
-            <div className={style.companyName}>
-              <FaBuilding className={style.companyIcon} />
-              <h2>{service.companyName}</h2>
-            </div>
-            <div className={style.serviceDetail}>
-              <p className={style.detailParagraph}>{service.serviceDetail}</p>
+          <div className={style.profile}>
+            <div className={style.profileImage}>
+              <Image
+                className={style.imageProfile}
+                src={ClientProfile}
+                alt="Profile Image"
+              />
+>>>>>>> origin/nahom.service
             </div>
           </div>
         </div>
-        <div className={style.contactContainer}>
-          <div className={style.contacts}>
-            <div className={style.agentName}>
-              <FaUser className={style.userIcon} />
-              <h3>{service.companyAgentName}</h3>
+        <div className={style.search}>
+          <div className={style.searchForm}>
+            <div className={style.searchContainer}>
+              <CiSearch className={style.searchIcon} />
             </div>
-            <div className={style.agentPhone}>
-              <FaPhone className={style.phoneIcon} />
-              <h3>{service.companyContact}</h3>
-            </div>
+            <input
+              type="text"
+              name="name"
+              className={style.input}
+              placeholder="what do you need help with?"
+              value={FormData.searchValue}
+              onChange={handleChange}
+            ></input>
           </div>
-          <div className={style.bookingInfo}>
-            <div className={style.price}>
-              <FaTag className={style.priceTagIcon} />
-              <h3>Average Price</h3>
-              <h2 className={style.servicePrice}>$ {service.servicePrice}</h2>
+        </div>
+        <div className={style.toggle}>
+          {toggles.map((toggle, index) => (
+            <div key={toggle.id} className={style.categories}>
+              <button
+                className={
+                  toggle.id === "1" && selectedBar === "Services"
+                    ? style.selectedBar
+                    : toggle.id === "2" && selectedBar === "Categories"
+                    ? style.selectedBar
+                    : toggle.id === "3" && selectedBar === "Companies"
+                    ? style.selectedBar
+                    : ""
+                }
+                onClick={() => {
+                  setSelectedBar(toggle.name);
+                  setToggleComponent(
+                    toggle.id === "1"
+                      ? "Services"
+                      : toggle.id === "2"
+                      ? "Categories"
+                      : "Companies"
+                  );
+                }}
+              >
+                {toggle.name}
+              </button>
             </div>
-            <div className={style.bookButton}>
-              <button>Book</button>
-            </div>
-          </div>
+          ))}
+        </div>
+        <div className={style.serviceContainer}>
+          {toggleComponent === "Services"
+            ? serviceData.map((service, index) => (
+                <ServiceCard key={index} service={service} />
+              ))
+            : " "}
+          {toggleComponent === "Categories"
+            ? categoryData.map((category, index) => (
+                <CategoryCard key={index} category={category} />
+              ))
+            : " "}
+          {toggleComponent === "Categories"
+            ? categoryData.map((category, index) => (
+                <CompanyCard key={index} category={category} />
+              ))
+            : " "}
         </div>
       </div>
     </>
