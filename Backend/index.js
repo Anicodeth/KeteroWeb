@@ -40,11 +40,14 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Route imports  
 const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
+
 
 
 // Route definitions
 VERSION = "v1";
 app.use(`/api/${VERSION}/user`, userRoutes);
+app.use(`/api/${VERSION}/auth`, authRoutes);
 
 
 

@@ -85,4 +85,4 @@ const Mezgeb = userSchema.discriminator('mezgeb', mezgebSchema);
 // User schema (inherits from BaseUser)
 const User = mongoose.model('User', baseUserSchema);
 
-module.exports = { Usern}
+module.exports = { User}

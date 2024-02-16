@@ -1,10 +1,11 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const { createClientDTO, createBusinessDTO, createMezgebDTO, loginUserDTO } = require('./dtos');
+const { createClientDTO, createBusinessDTO, createMezgebDTO, loginUserDTO } = require('../dtos/createDtos');
 const { Client } = require("../models/Client")
 const { Business } = require("../models/Business")
 const { Mezgebu } = require("../models/Mezgebu")
 
+const secretKey = "Ananya";
 
 exports.createClient = async (data) => {
     try {
@@ -43,7 +44,7 @@ exports.createBusiness = async (data) => {
   
 exports.createMezgeb = async (data) => {
     try {
-        if(!validateData(data, createMezgebuDTO)){
+        if(!validateData(data, createMezgebDTO)){
             throw new Error("Not valid mezgebu data")
         }
       const { name, email, password } = data;
@@ -59,41 +60,39 @@ exports.createMezgeb = async (data) => {
   };
   
 
-exports.loginUser = async (data) => {
-
-  const { email, password } = data;
-
-  let user;
-  let token;
-
-  try{
-
-  user = await Client.fineOne({email});
-  if (user && user.password === password){
-    token = jwt.sign({email:email, role: 'Client'});
-    return {user, token}
-  }
-
-  user = await Business.fineOne({email});
-  if (user && user.password === password){
-    token = jwt.sign({email:email, role: 'Business'});
-    return {user, token}
-  }
-
-  user = await Mezgebu.fineOne({email});
-  if (user && user.password === password){
-    token = jwt.sign({email:email, role: 'Mezgebu'});
-    return {user, token}
-  }
-
-  if ( !user || user.password !== password ){
-    throw new Error("Invalid Credentials");
-  } }
-  catch(error){
-    throw new Error(error.message);
-  }
-
-};
+  exports.loginUser = async (data) => {
+    const { email, password } = data;
+  
+    let user;
+    let token;
+  
+    try {
+      user = await Client.findOne({ email });
+      if (user && user.password === password) {
+        token = jwt.sign({ email: email, role: 'Client' }, secretKey);
+        return { user, token };
+      }
+  
+      user = await Business.findOne({ email });
+      if (user && user.password === password) {
+        token = jwt.sign({ email: email, role: 'Business' }, secretKey);
+        return { user, token };
+      }
+  
+      user = await Mezgebu.findOne({ email });
+      if (user && user.password === password) {
+        token = jwt.sign({ email: email, role: 'Mezgebu' }, secretKey);
+        return { user, token };
+      }
+  
+      if (!user || user.password !== password) {
+        throw new Error('Invalid Credentials');
+      }
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+  
 
 
 async function checkEmail(email) {
