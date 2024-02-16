@@ -1,9 +1,8 @@
-const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const { createClientDTO, createBusinessDTO, createMezgebDTO, loginUserDTO } = require('../dtos/createDtos');
-const { Client } = require("../models/Client")
-const { Business } = require("../models/Business")
-const { Mezgebu } = require("../models/Mezgebu")
+const { createClientDTO, createBusinessDTO, createMezgebDTO } = require('../dtos/createDtos');
+const  Client  = require("../models/Client")
+const  Business  = require("../models/Business")
+const  Mezgebu  = require("../models/Mezgebu")
 
 const secretKey = "Ananya";
 
@@ -94,9 +93,9 @@ exports.createMezgeb = async (data) => {
   };
   
 
-
 async function checkEmail(email) {
     try {
+        
       const clientExists = await Client.exists({ email });
       const businessExists = await Business.exists({ email });
       const mezgebExists = await Mezgebu.exists({ email });
