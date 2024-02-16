@@ -9,11 +9,11 @@ const SignUp: React.FC = () => {
   return (
     <div className={[styles.screen, , styles.center].join(" ")}>
       <div className={[styles.mainWrapper].join(" ")}>
-        <h1>LOGO</h1>
+        <h1></h1>
         <div>
           <h1 className={[styles.heading].join(" ")}>Welcome</h1>
           <p className={[styles.paragraph].join(" ")}>
-            Hi, Enter your details to get sign in to your account
+            Hi, Enter your details to get sign up to your account
           </p>
         </div>
         <form action="" className={[styles.form].join(" ")}>

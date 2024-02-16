@@ -62,8 +62,8 @@
 .signupButton {
     background-color: #8E61F1;
     color: white;
-    padding: 5px;
-    border-radius: 16px;
+    padding: 0.75rem;
+    border-radius:2rem;
 }
 
 .otherOption {

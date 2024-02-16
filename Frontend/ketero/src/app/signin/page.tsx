@@ -1,7 +1,7 @@
 import { FaUser } from "react-icons/fa6";
 import Image from 'next/image';
 import Button from "../../components/shared/buttons/button";
-import styles from "../../components/shared/buttons/button.module.css";
+import styles from "./SignIn.module.css";
 // import logo from "../../Assets/logo.png";
 
 export default function SignIn() {
@@ -17,11 +17,16 @@ export default function SignIn() {
         <p className={styles.description}>Hi, Enter your details to get sign in to you account</p>
 
             <div className={styles.inputContainer}>
-                <div className={styles.inputWrapper}>
+                <div className={styles.inputWrapper}>    
                     <FaUser className={styles.icon}/>
-                    <input type="email" name="email" id="email" title="Email" placeholder="Enter email/Phone no"
+                    <input type="email" name="email" id="email" title="Email" placeholder="Enter email"
                     className={styles.input} />
                 </div>
+                <div className={styles.inputWrapper}>
+                  <FaUser className={styles.icon}/>
+                  <input type="password" name="password" id="password" title="Password" placeholder="Enter password"
+                  className={styles.input} />
+              </div>
             </div>
 
             
