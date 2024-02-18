@@ -117,8 +117,8 @@ exports.createMezgeb = async (req, res) => {
 exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const { user, token } = await loginUser({ email, password });
-    res.status(200).json({ user, token });
+    const data = await loginUser({ email, password });
+    res.status(200).json(data);
   } catch (error) {
     res.status(401).json({ error: error.message });
   }

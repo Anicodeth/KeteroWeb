@@ -33,10 +33,9 @@ const swaggerSpec = swaggerJsdoc({
       description: 'Ketero 1.0 Web App API documentation',
     },
   },
-  apis: ['./routes/*'], // Specify the file(s) where JSDoc annotations are present
+  apis: ['./routes/*.js'], // Specify the file(s) where JSDoc annotations are present
 });
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Route imports  
 const userRoutes = require("./routes/userRoutes");

@@ -24,6 +24,7 @@ exports.createClient = async (data) => {
     }
   };
   
+  
 exports.createBusiness = async (data) => {
     try {
         if(!validateData(data, createBusinessDTO)){
@@ -58,39 +59,34 @@ exports.createMezgeb = async (data) => {
     }
   };
   
-
   exports.loginUser = async (data) => {
     const { email, password } = data;
   
-    let user;
-    let token;
-  
     try {
-      user = await Client.findOne({ email });
+      let user = await Client.findOne({ email });
       if (user && user.password === password) {
-        token = jwt.sign({ email: email, role: 'Client' }, secretKey);
-        return { user, token };
+        const token = jwt.sign({ email: email, role: 'Client' }, secretKey);
+        return { user: { ...user.toJSON(), password: undefined }, token, role: 'Client' };
       }
   
       user = await Business.findOne({ email });
       if (user && user.password === password) {
-        token = jwt.sign({ email: email, role: 'Business' }, secretKey);
-        return { user, token };
+        const token = jwt.sign({ email: email, role: 'Business' }, secretKey);
+        return { user: { ...user.toJSON(), password: undefined }, token, role: 'Business' };
       }
   
       user = await Mezgebu.findOne({ email });
       if (user && user.password === password) {
-        token = jwt.sign({ email: email, role: 'Mezgebu' }, secretKey);
-        return { user, token };
+        const token = jwt.sign({ email: email, role: 'Mezgebu' }, secretKey);
+        return { user: { ...user.toJSON(), password: undefined }, token, role: 'Mezgebu' };
       }
   
-      if (!user || user.password !== password) {
-        throw new Error('Invalid Credentials');
-      }
+      throw new Error('Invalid Credentials');
     } catch (error) {
       throw new Error(error.message);
     }
   };
+  
   
 
 async function checkEmail(email) {
