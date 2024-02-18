@@ -1,12 +1,7 @@
 const mongoose = require('mongoose')
 
-
 const BusinessSchema = new mongoose.Schema({
-    name:{
-        type: String,
-        required: true,
-        minLength: [3, "Name must exceed 3 characters"]
-    } ,
+
     email:{
         type: String,
         required: true,
@@ -38,6 +33,18 @@ const BusinessSchema = new mongoose.Schema({
         ref: 'Service'
       }],
 
+    pending: [
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'Reservation'
+        }
+    ],
+    confirmed: [
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'Reservation'
+        }
+    ]
 })
 
 

@@ -22,6 +22,19 @@ const ClientSchema = new mongoose.Schema({
         minLength: [8, "Password must be at least 8 Characters"]
     },
 
+    pending: [
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'Reservation'
+        }
+    ],
+    confirmed: [
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'Reservation'
+        }
+    ]
+
 });
 
 module.exports = mongoose.model('Client', ClientSchema);

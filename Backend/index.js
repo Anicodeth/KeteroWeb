@@ -41,6 +41,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Route imports  
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
+const serviceRoutes = require("./routes/serviceRoutes");
+const businessRoutes = require('./routes/businessRoutes');
 
 
 
@@ -48,7 +50,8 @@ const authRoutes = require("./routes/authRoutes");
 VERSION = "v1";
 app.use(`/api/${VERSION}/user`, userRoutes);
 app.use(`/api/${VERSION}/auth`, authRoutes);
-
+app.use(`/api/${VERSION}/business`, businessRoutes);
+app.use(`/api/${VERSION}/service`, serviceRoutes);
 
 
 app.listen(3000, ()=>{

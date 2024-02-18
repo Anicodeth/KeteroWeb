@@ -6,7 +6,6 @@ const createClientDTO = {
   
   // DTOs for createBusiness
   const createBusinessDTO = {
-    name: String,
     email: String,
     ownerName: String,
     businessName: String,
