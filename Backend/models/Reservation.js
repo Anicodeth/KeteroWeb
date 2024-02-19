@@ -9,6 +9,10 @@ const ReservationSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Business'
     },
+    clientId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Client'
+    },
     dateAndTime: {
         type: Date, 
         required: true

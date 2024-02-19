@@ -93,6 +93,8 @@ router.post('/business', authController.createBusiness);
  *       '500':
  *         description: Internal server error
  */
+
+
 router.post('/mezgebu', authController.createMezgeb);
 
 /**
