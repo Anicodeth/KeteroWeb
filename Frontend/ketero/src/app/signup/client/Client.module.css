@@ -1,0 +1,85 @@
+.screen {
+    width: 100vw;
+    height: 100vh;
+   
+}
+
+.mainWrapper {
+    width: 450px;
+    height: 100vh;
+    padding: 2rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.login {
+    align-self: center;
+}
+
+.login span {
+    color: #8E61F1;
+}
+
+@media (max-height: 933px) {
+    .mainWrapper{
+        height: 100%;
+    }
+}
+
+@media (max-width: 431px) {
+    .mainWrapper{
+        width: 100vw;
+    }
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+}
+
+.paragraph {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+}
+
+.inputWrapper {
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.signupButton {
+    background-color: #8E61F1;
+    color: white;
+    padding: 0.75rem;
+    border-radius:2rem;
+}
+
+.otherOption {
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerIcon{
+    border: 1px solid grey;
+    height: 40px;
+    border-radius: 20px;
+    width: 30%;
+}

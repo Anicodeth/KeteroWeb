@@ -3,10 +3,10 @@ import { CiUser } from "react-icons/ci";
 import { FaGoogle, FaFacebookSquare } from "react-icons/fa";
 import { AiOutlineApple } from "react-icons/ai";
 
-import styles from "./SignIn.module.css";
+import styles from "./Client.module.css";
 import Link from "next/link";
 
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
   return (
     <div className={[styles.screen, , styles.center].join(" ")}>
       <div className={[styles.mainWrapper].join(" ")}>
@@ -14,10 +14,24 @@ const SignIn: React.FC = () => {
         <div>
           <h1 className={[styles.heading].join(" ")}>Welcome</h1>
           <p className={[styles.paragraph].join(" ")}>
-            Hi, Enter your details to get login to your account
+            Hi, Enter your details to get sign up to your account
           </p>
         </div>
         <form action="" className={[styles.form].join(" ")}>
+          <div>
+            <div className={[styles.inputWrapper, styles.center].join(" ")}>
+              <div className={[styles.center].join(" ")}>
+                <CiUser></CiUser>
+              </div>
+              <input
+                type="text"
+                placeholder="Name"
+                className="outline-none border-none"
+              />
+            </div>
+            <hr />
+          </div>
+          
           <div>
             <div className={[styles.inputWrapper, styles.center].join(" ")}>
               <div className={[styles.center].join(" ")}>
@@ -44,9 +58,23 @@ const SignIn: React.FC = () => {
             </div>
             <hr />
           </div>
-          <button className={[styles.signupButton].join(" ")}>LogIn</button>
-          <p className={styles.login}>Didn't you have an account ? <Link href="/signup"><span>Signup</span></Link></p>
+          <div>
+            <div className={[styles.inputWrapper, styles.center].join(" ")}>
+              <div className={[styles.center].join(" ")}>
+                <CiUser></CiUser>
+              </div>
+              <input
+                type="text"
+                placeholder="Confirm Password"
+                className="outline-none border-none"
+              />
+            </div>
+            <hr />
+          </div>
+          <button className={[styles.signupButton].join(" ")}>Signup</button>
+        <p className={styles.login}>Did you have an account already ? <Link href="/signin"><span>Login</span></Link></p>
         </form>
+
         <div>
           <p className={[styles.paragraph].join(" ")}>Or Sign in via</p>
           <div className={[styles.otherOption].join(" ")}>
@@ -70,4 +98,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
