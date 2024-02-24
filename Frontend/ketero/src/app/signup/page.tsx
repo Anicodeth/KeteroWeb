@@ -32,9 +32,9 @@ const Section: React.FC = () => {
         <div className={[style.optionWrapper].join(" ")}>
           <SectionCard
             Icon={RiAdminLine}
-            typeOfOption="administrator"
+            typeOfOption="mezgeb"
           ></SectionCard>
-          <SectionCard Icon={RiAdminLine} typeOfOption="company"></SectionCard>
+          <SectionCard Icon={RiAdminLine} typeOfOption="business"></SectionCard>
           <SectionCard Icon={RiAdminLine} typeOfOption="client"></SectionCard>
         </div>
       </div>
