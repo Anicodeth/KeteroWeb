@@ -1,7 +1,7 @@
 import { Business } from "@/models/Business";
 import { Client } from "@/models/Client";
+import { Mezgeb } from "@/models/Mezgeb";
 import axios from "axios";
-import { captureRejectionSymbol } from "events";
 
 
 const url = "";
@@ -19,19 +19,23 @@ export  async function signUpClient(client: Client): Promise<any>{
 export  async function signUpBusiness(business: Business):Promise<any>{
 
     try{
-        const response = await axios.post(`${url}`+ "/api/api/signup", business)
+        const response = await axios.post(`${url}`+ "/api/api/signup", business).then(
+            (res:any)=> res.data);
+
         return response.data;
     }
     catch(e){
         throw e;
     }
-
 }
 
-export  async function signUpMezgeb(){
+export  async function signUpMezgeb(mezgeb: Mezgeb){
 
     try{
-        const response = await axios.
+        const response = await axios.post("", mezgeb).then(
+            (res:any)=>res.data
+        );
+        return response.data;
     }
     catch(e){
         throw e
