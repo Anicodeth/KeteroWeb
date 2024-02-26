@@ -14,6 +14,9 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirmmPassword, setConfirmPassword]  = useState("");
 
+  async function handleSignUp(){
+
+  }
   
   return (
     <div className={[styles.screen, , styles.center].join(" ")}>
@@ -25,7 +28,7 @@ const SignUp: React.FC = () => {
             Hi, Enter your details to get sign up to your account
           </p>
         </div>
-        <form action="" className={[styles.form].join(" ")}>
+        <form onSubmit={handleSignUp} className={[styles.form].join(" ")}>
           <div>
             <div className={[styles.inputWrapper, styles.center].join(" ")}>
               <div className={[styles.center].join(" ")}>
@@ -66,7 +69,8 @@ const SignUp: React.FC = () => {
                 type="text"
                 placeholder="Password"
                 className="outline-none border-none"
-                
+                value = {password}
+                onChange = {(e)=>setPassword(e.target.value)}
               />
             </div>
             <hr />
@@ -80,11 +84,13 @@ const SignUp: React.FC = () => {
                 type="text"
                 placeholder="Confirm Password"
                 className="outline-none border-none"
+                value ={confirmmPassword}
+                onChange = {(e)=>setConfirmPassword(e.target.value)}
               />
             </div>
             <hr />
           </div>
-          <button className={[styles.signupButton].join(" ")}>Signup</button>
+          <button type="submit" className={[styles.signupButton].join(" ")}>Signup</button>
         <p className={styles.login}>Did you have an account already ? <Link href="/signin"><span>Login</span></Link></p>
         </form>
 
