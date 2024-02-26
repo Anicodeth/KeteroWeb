@@ -51,6 +51,8 @@ const SignUp: React.FC = () => {
                 type="text"
                 placeholder="Email"
                 className="outline-none border-none"
+                value={email}
+                onChange = {(e)=>setEmail(e.target.value)}
               />
             </div>
             <hr />
@@ -64,6 +66,7 @@ const SignUp: React.FC = () => {
                 type="text"
                 placeholder="Password"
                 className="outline-none border-none"
+                
               />
             </div>
             <hr />
