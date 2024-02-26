@@ -8,6 +8,8 @@ import { z, ZodError } from "zod";
 
 import styles from "./Client.module.css";
 import Link from "next/link";
+import { signUpClient} from "../../../services/AuthService"
+import { Client } from "@/models/Client";
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState("");
@@ -23,14 +25,12 @@ const SignUp: React.FC = () => {
   });
 
   const signupMutation = useMutation(
-    (newUser: any) => axios.post("/api/signup", newUser),
+    (newClient: Client) => signUpClient(newClient),
     {
       onSuccess: () => {
-        // Handle success, e.g., redirect to a different page
         console.log("Signup successful");
       },
-      onError: (error) => {
-        // Handle error, e.g., show an error message
+      onError: (error:any) => {
         console.error("Error signing up:", error);
       },
     }
