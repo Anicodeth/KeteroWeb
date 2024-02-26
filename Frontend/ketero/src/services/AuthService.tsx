@@ -46,7 +46,7 @@ export  async function signUpMezgeb(mezgeb: Mezgeb){
 
 export  async function signIn(login:Login){
 try{
-    const response = await axios.post("", login);
+    const response = await axios.post("", login).then((res:any)=>res.data);
     return response.data;
 }
 catch(e){
