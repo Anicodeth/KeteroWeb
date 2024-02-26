@@ -6,7 +6,15 @@ import { AiOutlineApple } from "react-icons/ai";
 import styles from "./Client.module.css";
 import Link from "next/link";
 
+import { useState } from "react";
+
 const SignUp: React.FC = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmmPassword, setConfirmPassword]  = useState("");
+
+  
   return (
     <div className={[styles.screen, , styles.center].join(" ")}>
       <div className={[styles.mainWrapper].join(" ")}>
@@ -26,6 +34,8 @@ const SignUp: React.FC = () => {
               <input
                 type="text"
                 placeholder="Name"
+                value = {name}
+                onChange = {(e) => setName(e.target.value)}
                 className="outline-none border-none"
               />
             </div>
