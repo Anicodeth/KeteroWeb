@@ -4,7 +4,8 @@ import axios from "axios";
 const url = "";
 
 export  async function signUpClient(formData: FormData){
-    axios.post(`${url}` + "/api/api/signup");
+    axios.post(`${url}` + "/api/api/signup", formData).then((res:any) => res.data); 
+
 
 
 }
