@@ -2,8 +2,10 @@ import axios from "axios";
 import { useMutation } from "react-query";
 
 
+const url = "";
 
-export  async function signUpClient(){
+export  async function signUpClient(formData: FormData){
+    axios.post(`${url}` + "/api/api/signup");
 
 
 }
