@@ -4,7 +4,7 @@ import { Client } from "@/models/Client";
 import { Login } from "@/models/Login";
 import { Mezgeb } from "@/models/Mezgeb";
 
-const apiUrl = "/api"; // Assuming this is your base API URL
+const apiUrl = "https://ketero-web-dmow.vercel.app/api/v1"; // Assuming this is your base API URL
 
 export async function signUpClient(client: Client): Promise<any> {
     try {
