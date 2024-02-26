@@ -1,5 +1,6 @@
 import { Business } from "@/models/Business";
 import { Client } from "@/models/Client";
+import { Login } from "@/models/Login";
 import { Mezgeb } from "@/models/Mezgeb";
 import axios from "axios";
 
@@ -43,7 +44,13 @@ export  async function signUpMezgeb(mezgeb: Mezgeb){
 
 }
 
-export  async function signIn(){
-
+export  async function signIn(login:Login){
+try{
+    const response = await axios.post("", login);
+    return response.data;
+}
+catch(e){
+    throw e
+}
 }
 
