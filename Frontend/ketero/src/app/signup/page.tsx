@@ -31,7 +31,7 @@ export default function selector(){
       {
           title: "Register as a Mezgeb",
           description: "Get the power to facilitate businesses.",
-          path: "/signup/mezgebu"
+          path: "/signup/mezgeb"
       }
 
   ]
