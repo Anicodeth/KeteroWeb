@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { CiUser } from "react-icons/ci";
