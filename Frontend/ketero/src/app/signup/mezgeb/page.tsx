@@ -9,8 +9,8 @@ import { z, ZodError } from "zod";
 
 import styles from "./Client.module.css";
 import Link from "next/link";
-import { signUpClient } from "../../../services/AuthService";
-import { Client } from "@/models/Client";
+import { signUpMezgeb } from "../../../services/AuthService";
+import { Mezgeb } from "@/models/Mezgeb";
 import { toast } from "sonner";
 
 const queryClient = new QueryClient();
@@ -36,7 +36,7 @@ const Form: React.FC = () => {
   });
 
   const signupMutation = useMutation(
-    (newClient: Client) => signUpClient(newClient),
+    (newMezgeb: Mezgeb) => signUpMezgeb(newMezgeb),
     {
       onSuccess: () => {
         toast("Signup successful");
