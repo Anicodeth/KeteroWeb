@@ -3,7 +3,6 @@ import style from "./SignUp.module.css";
 import { RiAdminLine } from "react-icons/ri";
 import { IconType } from "react-icons";
 import Link from "next/link";
-import { QueryClient, QueryClientProvider } from 'react-query';
 
 interface Props {
   typeOfOption: string;
@@ -26,7 +25,6 @@ const SectionCard = ({ Icon, typeOfOption }: Props) => {
 
 const Section: React.FC = () => {
   return (
-    <QueryClientProvider client={new QueryClient()}>
       <div className={[style.page].join(" ")}>
         <div className={style.mainWrapper}>
           <p className={[style.paragraph].join(" ")}>LOGO</p>
@@ -40,7 +38,6 @@ const Section: React.FC = () => {
           </div>
         </div>
       </div>
-    </QueryClientProvider>
   );
 };
 
