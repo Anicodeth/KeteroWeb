@@ -4,11 +4,11 @@ import { Client } from "@/models/Client";
 import { Login } from "@/models/Login";
 import { Mezgeb } from "@/models/Mezgeb";
 
-const apiUrl = "https://ketero-web-dmow.vercel.app/api/v1"; // Assuming this is your base API URL
+const apiUrl = "https://ketero-web-dmow.vercel.app/api/v1/auth"; // Assuming this is your base API URL
 
 export async function signUpClient(client: Client): Promise<any> {
     try {
-        const response = await axios.post(`${apiUrl}/signup/client`, client);
+        const response = await axios.post(`${apiUrl}/client`, client);
         return response.data;
     } catch (e) {
         console.error("Error signing up client:", e);
@@ -18,7 +18,7 @@ export async function signUpClient(client: Client): Promise<any> {
 
 export async function signUpBusiness(business: Business): Promise<any> {
     try {
-        const response = await axios.post(`${apiUrl}/signup/business`, business);
+        const response = await axios.post(`${apiUrl}/business`, business);
         return response.data;
     } catch (e) {
         console.error("Error signing up business:", e);
@@ -28,7 +28,7 @@ export async function signUpBusiness(business: Business): Promise<any> {
 
 export async function signUpMezgeb(mezgeb: Mezgeb): Promise<any> {
     try {
-        const response = await axios.post(`${apiUrl}/signup/mezgeb`, mezgeb);
+        const response = await axios.post(`${apiUrl}/mezgebu`, mezgeb);
         return response.data;
     } catch (e) {
         console.error("Error signing up mezgeb:", e);
@@ -38,7 +38,7 @@ export async function signUpMezgeb(mezgeb: Mezgeb): Promise<any> {
 
 export async function signIn(login: Login): Promise<any> {
     try {
-        const response = await axios.post(`${apiUrl}/signin`, login);
+        const response = await axios.post(`${apiUrl}/login`, login);
         return response.data;
     } catch (e) {
         console.error("Error signing in:", e);

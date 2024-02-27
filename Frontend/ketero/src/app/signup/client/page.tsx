@@ -39,14 +39,16 @@ const SignUp: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      signupSchema.parse({ name, email, password, confirmPassword });
+      if (password != confirmPassword){
+        return "Password not matching"
+      }
+      signupSchema.parse({ name, email, password});
       await signupMutation.mutateAsync({
         name,
         email,
-        password,
-        confirmPassword,
+        password
       });
-    } catch (error) {
+    } catch (error : any) {
       if (error instanceof ZodError) {
         console.error("Validation error:", error.errors);
         // Handle validation errors, e.g., show error messages to the user
