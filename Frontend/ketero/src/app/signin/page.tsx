@@ -24,17 +24,12 @@ const SignIn: React.FC = () => {
   );
 };
 
-
-
-
 function Form(){
   const [email, setEmail ] = useState("");
   const [password, setPassword] = useState("");
 
 
   const loginScheme = z.object({
-    businessName: z.string().min(2),
-    ownerName: z.string().min(2),
     email: z.string().email(),
     password: z.string().min(6),
   });
@@ -43,11 +38,11 @@ function Form(){
     (newMezgeb: Mezgeb) => signIn(newMezgeb),
     {
       onSuccess: () => {
-        toast("Signup successful");
+        toast("SignIn successful");
       },
       onError: (error: any) => {
         toast(error.response.data.error);
-        console.error("Error signing up:", error.response.data.error);
+        console.error("Error signing In:", error.response.data.error);
       },
     }
   );
@@ -64,9 +59,9 @@ function Form(){
       });
     } catch (error: any) {
       if (error instanceof ZodError) {
-        console.error("Validation error:", error.errors);
+        toast(error.errors);
       } else {
-        console.error("Error signing up:", error.response.data);
+        toast(error.response.data);
       }
     }
   }
