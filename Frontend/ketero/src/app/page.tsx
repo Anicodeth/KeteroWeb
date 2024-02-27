@@ -33,6 +33,7 @@ export default function Home(){
       {selections.map((selection, index) => (
         <Link key={index} href={selection.path}>
           <motion.div
+            transition={{ duration: 0.5, delay: 0.1 }}
             initial={{
               x: -400,
               y: -9,

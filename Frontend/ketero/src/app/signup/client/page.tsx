@@ -12,6 +12,7 @@ import Link from "next/link";
 import { signUpClient } from "../../../services/AuthService";
 import { Client } from "@/models/Client";
 import { toast } from "sonner"
+import {motion} from "framer-motion"
 
 const SignUp: React.FC = () => {
 
