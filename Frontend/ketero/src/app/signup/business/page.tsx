@@ -24,14 +24,14 @@ const SignUp: React.FC = () => {
 };
 
 const Form: React.FC = () => {
-  const [companyName, setCompanyName] = useState("");
+  const [businessName, setBusinessName] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const signupSchema = z.object({
-    companyName: z.string().min(2),
+    businessName: z.string().min(2),
     ownerName: z.string().min(2),
     email: z.string().email(),
     password: z.string().min(6),
@@ -56,9 +56,9 @@ const Form: React.FC = () => {
       if (password !== confirmPassword) {
         return "Password not matching";
       }
-      signupSchema.parse({ companyName, ownerName, email, password });
+      signupSchema.parse({ businessName, ownerName, email, password });
       await signupMutation.mutateAsync({
-        companyName,
+        businessName,
         ownerName,
         email,
         password,
@@ -92,8 +92,8 @@ const Form: React.FC = () => {
                 type="text"
                 placeholder="Company's Name"
                 className="outline-none border-none"
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
+                value={businessName}
+                onChange={(e) => setBusinessName(e.target.value)}
               />
             </div>
             <hr />
