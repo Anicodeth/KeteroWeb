@@ -6,7 +6,7 @@ import { AiOutlineApple } from "react-icons/ai";
 import styles from "./SignIn.module.css";
 import Link from "next/link";
 import {z, ZodError} from 'zod';
-import { Mezgeb } from "@/models/Mezgeb";
+import { Login } from "@/models/Login";
 import {signIn} from "../../services/AuthService";
 import {toast} from 'sonner'
 import { useMutation, QueryClient, QueryClientProvider } from "react-query";
@@ -35,7 +35,7 @@ function Form(){
   });
 
   const loginMutation = useMutation(
-    (newMezgeb: Mezgeb) => signIn(newMezgeb),
+    (login: Login) => signIn(login),
     {
       onSuccess: () => {
         toast("SignIn successful");
@@ -106,7 +106,10 @@ function Form(){
             </div>
             <hr />
           </div>
-          <button className={[styles.signupButton].join(" ")}>LogIn</button>
+          <button className={[styles.signupButton].join(" ")}
+                      disabled={loginMutation.isLoading}> 
+                      {loginMutation.isLoading ? "Signing In..." : "Login"}
+                      </button>
           <p className={styles.login}>Didn't you have an account ? <Link href="/signup"><span>Signup</span></Link></p>
         </form>
         <div>
