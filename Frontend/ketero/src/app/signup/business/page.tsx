@@ -11,6 +11,7 @@ import Link from "next/link";
 import { signUpBusiness } from "../../../services/AuthService";
 import { Business } from "@/models/Business";
 import { toast } from "sonner";
+import { motion } from "framer-motion"
 
 const queryClient = new QueryClient();
 
