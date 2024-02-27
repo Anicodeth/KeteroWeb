@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 
@@ -30,15 +30,23 @@ export default function Home(){
     <div className="flex justify-center items-center h-screen">
       {selections.map((selection, index) => (
         <Link key={index} href={selection.path}>
-          <Card>
-            <CardHeader>
-              <CardTitle>{selection.title}</CardTitle>
-              <CardDescription>{selection.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button>Register</Button>
-            </CardContent>
-          </Card>
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+            className="cursor-pointer"
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>{selection.title}</CardTitle>
+                <CardDescription>{selection.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button>Register</Button>
+              </CardContent>
+            </Card>
+          </motion.div>
         </Link>
       ))}
     </div>
