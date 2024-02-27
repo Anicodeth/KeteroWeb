@@ -72,6 +72,12 @@ const Form: React.FC = () => {
   };
 
   return (
+    <motion.div
+    initial={{ opacity: 0, x: -50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5, delay: 0.1 }}>
+
+
     <div className={[styles.screen, styles.center].join(" ")}>
       <div className={styles.mainWrapper}>
         <h1></h1>
@@ -195,6 +201,7 @@ const Form: React.FC = () => {
         </div>
       </div>
     </div>
+    </motion.div>
   );
 };
 
