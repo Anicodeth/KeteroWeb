@@ -12,7 +12,7 @@ import { Login } from "@/models/Login";
 import {signIn} from "../../services/AuthService";
 import {toast} from 'sonner'
 import { useMutation, QueryClient, QueryClientProvider } from "react-query";
-
+import {motion} from "framer-motion";
 
 
 const SignIn: React.FC = () => {
@@ -68,6 +68,11 @@ function Form(){
     }
   }
   return (
+
+    <motion.div
+    initial={{ opacity: 0, x: -50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5, delay: 0.1 }}>
     <div className={[styles.screen, , styles.center].join(" ")}>
       <div className={[styles.mainWrapper].join(" ")}>
         <h1></h1>
@@ -134,6 +139,7 @@ function Form(){
         </div>
       </div>
     </div>
+    </motion.div>
   )
 }
 
