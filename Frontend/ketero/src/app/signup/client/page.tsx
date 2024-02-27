@@ -67,7 +67,7 @@ function Form(){
         console.error("Validation error:", error.errors);
         // Handle validation errors, e.g., show error messages to the user
       } else {
-        console.error("Error signing up:", error);
+        console.error("Error signing up:", error.response.data);
         // Handle other errors
       }
     }
