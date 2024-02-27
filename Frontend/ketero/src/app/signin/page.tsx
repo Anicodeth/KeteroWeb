@@ -1,3 +1,5 @@
+"use client"
+
 import React, {useState}from "react";
 import { CiUser } from "react-icons/ci";
 import { FaGoogle, FaFacebookSquare } from "react-icons/fa";
