@@ -39,6 +39,7 @@ export async function signUpMezgeb(mezgeb: Mezgeb): Promise<any> {
 export async function signIn(login: Login): Promise<any> {
     try {
         const response = await axios.post(`${apiUrl}/login`, login);
+        console.log(response.data)
         return response.data;
     } catch (e) {
         console.error("Error signing in:", e);
