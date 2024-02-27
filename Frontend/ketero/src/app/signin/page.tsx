@@ -1,12 +1,75 @@
-import React from "react";
+import React, {useState}from "react";
 import { CiUser } from "react-icons/ci";
 import { FaGoogle, FaFacebookSquare } from "react-icons/fa";
 import { AiOutlineApple } from "react-icons/ai";
 
 import styles from "./SignIn.module.css";
 import Link from "next/link";
+import {z, ZodError} from 'zod';
+import { Mezgeb } from "@/models/Mezgeb";
+import {signIn} from "../../services/AuthService";
+import {toast} from 'sonner'
+import { useMutation, QueryClient, QueryClientProvider } from "react-query";
+
+
 
 const SignIn: React.FC = () => {
+
+  const queryClient = new QueryClient();
+
+  return (
+    <QueryClientProvider client = {queryClient}>
+        <Form />
+    </QueryClientProvider>
+  );
+};
+
+
+
+
+function Form(){
+  const [email, setEmail ] = useState("");
+  const [password, setPassword] = useState("");
+
+
+  const loginScheme = z.object({
+    businessName: z.string().min(2),
+    ownerName: z.string().min(2),
+    email: z.string().email(),
+    password: z.string().min(6),
+  });
+
+  const loginMutation = useMutation(
+    (newMezgeb: Mezgeb) => signIn(newMezgeb),
+    {
+      onSuccess: () => {
+        toast("Signup successful");
+      },
+      onError: (error: any) => {
+        toast(error.response.data.error);
+        console.error("Error signing up:", error.response.data.error);
+      },
+    }
+  );
+
+
+  async function handleSubmit(e:any){
+    e.preventDefault();
+    try {
+
+      loginScheme.parse({ email, password });
+      await loginMutation.mutateAsync({
+        email,
+        password,
+      });
+    } catch (error: any) {
+      if (error instanceof ZodError) {
+        console.error("Validation error:", error.errors);
+      } else {
+        console.error("Error signing up:", error.response.data);
+      }
+    }
+  }
   return (
     <div className={[styles.screen, , styles.center].join(" ")}>
       <div className={[styles.mainWrapper].join(" ")}>
@@ -17,7 +80,7 @@ const SignIn: React.FC = () => {
             Hi, Enter your details to get login to your account
           </p>
         </div>
-        <form action="" className={[styles.form].join(" ")}>
+        <form onSubmit = {handleSubmit} className={[styles.form].join(" ")}>
           <div>
             <div className={[styles.inputWrapper, styles.center].join(" ")}>
               <div className={[styles.center].join(" ")}>
@@ -27,6 +90,8 @@ const SignIn: React.FC = () => {
                 type="text"
                 placeholder="Email"
                 className="outline-none border-none"
+                value = {email}
+                onChange = {(e)=>{setEmail(e.target.value)}}
               />
             </div>
             <hr />
@@ -40,6 +105,8 @@ const SignIn: React.FC = () => {
                 type="text"
                 placeholder="Password"
                 className="outline-none border-none"
+                value = {password}
+                onChange = {(e)=> setPassword(e.target.value)}
               />
             </div>
             <hr />
@@ -67,7 +134,7 @@ const SignIn: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default SignIn;

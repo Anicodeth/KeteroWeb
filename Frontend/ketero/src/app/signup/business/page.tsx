@@ -6,7 +6,6 @@ import { CiUser } from "react-icons/ci";
 import { FaGoogle, FaFacebookSquare } from "react-icons/fa";
 import { AiOutlineApple } from "react-icons/ai";
 import { z, ZodError } from "zod";
-
 import styles from "./Business.module.css";
 import Link from "next/link";
 import { signUpBusiness } from "../../../services/AuthService";
