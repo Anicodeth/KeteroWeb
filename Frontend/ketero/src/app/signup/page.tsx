@@ -1,44 +1,70 @@
-import React from "react";
-import style from "./SignUp.module.css";
-import { RiAdminLine } from "react-icons/ri";
-import { IconType } from "react-icons";
-import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
-interface Props {
-  typeOfOption: string;
-  Icon: IconType;
+import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+
+interface Selection{
+  title: string;
+  description: string;
+  path: string;
 }
 
-const SectionCard = ({ Icon, typeOfOption }: Props) => {
-  return (
-    <Link href={"/signup/" + typeOfOption}>
-      <div className={[style.option].join(" ")}>
-        <p className={[style.paragraph].join(" ")}>
-          sign up as <br />
-          {typeOfOption}
-        </p>
-        <Icon size={40} />
-      </div>
-    </Link>
-  );
-};
+export default function selector(){
 
-const Section: React.FC = () => {
-  return (
-      <div className={[style.page].join(" ")}>
-        <div className={style.mainWrapper}>
-          <p className={[style.paragraph].join(" ")}>LOGO</p>
-          <div className={[style.optionWrapper].join(" ")}>
-            <SectionCard
-              Icon={RiAdminLine}
-              typeOfOption="mezgeb"
-            ></SectionCard>
-            <SectionCard Icon={RiAdminLine} typeOfOption="business"></SectionCard>
-            <SectionCard Icon={RiAdminLine} typeOfOption="client"></SectionCard>
-          </div>
-        </div>
-      </div>
-  );
-};
+  const selections:Selection[] = [
+      {
+          title: "Register as a Client",
+          description: "Get the power to reserve from quality businesses.",
+          path: "/client"
+      },
+      {
+          title: "Register as a Business",
+          description: "Get the power to host your services online.",
+          path: "/business"
+      },
+      {
+          title: "Register as a Mezgeb",
+          description: "Get the power to facilitate businesses.",
+          path: "/mezgeb"
+      }
 
-export default Section;
+  ]
+  return (
+<>
+      <div className="flex items-center p-10 ">
+          <h1 className = "text-4xl font-bold font-sans">Welcome to Ketero</h1>
+      </div>
+
+      <div className = "p-3 h-26">
+          {
+              selections.map((selection, index)=>(
+
+                  <Link key = {index} href= {selection.path}>
+                       <Card >
+                          <CardHeader>
+                              <CardTitle>{selection.title}</CardTitle>
+                              <CardDescription>{selection.description}</CardDescription>
+                          </CardHeader>
+
+                          <CardContent>
+                              <Button>
+                                  Register
+                              </Button>
+                          </CardContent>
+                      </Card>
+                  </Link>
+ 
+              ))
+          }
+           </div>
+           
+           </>
+    
+  )
+}
