@@ -41,11 +41,10 @@ function Form(){
     (newClient: Client) => signUpClient(newClient),
     {
       onSuccess: () => {
-        console.log("Signup successful");
+        toast("Signup successful")
       },
       onError: (error:any) => {
         toast(error.response.data.error)
-
         console.error("Error signing up:", error.response.data.error);
 
       },
@@ -67,10 +66,8 @@ function Form(){
     } catch (error: any) {
       if (error instanceof ZodError) {
         console.error("Validation error:", error.errors);
-        // Handle validation errors, e.g., show error messages to the user
       } else {
         console.error("Error signing up:", error.response.data);
-        // Handle other errors
       }
     }
   };
