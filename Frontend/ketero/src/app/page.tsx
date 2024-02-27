@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Card,
   CardContent,
@@ -31,6 +33,20 @@ export default function Home(){
       {selections.map((selection, index) => (
         <Link key={index} href={selection.path}>
           <motion.div
+            initial={{
+              x: -400,
+              y: -9,
+              scale: 1,
+              rotate: 48,
+            }}
+            animate={{
+              x: 0,
+              y: 0,
+              scale: 1,
+              rotate: 0,
+            }}
+          >
+          <motion.div
             key={index}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -46,6 +62,7 @@ export default function Home(){
                 <Button>Register</Button>
               </CardContent>
             </Card>
+          </motion.div>
           </motion.div>
         </Link>
       ))}
