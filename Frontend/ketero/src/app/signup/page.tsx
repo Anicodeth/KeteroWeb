@@ -21,17 +21,17 @@ export default function selector(){
       {
           title: "Register as a Client",
           description: "Get the power to reserve from quality businesses.",
-          path: "/client"
+          path: "/signup/client"
       },
       {
           title: "Register as a Business",
           description: "Get the power to host your services online.",
-          path: "/business"
+          path: "/signup/business"
       },
       {
           title: "Register as a Mezgeb",
           description: "Get the power to facilitate businesses.",
-          path: "/mezgeb"
+          path: "/signup/mezgebu"
       }
 
   ]
