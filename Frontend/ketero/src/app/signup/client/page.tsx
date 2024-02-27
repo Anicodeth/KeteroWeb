@@ -3,7 +3,6 @@ import { useMutation } from "react-query";
 import { CiUser } from "react-icons/ci";
 import { FaGoogle, FaFacebookSquare } from "react-icons/fa";
 import { AiOutlineApple } from "react-icons/ai";
-import axios from "axios";
 import { z, ZodError } from "zod";
 
 import styles from "./Client.module.css";
