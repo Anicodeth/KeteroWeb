@@ -35,12 +35,14 @@ export default function Home(){
           <motion.div
             transition={{ duration: 0.5, delay: 0.1 }}
             initial={{
+              opacity:0,
               x: -400,
               y: -9,
               scale: 1,
               rotate: 48,
             }}
             animate={{
+              opacity:1,
               x: 0,
               y: 0,
               scale: 1,
