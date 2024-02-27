@@ -165,12 +165,6 @@ const Form: React.FC = () => {
             <hr />
           </div>
 
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ duration: 0.2 }}
-            className="cursor-pointer"
-          >
           <button
             type="submit"
             className={styles.signupButton}
@@ -178,7 +172,7 @@ const Form: React.FC = () => {
           >
             {signupMutation.isLoading ? "Signing up..." : "Signup"}
           </button>
-          </motion.div>
+      
           <p className={styles.login}>
             Did you have an account already ?{" "}
             <Link href="/signin">
