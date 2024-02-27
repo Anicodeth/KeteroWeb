@@ -11,6 +11,7 @@ import styles from "./Client.module.css";
 import Link from "next/link";
 import { signUpClient } from "../../../services/AuthService";
 import { Client } from "@/models/Client";
+import { toast } from "sonner"
 
 const SignUp: React.FC = () => {
 
@@ -43,6 +44,8 @@ function Form(){
         console.log("Signup successful");
       },
       onError: (error:any) => {
+        toast(error.response.data.error)
+
         console.error("Error signing up:", error.response.data.error);
 
       },
