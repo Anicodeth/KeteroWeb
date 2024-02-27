@@ -61,7 +61,7 @@ function Form(){
       });
     } catch (error: any) {
       if (error instanceof ZodError) {
-        toast(error.errors);
+        console.log(error.errors);
       } else {
         toast(error.response.data);
       }
