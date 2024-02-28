@@ -45,16 +45,17 @@ exports.createService = async (req, res) => {
     try {
         const { name, description, price } = req.body;
         const image = req.file; 
-
+    
         const filename = `${uuidv4()}_${image.originalname}`;
 
         const fileUpload = storage.file(filename);
+        console.log(image)
         await fileUpload.save(image.buffer, {
             metadata: {
                 contentType: image.mimetype
             }
         });
-
+       
         const imageUrl = await fileUpload.getSignedUrl({
             action: 'read',
             expires: '01-01-2200'
