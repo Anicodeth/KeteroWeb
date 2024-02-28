@@ -30,11 +30,14 @@ function Form(){
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [ phone, setPhone ] = useState("");
 
   const signupSchema = z.object({
     name: z.string().min(2),
     email: z.string().email(),
     password: z.string().min(6),
+    phone:z.string().min(5),
+
   });
 
 
@@ -123,6 +126,25 @@ function Form(){
               </div>
               <hr />
             </div>
+
+            <div>
+              <div
+                className={[styles.inputWrapper, styles.center].join(" ")}
+              >
+                <div className={[styles.center].join(" ")}>
+                  <CiUser></CiUser>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Email"
+                  className="outline-none border-none"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+              <hr />
+            </div>
+
             <div>
               <div
                 className={[styles.inputWrapper, styles.center].join(" ")}
