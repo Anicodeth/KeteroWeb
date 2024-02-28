@@ -104,3 +104,40 @@
 .miniDashboard h4 {
   font-weight: 600;
 }
+
+.hiredContainer {
+  margin: 20px 10px;
+}
+
+.hiredContainer h2 {
+  color: #8e61f1;
+  font-size: large;
+  font-weight: 600;
+}
+
+.cardContainer {
+  display: flex;
+  align-items: center;
+  margin: 20px auto;
+}
+
+.serviceImage {
+  width: 50px;
+  height: 50px;
+}
+
+.serviceData {
+  margin: 0 20px;
+}
+
+.serviceData h3 {
+  font-weight: 600;
+}
+
+.serviceData h5 {
+  font-weight: 200;
+}
+
+.cardContainer h3 {
+  font-weight: 600;
+}

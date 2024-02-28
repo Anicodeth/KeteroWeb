@@ -4,6 +4,35 @@ import Image from "next/image";
 import { IoMdArrowBack, IoMdShare } from "react-icons/io";
 import { FaMoneyBillTransfer, FaBookmark } from "react-icons/fa6";
 import { IoWallet } from "react-icons/io5";
+import { Service1, Service2, Service3 } from "../../assets";
+
+interface HiredService {
+  serviceImage: any;
+  serviceName: string;
+  companyAgent: string;
+  servicePrice: string;
+}
+
+const hiredServiceData: HiredService[] = [
+  {
+    serviceImage: Service1,
+    serviceName: "Service Name",
+    companyAgent: "Company Agent Name",
+    servicePrice: "400",
+  },
+  {
+    serviceImage: Service2,
+    serviceName: "Service Name",
+    companyAgent: "Company Agent Name",
+    servicePrice: "400",
+  },
+  {
+    serviceImage: Service3,
+    serviceName: "Service Name",
+    companyAgent: "Company Agent Name",
+    servicePrice: "400",
+  },
+];
 
 const ClientProfile: React.FC = () => {
   return (
@@ -52,6 +81,31 @@ const ClientProfile: React.FC = () => {
           <h4>$500</h4>
         </div>
       </div>
+      <div className={style.hiredContainer}>
+        <h2>Services Hired</h2>
+        <div className={style.hiredServices}>
+          {hiredServiceData.map((service, index) => (
+            <HiredServiceCard key={index} service={service} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const HiredServiceCard: React.FC<{ service: HiredService }> = ({ service }) => {
+  return (
+    <div className={style.cardContainer}>
+      <Image
+        className={style.serviceImage}
+        src={service.serviceImage}
+        alt="Service Image"
+      />
+      <div className={style.serviceData}>
+        <h3>{service.serviceName}</h3>
+        <h5>{service.companyAgent}</h5>
+      </div>
+      <h3>{service.servicePrice} ETB</h3>
     </div>
   );
 };
