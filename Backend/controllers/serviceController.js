@@ -3,9 +3,17 @@ const admin = require('firebase-admin');
 const { v4: uuidv4 } = require('uuid');
 
 // Initialize Firebase Admin SDK
-admin.initializeApp({
-  credential: admin.credential.applicationDefault()
-});
+admin.initializeApp(
+    {
+        apiKey: "AIzaSyB7mld1SBEAbEqb22rsgbNcFFd_OetBllU",
+        authDomain: "ketero-72e14.firebaseapp.com",
+        projectId: "ketero-72e14",
+        storageBucket: "ketero-72e14.appspot.com",
+        messagingSenderId: "535787695172",
+        appId: "1:535787695172:web:2809c4f6f2c18e71742011",
+        measurementId: "G-PTMX0XDBYC"
+      }
+);
 
 // Get a Firestore instance
 const db = admin.firestore();
