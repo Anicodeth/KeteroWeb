@@ -46,7 +46,7 @@ export async function signIn(login: Login): Promise<any> {
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("role", data.role);
 
-        return "Successful";
+        return data.role;
     } catch (e) {
         console.error("Error signing in:", e);
         throw e;
