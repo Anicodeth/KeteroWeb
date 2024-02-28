@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const serviceController = require('../controllers/serviceController');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 // Service
 /**
@@ -85,9 +87,19 @@ router.get('/:id', serviceController.getService);
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
- *             $ref: '#/components/schemas/Service'
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               image:
+ *                 type: string
+ *                 format: binary
  *     responses:
  *       '201':
  *         description: Service created successfully
@@ -100,7 +112,8 @@ router.get('/:id', serviceController.getService);
  *       '500':
  *         description: Internal server error
  */
-router.post('/', serviceController.createService);
+ router.post('/', upload.single('image'), serviceController.createService);
+
 
 /**
  * @swagger
