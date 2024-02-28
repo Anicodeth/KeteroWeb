@@ -76,6 +76,7 @@ router.get('/', serviceController.getServices);
  *       '500':
  *         description: Internal server error
  */
+
 router.get('/:id', serviceController.getService);
 
 /**
@@ -87,19 +88,9 @@ router.get('/:id', serviceController.getService);
  *     requestBody:
  *       required: true
  *       content:
- *         multipart/form-data:
+ *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               description:
- *                 type: string
- *               price:
- *                 type: number
- *               image:
- *                 type: string
- *                 format: binary
+ *             $ref: '#/components/schemas/Service'
  *     responses:
  *       '201':
  *         description: Service created successfully
@@ -112,8 +103,7 @@ router.get('/:id', serviceController.getService);
  *       '500':
  *         description: Internal server error
  */
- router.post('/', upload.single('image'), serviceController.createService);
-
+ router.post('/', serviceController.createService);
 
 /**
  * @swagger

@@ -22,9 +22,8 @@ exports.getServices = async (req, res) => {
 exports.createService = async (req, res) => {
     try {
         const { name, description, price } = req.body;
-        const image = req.file.buffer; // Assuming req.file contains the uploaded file
 
-        const serviceData = { name, description, price, image };
+        const serviceData = { name, description, price};
         const service = await createService(serviceData);
         res.status(201).json(service);
     } catch (error) {

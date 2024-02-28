@@ -8,7 +8,7 @@ exports.getService = async (id) => {
         }
 
         // Extract image data
-        const image = service.image.data;
+        const image = service.image;
 
         // Construct the response object
         const responseData = {
@@ -16,7 +16,7 @@ exports.getService = async (id) => {
             name: service.name,
             description: service.description,
             price: service.price,
-            image: image, // Or you can use image.toString('base64') to convert the Buffer to a base64 string
+            image: image.toString('base64'), // Or you can use image.toString('base64') to convert the Buffer to a base64 string
             contentType: service.image.contentType
         };
 

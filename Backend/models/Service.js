@@ -16,8 +16,7 @@ const serviceSchema = new mongoose.Schema({
     min: 0
   },
   image: {
-    data: Buffer,
-    contentType: String
+    type: String,
   }
 });
 
