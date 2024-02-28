@@ -102,7 +102,7 @@ router.get('/:id', serviceController.getService);
  *       '500':
  *         description: Internal server error
  */
- router.post('/', upload('image'), serviceController.createService);
+ router.post('/', upload.single('image'), serviceController.createService);
 
 
 
