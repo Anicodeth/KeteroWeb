@@ -137,7 +137,7 @@ function Form(){
                 </div>
                 <input
                   type="text"
-                  placeholder="Email"
+                  placeholder="Phone"
                   className="outline-none border-none"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
