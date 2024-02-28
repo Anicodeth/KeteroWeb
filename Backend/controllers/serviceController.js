@@ -3,17 +3,11 @@ const admin = require('firebase-admin');
 const { v4: uuidv4 } = require('uuid');
 
 // Initialize Firebase Admin SDK
-admin.initializeApp(
-    {
-        apiKey: "AIzaSyB7mld1SBEAbEqb22rsgbNcFFd_OetBllU",
-        authDomain: "ketero-72e14.firebaseapp.com",
-        projectId: "ketero-72e14",
-        storageBucket: "ketero-72e14.appspot.com",
-        messagingSenderId: "535787695172",
-        appId: "1:535787695172:web:2809c4f6f2c18e71742011",
-        measurementId: "G-PTMX0XDBYC"
-      }
-);
+var serviceAccount = require("../ketero-72e14-79dbd1c309b9.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
 // Get a Firestore instance
 const db = admin.firestore();
@@ -49,7 +43,6 @@ exports.createService = async (req, res) => {
         const filename = `${uuidv4()}_${image.originalname}`;
 
         const fileUpload = storage.file(filename);
-        console.log(image)
         await fileUpload.save(image.buffer, {
             metadata: {
                 contentType: image.mimetype
