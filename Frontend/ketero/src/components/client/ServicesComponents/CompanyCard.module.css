@@ -1,0 +1,70 @@
+.companyContainer {
+  margin: 10px auto;
+  padding: 10px 10px;
+  border-radius: 10px;
+  background-color: #f5f1fe;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  margin: 10px 10px;
+}
+
+.imageCard {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.agentImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.companyName {
+  margin-left: 10px;
+}
+
+.contacts {
+  margin: 10px auto;
+}
+
+.nameAndPhone {
+  display: flex;
+}
+
+.agentName,
+.agentAddress {
+  margin: 0 5px;
+}
+
+.agentName,
+.agentAddress,
+.agentPhone {
+  display: flex;
+  align-items: center;
+}
+
+.agentName h3,
+.agentAddress h3,
+.agentPhone h3 {
+  margin: 0 5px;
+}
+
+.detailButton {
+  width: 100%;
+  background-color: #8e61f1;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.btn {
+  color: #f5f1fe;
+  width: 100%;
+  padding: 35px auto;
+  margin: 5px auto;
+}
