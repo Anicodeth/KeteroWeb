@@ -13,22 +13,31 @@ import {signIn} from "../../services/AuthService";
 import {toast} from 'sonner'
 import { useMutation, QueryClient, QueryClientProvider } from "react-query";
 import {motion} from "framer-motion";
+import {useRouter} from "next/navigation"
+import Router from "../../../node_modules/next/router";
 
 
 const SignIn: React.FC = () => {
 
   const queryClient = new QueryClient();
+  const router = useRouter();
 
   return (
     <QueryClientProvider client = {queryClient}>
-        <Form />
+        <Form router = {router} />
     </QueryClientProvider>
   );
 };
 
-function Form(){
+
+interface FormProps {
+  router: any; // Update the type to match your router's type
+}
+
+function Form({router}:FormProps){
   const [email, setEmail ] = useState("");
   const [password, setPassword] = useState("");
+ 
 
 
   const loginScheme = z.object({
@@ -39,8 +48,10 @@ function Form(){
   const loginMutation = useMutation(
     (login: Login) => signIn(login),
     {
-      onSuccess: (res:any) => {
-        console.log(res)
+      onSuccess: (role:string) => {
+
+        router.push(`/${role.toLowerCase()}`)
+
         toast("SignIn successful");
       },
       onError: (error: any) => {
