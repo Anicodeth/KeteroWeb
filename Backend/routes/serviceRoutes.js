@@ -78,7 +78,6 @@ router.get('/', serviceController.getServices);
  */
 
 router.get('/:id', serviceController.getService);
-
 /**
  * @swagger
  * /api/v1/service:
@@ -103,7 +102,9 @@ router.get('/:id', serviceController.getService);
  *       '500':
  *         description: Internal server error
  */
- router.post('/', serviceController.createService);
+ router.post('/', upload('image'), serviceController.createService);
+
+
 
 /**
  * @swagger

@@ -36,12 +36,10 @@ exports.getServices = async (req, res) => {
 exports.createService = async (req, res) => {
     try {
         const { name, description, price } = req.body;
-        const image = req.file; // Assuming req.file contains the uploaded file
+        const image = req.file; 
 
-        // Generate a unique filename for the image
         const filename = `${uuidv4()}_${image.originalname}`;
 
-        // Upload the image to Firebase Storage
         const fileUpload = storage.file(filename);
         await fileUpload.save(image.buffer, {
             metadata: {
@@ -49,25 +47,23 @@ exports.createService = async (req, res) => {
             }
         });
 
-        // Get the download URL of the uploaded image
         const imageUrl = await fileUpload.getSignedUrl({
             action: 'read',
             expires: '01-01-2200'
         });
 
-        // Create a new service document in Firestore with the image download URL
-        const docRef = await db.collection('services').add({
+
+
+        const service = await createService({
             name: name,
             description: description,
             price: price,
-            image: imageUrl[0] // Get the first URL from the array
-        });
+            image: imageUrl[0] 
+        })
 
-        // Get the newly created service document
-        const serviceSnapshot = await docRef.get();
-        const serviceData = serviceSnapshot.data();
+   
 
-        res.status(201).json(serviceData);
+        res.status(201).json(service);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
