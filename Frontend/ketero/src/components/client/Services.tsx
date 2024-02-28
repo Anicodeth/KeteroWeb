@@ -3,19 +3,9 @@ import Image from "next/image";
 import style from "./Services.module.css";
 import { FaBuilding, FaUser, FaPhone, FaTag } from "react-icons/fa";
 // import { ServiceImage } from "../../assets";
-import { Service } from "@model/Service"
+import { Service } from "../../models/Service"
 
-interface Service {
-  serviceId: string;
-  serviceName: string;
-  companyName: string;
-  serviceImage: string;
-  serviceImageAlt: string;
-  serviceDetail: string;
-  companyAgentName: string;
-  companyContact: string;
-  servicePrice: number;
-}
+
 
 const serviceData: Service[] = [
   {

@@ -1,12 +1,10 @@
 "use client"
-
 import React, { useState } from "react";
 import { useMutation, QueryClient, QueryClientProvider } from "react-query";
 import { CiUser } from "react-icons/ci";
 import { FaGoogle, FaFacebookSquare } from "react-icons/fa";
 import { AiOutlineApple } from "react-icons/ai";
 import { z, ZodError } from "zod";
-
 import styles from "./Client.module.css";
 import Link from "next/link";
 import { signUpClient } from "../../../services/AuthService";
@@ -17,7 +15,7 @@ import {motion} from "framer-motion"
 const SignUp: React.FC = () => {
 
   const queryClient = new QueryClient();
-
+  
   return (
     <QueryClientProvider client = {queryClient}>
       <Form/>
@@ -30,7 +28,7 @@ function Form(){
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [ phone, setPhone ] = useState("");
+  const [phone, setPhone] = useState("");
 
   const signupSchema = z.object({
     name: z.string().min(2),
@@ -50,7 +48,6 @@ function Form(){
       onError: (error:any) => {
         toast(error.response.data.error)
         console.error("Error signing up:", error.response.data.error);
-
       },
     }
   );
