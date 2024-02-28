@@ -8,10 +8,10 @@ import {
   companyData,
   FormData,
   toggles,
-} from "./ServicesComponents";
-import ServiceCard from "./ServicesComponents/ServiceCard";
-import CategoryCard from "./ServicesComponents/CategoryCard";
-import CompanyCard from "./ServicesComponents/CompanyCard";
+} from "./servicescomponents";
+import ServiceCard from "./servicescomponents/ServiceCard";
+import CategoryCard from "./servicescomponents/CategoryCard";
+import CompanyCard from "./servicescomponents/CompanyCard";
 import { AiOutlineMessage } from "react-icons/ai";
 import { LuBellRing } from "react-icons/lu";
 import { Logo, Profile } from "../../assets";
