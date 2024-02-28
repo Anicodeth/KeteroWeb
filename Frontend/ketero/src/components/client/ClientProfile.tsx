@@ -89,6 +89,10 @@ const ClientProfile: React.FC = () => {
           ))}
         </div>
       </div>
+      <div className={style.walletRecharge}>
+        <h3>Recharge Wallet</h3>
+        <button className={style.btn}>Top-Up</button>
+      </div>
     </div>
   );
 };
