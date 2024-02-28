@@ -61,11 +61,12 @@ function Form(){
       if (password !== confirmPassword) {
         return "Password not matching";
       }
-      signupSchema.parse({ name, email, password });
+      signupSchema.parse({ name, phone, email, password });
       await signupMutation.mutateAsync({
         name,
         email,
         password,
+        phone
       });
     } catch (error: any) {
       if (error instanceof ZodError) {
