@@ -12,11 +12,11 @@ exports.createClient = async (data) => {
             throw new Error("Not valid client data")
         }
 
-      const { name, email, password } = data;
+      const { name, email, phone, password } = data;
       if (await checkEmail(email)) {
         throw new Error('Email already exists');
       }
-      const client = new Client({ name, email, password });
+      const client = new Client({ name, phone, email, password });
       await client.save();
       return client;
     } catch (error) {

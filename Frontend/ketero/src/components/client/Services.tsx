@@ -3,6 +3,7 @@ import Image from "next/image";
 import style from "./Services.module.css";
 import { FaBuilding, FaUser, FaPhone, FaTag } from "react-icons/fa";
 // import { ServiceImage } from "../../assets";
+import { Service } from "@model/Service"
 
 interface Service {
   serviceId: string;

@@ -3,8 +3,8 @@ const { createClient, createBusiness, createMezgeb, loginUser } = require('../se
 // Controller for creating a client
 exports.createClient = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    const client = await createClient({ name, email, password });
+    const { name, email, password, phone } = req.body;
+    const client = await createClient({ name, email, password, phone });
     res.status(201).json(client);
   } catch (error) {
     res.status(400).json({ error: error.message });

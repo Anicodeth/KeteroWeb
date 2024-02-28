@@ -16,10 +16,12 @@ export async function signUpClient(client: Client): Promise<any> {
     }
 }
 
+
 export async function signUpBusiness(business: Business): Promise<any> {
     try {
         const response = await axios.post(`${apiUrl}/business`, business);
         return response.data;
+
     } catch (e) {
         console.error("Error signing up business:", e);
         throw e;

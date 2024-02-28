@@ -22,6 +22,10 @@ const ClientSchema = new mongoose.Schema({
         minLength: [8, "Password must be at least 8 Characters"]
     },
 
+    phone:{
+        type: String,
+    } 
+    ,
     pending: [
         {
             type:mongoose.Schema.Types.ObjectId,
