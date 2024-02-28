@@ -39,7 +39,8 @@ function Form(){
   const loginMutation = useMutation(
     (login: Login) => signIn(login),
     {
-      onSuccess: () => {
+      onSuccess: (res:any) => {
+        console.log(res)
         toast("SignIn successful");
       },
       onError: (error: any) => {
