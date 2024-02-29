@@ -1,10 +1,9 @@
+import BusinessProfile from "@/components/business/BusinessProfile";
 
 
 
 export default function home(){
     return (
-      <h1>
-        Home
-      </h1>
+      <BusinessProfile></BusinessProfile>
     )
 }
