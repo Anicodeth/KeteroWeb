@@ -52,7 +52,7 @@ const Services: React.FC = () => {
         <h1>Recent Services</h1>
         <div className={style.serviceContainer}>
           {serviceData.map((service: Service, index: number) => (
-            <ServiceShadCard key={service._id} service={service} />
+            <ServiceShadCard key={index} service={service} />
           ))}
         </div>
       </div>
@@ -103,7 +103,7 @@ const ServiceShadCard: React.FC<{ service: Service }> = ({ service }) => {
                  <Card className = "h-fit">
                     <CardHeader >
                         <div className = "inset-0 bg-cover h-32 bg-center" 
-                          style={{ backgroundImage: `url(${service.image})` }}>
+                          style={{ backgroundImage: `url(${service.image || service.imageUrl})` }}>
                           {/* <img className = "w-full h-32" src = {service.image}></img> */}
                         </div>
                         <CardTitle>{service.name}</CardTitle>
@@ -111,8 +111,8 @@ const ServiceShadCard: React.FC<{ service: Service }> = ({ service }) => {
                         <CardDescription>{service.payment}</CardDescription>
                     </CardHeader>
 
-                    <CardContent>
-                        <Button>
+                    <CardContent >
+                        <Button className = "w-full">
                             Book
                         </Button>
                     </CardContent>
