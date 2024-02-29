@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { z, ZodError } from "zod";
 import { useMutation, QueryClient, QueryClientProvider } from "react-query";
 import { createService } from "../../services/ServiceServices";
+import { CreateService } from "@/models/Service";
 
 const AddService: React.FC = () => {
   const queryClient = new QueryClient();
@@ -36,12 +37,12 @@ function Form() {
   });
 
   const mutation = useMutation(
-    async (formData: FormData) => {
+    async (data: CreateService) => {
       const user: any = sessionStorage.getItem('user');
       if (user) {
        const businessId = JSON.parse(user)._id;
 
-        await createService(businessId, formData);
+        await createService(businessId, data);
       } else {
         throw new Error("BusinessId not found in sessionStorage");
       }
