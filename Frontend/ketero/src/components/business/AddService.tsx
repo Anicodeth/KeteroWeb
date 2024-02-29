@@ -68,7 +68,7 @@ function Form() {
       formData.append("image", image);
       formData.append("name", name);
       formData.append("description", description);
-      formData.append("payment", payment);
+      formData.append("price", payment);
 
       serviceScheme.parse({ name, description, payment });
       await mutation.mutateAsync(formData);
