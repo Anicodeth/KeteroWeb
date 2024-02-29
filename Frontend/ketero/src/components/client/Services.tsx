@@ -68,7 +68,7 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
           <div className={style.bookingInfo}>
             <div className={style.price}>
               <h3>Average Price</h3>
-              <h2 className={style.servicePrice}>Etb {service.payment}</h2>
+              <h2 className={style.servicePrice}>Etb {service.price}</h2>
             </div>
             <div className={style.bookButton}>
               <button>Book</button>
