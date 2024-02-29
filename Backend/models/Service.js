@@ -17,7 +17,11 @@ const serviceSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-  }
+  },
+  businessId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Business'
+}
 });
 
 const Service = mongoose.model('Service', serviceSchema);
