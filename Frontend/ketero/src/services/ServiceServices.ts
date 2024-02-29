@@ -1,5 +1,5 @@
 import axios from "axios";
-import {CreateService, Service} from "@model/Service"
+import {CreateService, Service} from "../models/Service"
 
 const apiUrl = "https://ketero-web-dmow.vercel.app/api/v1/service";
 
