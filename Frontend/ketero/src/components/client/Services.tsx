@@ -13,13 +13,11 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { useQuery } from 'react-query';
-
-
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 
 import {getServices} from "../../services/ServiceServices"
-
+import { FallingLines } from 'react-loader-spinner'
 
 const serviceData: Service[] = [
   {
@@ -37,7 +35,15 @@ const serviceData: Service[] = [
 const Services: React.FC = () => {
   const { data: serviceData, isLoading, isError } = useQuery('services', getServices);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div className = "h-full w-full flex items-center justify-center"><FallingLines
+  className = "h-fit"
+  color="#700F14"
+  width="100"
+  visible={true}
+  ariaLabel="falling-circles-loading"
+  /></div>
+
+
   if (isError) return <div>Error fetching services</div>;
 
   return (
