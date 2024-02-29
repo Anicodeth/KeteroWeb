@@ -4,6 +4,10 @@ import { IoIosAddCircle } from "react-icons/io";
 
 const AddService: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
+  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [payment, setPayment] = useState<string>("");
+  
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -34,7 +38,7 @@ const AddService: React.FC = () => {
       <div className={[style.inputFields].join(" ")}>
         <div>
           <label htmlFor="serviceName" className={[style.block].join(" ")}>
-            Service Name
+            Service Title
           </label>
           <input
             type="text"
