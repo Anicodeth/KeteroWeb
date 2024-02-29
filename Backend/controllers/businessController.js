@@ -7,16 +7,10 @@ const {
     deleteBusiness
 } = require('../services/businessService');
 
-const admin = require('firebase-admin');
+const admin = require("../data/firebase");
+
 const { v4: uuidv4 } = require('uuid');
 
-// Initialize Firebase Admin SDK
-var serviceAccount = require("../ketero-72e14-79dbd1c309b9.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  storageBucket: 'gs://ketero-72e14.appspot.com/'
-});
 
 // Get a Storage instance
 const storage = admin.storage().bucket();
