@@ -78,6 +78,8 @@ router.get('/', serviceController.getServices);
  */
 
 router.get('/:id', serviceController.getService);
+
+
 /**
  * @swagger
  * /api/v1/service:
@@ -87,9 +89,19 @@ router.get('/:id', serviceController.getService);
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
- *             $ref: '#/components/schemas/Service'
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               image:
+ *                 type: string
+ *                 format: binary
  *     responses:
  *       '201':
  *         description: Service created successfully
@@ -103,6 +115,7 @@ router.get('/:id', serviceController.getService);
  *         description: Internal server error
  */
  router.post('/', upload.single('image'), serviceController.createService);
+
 
 
 
