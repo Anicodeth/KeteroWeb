@@ -7,13 +7,17 @@ const AddService: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [payment, setPayment] = useState<string>("");
-  
+
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setImage(e.target.files[0]);
     }
   };
+
+  const handleSubmit = ()=>{
+    
+  }
 
   return (
 
@@ -43,6 +47,8 @@ const AddService: React.FC = () => {
           <input
             type="text"
             id="serviceName"
+            value = {name}
+            onChange = {(e) => setName(e.target.value)}
             className={[style.input].join(" ")}
           />
         </div>
@@ -54,6 +60,8 @@ const AddService: React.FC = () => {
             type="text"
             id="payment"
             className={[style.input].join(" ")}
+            value = {payment}
+            onChange = {(e) => setPayment(e.target.value)}
           />
         </div>
         <div>
@@ -64,9 +72,11 @@ const AddService: React.FC = () => {
             type="text"
             id="description"
             className={[style.input].join(" ")}
+            value = {description}
+            onChange = {(e) => setDescription(e.target.value)}
           />
         </div>
-        <button className={[style.buttonAddService].join(" ")}>
+        <button onClick={()=>handleSubmit} className={[style.buttonAddService].join(" ")}>
           Add Service
         </button>
 
