@@ -64,7 +64,7 @@ exports.addServiceToBusiness = async (req, res) => {
     });
 
     try {
-        const service = await addServiceToBusiness({ businessId, name,description, price,imageUrl });
+        const service = await addServiceToBusiness({ businessId, name,description, price,imageUrl: imageUrl[0] });
         res.status(201).json(service);
     } catch (error) {
         res.status(400).json({ error: error.message });
