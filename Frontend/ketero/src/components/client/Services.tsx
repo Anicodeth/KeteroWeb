@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import Image from "next/image";
 import style from "./Services.module.css";
@@ -15,13 +16,15 @@ import {
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 
+import {getServices} from "../../services/ServiceServices"
+
 
 const serviceData: Service[] = [
   {
     _Id: "1",
     name: "Men Hair Cut",
     description: "Barber Shop",
-    image: "ServiceImage",
+    image: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
     payment: "A Descriptive Image About The Service",
 
   },
@@ -84,8 +87,12 @@ const ServiceShadCard: React.FC<{ service: Service }> = ({ service }) => {
  
     
             <Link href = '/booking'>
-                 <Card >
-                    <CardHeader>
+                 <Card className = "h-fit">
+                    <CardHeader >
+                        <div className = "inset-0 bg-cover h-32 bg-center" 
+                          style={{ backgroundImage: `url(${service.image})` }}>
+                          {/* <img className = "w-full h-32" src = {service.image}></img> */}
+                        </div>
                         <CardTitle>{service.name}</CardTitle>
                         <CardDescription>{service.description}</CardDescription>
                         <CardDescription>{service.payment}</CardDescription>
