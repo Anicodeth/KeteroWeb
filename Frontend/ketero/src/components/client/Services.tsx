@@ -28,7 +28,6 @@ const Services: React.FC = () => {
   color="#700F14"
   width="100"
   visible={true}
-  ariaLabel="falling-circles-loading"
   /></div>
 
 
