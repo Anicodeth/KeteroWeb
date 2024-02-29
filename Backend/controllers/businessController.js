@@ -7,7 +7,6 @@ const {
     deleteBusiness
 } = require('../services/businessService');
 
-const { getService, getServices, updateService, deleteService, createService } = require('../services/serviceService');
 const admin = require('firebase-admin');
 const { v4: uuidv4 } = require('uuid');
 

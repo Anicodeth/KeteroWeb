@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const businessController = require('../controllers/businessController');
-
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 /**
  * @swagger
@@ -92,7 +94,7 @@ router.get('/:id', businessController.getBusiness);
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
@@ -102,6 +104,9 @@ router.get('/:id', businessController.getBusiness);
  *                 type: string
  *               price:
  *                 type: number
+ *               image:
+ *                 type: string
+ *                 format: binary
  *             required:
  *               - name
  *               - description
@@ -114,7 +119,7 @@ router.get('/:id', businessController.getBusiness);
  *       '500':
  *         description: Internal server error
  */
-router.post('/:businessId/service', businessController.addServiceToBusiness);
+ router.post('/:businessId/service', upload.single('image'), businessController.addServiceToBusiness);
 
 /**
  * @swagger
