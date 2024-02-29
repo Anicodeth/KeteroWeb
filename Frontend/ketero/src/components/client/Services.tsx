@@ -25,7 +25,6 @@ const Services: React.FC = () => {
   const { data: serviceData, isLoading, isError } = useQuery('services', getServices);
 
   if (isLoading) return <div className = "h-full w-full flex items-center justify-center"><FallingLines
-  className = "h-fit"
   color="#700F14"
   width="100"
   visible={true}
