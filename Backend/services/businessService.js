@@ -14,10 +14,10 @@ exports.getBusinessServices = async (businessId) => {
 };
 
 exports.addServiceToBusiness = async (data) => {
-    const { businessId, name, description, price } = data;
+    const { businessId, name, description, price,imageUrl } = data;
     try {
         const business = await Business.findById(businessId);
-        const service = new Service({ name, description, price });
+        const service = new Service({ name, description, price, imageUrl });
         if (!business || !service) {
             throw new Error("Invalid data entry");
         }
