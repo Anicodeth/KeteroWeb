@@ -16,7 +16,6 @@ module.exports = async (req, res, next) => {
       return res.status(403).json({ message: 'Invalid token' });
     }
 
-    req.user = await userService.getUser(decoded.userId);
     next();
   });
 };

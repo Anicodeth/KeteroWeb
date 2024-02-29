@@ -42,11 +42,15 @@ function Form() {
       formData.append("description", description);
       formData.append("payment", payment);
 
-      const businessId = sessionStorage.getItem('user');
 
-      console.log(businessId)
-
-    //   await createService(1, formData);
+      const businessId: string | null = sessionStorage.getItem('user');
+      if (businessId) {
+        console.log(businessId);
+        await createService(businessId, formData);
+      } else {
+        console.error("BusinessId not found in sessionStorage");
+      }
+      
       toast.success("Service added successfully.");
     } catch (error) {
       console.error("Error adding service:", error);

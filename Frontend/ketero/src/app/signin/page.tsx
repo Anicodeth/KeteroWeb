@@ -37,6 +37,8 @@ interface FormProps {
 function Form({router}:FormProps){
   const [email, setEmail ] = useState("");
   const [password, setPassword] = useState("");
+  const [ buttonText, setButtonText ] = useState("Login");
+
  
 
 
@@ -56,7 +58,6 @@ function Form({router}:FormProps){
       },
       onError: (error: any) => {
         toast(error.response.data.error);
-        console.error("Error signing In:", error.response.data.error);
       },
     }
   );
@@ -75,8 +76,15 @@ function Form({router}:FormProps){
       if (error instanceof ZodError) {
         console.log(error.errors);
       } else {
-        toast(error.response.data);
+        if(error.response){
+        toast(error.response.data);}
+        else{
+          toast("Network Error");        
+        }
       }
+    }
+    finally {
+      setButtonText("Login");
     }
   }
   return (
@@ -127,7 +135,7 @@ function Form({router}:FormProps){
           </div>
           <button className={[styles.signupButton].join(" ")}
                       disabled={loginMutation.isLoading}> 
-                      {loginMutation.isLoading ? "Signing In..." : "Login"}
+                      {loginMutation.isLoading ? "Signing In..." : buttonText}
                       </button>
           <p className={styles.login}>Didn't you have an account ? <Link href="/signup"><span>Signup</span></Link></p>
         </form>
