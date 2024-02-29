@@ -1,6 +1,6 @@
 
 
-interface CreateService {
+export interface CreateService {
 
     name: string;
     description: string; 
@@ -9,7 +9,7 @@ interface CreateService {
 
 }
 
-interface Service {
+export interface Service {
 
     _id:string;
     name: string;
