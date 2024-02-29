@@ -15,7 +15,7 @@ const serviceSchema = new mongoose.Schema({
     required: true,
     min: 0
   },
-  image: {
+  imageUrl: {
     type: String,
   },
   businessId:{
