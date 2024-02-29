@@ -70,8 +70,15 @@ function Form() {
       formData.append("description", description);
       formData.append("price", payment);
 
+      const data = {
+        name: name,
+        description: description,
+        price:payment,
+        image:image
+      }
+
       serviceScheme.parse({ name, description, payment });
-      await mutation.mutateAsync(formData);
+      await mutation.mutateAsync(data);
     } catch (error) {
       if (error instanceof ZodError) {
         console.error("Zod validation failed");
