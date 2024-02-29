@@ -29,6 +29,32 @@ function Form() {
     }
   };
 
+  const serviceScheme = z.object({
+    name: z.string(),
+    description: z.string(),
+    payment: z.string(),
+  });
+
+  const mutation = useMutation(
+    async (formData: FormData) => {
+      const businessId: string | null = sessionStorage.getItem('user');
+      if (businessId) {
+        await createService(businessId, formData);
+      } else {
+        throw new Error("BusinessId not found in sessionStorage");
+      }
+    },
+    {
+      onSuccess: () => {
+        toast.success("Service added successfully.");
+      },
+      onError: (error: any) => {
+        console.error("Error adding service:", error);
+        toast.error("Failed to add service. Please try again.");
+      },
+    }
+  );
+
   const handleSubmit = async () => {
     try {
       if (!image || !name || !description || !payment) {
@@ -42,19 +68,14 @@ function Form() {
       formData.append("description", description);
       formData.append("payment", payment);
 
-
-      const businessId: string | null = sessionStorage.getItem('user');
-      if (businessId) {
-        console.log(businessId);
-        await createService(businessId, formData);
-      } else {
-        console.error("BusinessId not found in sessionStorage");
-      }
-      
-      toast.success("Service added successfully.");
+      serviceScheme.parse({ name, description, payment });
+      await mutation.mutateAsync(formData);
     } catch (error) {
-      console.error("Error adding service:", error);
-      toast.error("Failed to add service. Please try again.");
+      if (error instanceof ZodError) {
+        console.error("Zod validation failed");
+      } else {
+        console.error("Unknown error:", error);
+      }
     }
   };
 
