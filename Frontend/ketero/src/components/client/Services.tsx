@@ -19,18 +19,7 @@ import { Button } from "@/components/ui/button";
 import {getServices} from "../../services/ServiceServices"
 import { FallingLines } from 'react-loader-spinner'
 
-const serviceData: Service[] = [
-  {
-    _Id: "1",
-    name: "Men Hair Cut",
-    description: "Barber Shop",
-    image: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
-    payment: "300",
 
-  },
- 
-
-];
 
 const Services: React.FC = () => {
   const { data: serviceData, isLoading, isError } = useQuery('services', getServices);
@@ -67,7 +56,7 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
         <div className={style.contentContainer}>
           <div className={style.imageContainer}>
             <div className={style.imageCard}>
-              <img src={service.image} alt={service.name} className={style.image} />
+              <img src={service.imageUrl} alt={service.name} className={style.image} />
             </div>
             <h1 className={style.serviceName}>{service.name}</h1>
           </div>
@@ -103,12 +92,12 @@ const ServiceShadCard: React.FC<{ service: Service }> = ({ service }) => {
                  <Card className = "h-fit">
                     <CardHeader >
                         <div className = "inset-0 bg-cover h-32 bg-center" 
-                          style={{ backgroundImage: `url(${service.image || service.imageUrl})` }}>
+                          style={{ backgroundImage: `url(${service.imageUrl})` }}>
                           {/* <img className = "w-full h-32" src = {service.image}></img> */}
                         </div>
                         <CardTitle>{service.name}</CardTitle>
                         <CardDescription>{service.description}</CardDescription>
-                        <CardDescription>{service.payment}</CardDescription>
+                        <CardDescription>{service.price}</CardDescription>
                     </CardHeader>
 
                     <CardContent >
