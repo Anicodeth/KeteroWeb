@@ -26,7 +26,13 @@ export async function getServices() :Promise<any> {
 
 export async function createService(businessid:string, serviceData: CreateService):Promise<any>  {
     try {
-        const response = await axios.post(`https://ketero-web-dmow.vercel.app/api/v1/business/${businessid}/service`, serviceData);
+        const response = await axios.post(`https://ketero-web-dmow.vercel.app/api/v1/business/${businessid}/service`, serviceData,{
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
+    
+
         return response.data;
     } catch (error) {
         console.error("Error creating service:", error);

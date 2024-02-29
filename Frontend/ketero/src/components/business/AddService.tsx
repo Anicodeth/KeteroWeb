@@ -37,8 +37,10 @@ function Form() {
 
   const mutation = useMutation(
     async (formData: FormData) => {
-      const businessId: string | null = sessionStorage.getItem('user');
-      if (businessId) {
+      const user: any = sessionStorage.getItem('user');
+      if (user) {
+       const businessId = JSON.parse(user)._id;
+
         await createService(businessId, formData);
       } else {
         throw new Error("BusinessId not found in sessionStorage");

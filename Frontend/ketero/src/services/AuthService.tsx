@@ -44,7 +44,7 @@ export async function signIn(login: Login): Promise<any> {
         
         const data = response.data;
 
-        sessionStorage.setItem("user", data.user);
+        sessionStorage.setItem("user", JSON.stringify(data.user));
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("role", data.role);
 

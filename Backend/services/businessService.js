@@ -24,6 +24,7 @@ exports.addServiceToBusiness = async (data) => {
 
         business.services.push(service);
         await business.save();
+        await service.save();
         return service;
 
     } catch (error) {
