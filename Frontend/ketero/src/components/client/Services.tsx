@@ -12,6 +12,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { useQuery } from 'react-query';
+
 
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
@@ -25,7 +27,7 @@ const serviceData: Service[] = [
     name: "Men Hair Cut",
     description: "Barber Shop",
     image: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
-    payment: "A Descriptive Image About The Service",
+    payment: "300",
 
   },
  
@@ -33,13 +35,18 @@ const serviceData: Service[] = [
 ];
 
 const Services: React.FC = () => {
+  const { data: serviceData, isLoading, isError } = useQuery('services', getServices);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching services</div>;
+
   return (
     <>
       <div className={style.mainContainer}>
         <h1>Recent Services</h1>
         <div className={style.serviceContainer}>
-          {serviceData.map((service, index) => (
-            <ServiceShadCard key={service.serviceId} service={service} />
+          {serviceData.map((service: Service, index: number) => (
+            <ServiceShadCard key={service._id} service={service} />
           ))}
         </div>
       </div>
@@ -68,7 +75,7 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
           <div className={style.bookingInfo}>
             <div className={style.price}>
               <h3>Average Price</h3>
-              <h2 className={style.servicePrice}>$ {service.payment}</h2>
+              <h2 className={style.servicePrice}>Etb {service.payment}</h2>
             </div>
             <div className={style.bookButton}>
               <button>Book</button>
