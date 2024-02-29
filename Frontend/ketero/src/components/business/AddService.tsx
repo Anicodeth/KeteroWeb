@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import style from "./AddService.module.css";
 import { IoIosAddCircle } from "react-icons/io";
 import { toast } from "sonner";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import { z, ZodError } from "zod";
 import { useMutation, QueryClient, QueryClientProvider } from "react-query";
-
+import { createService } from "../../services/ServiceServices";
 
 const AddService: React.FC = () => {
-    const queryClient = new QueryClient();
-
+  const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -18,27 +17,46 @@ const AddService: React.FC = () => {
   );
 };
 
-
 function Form() {
-    const [image, setImage] = useState<File | null>(null);
-    const [name, setName] = useState<string>("");
-    const [description, setDescription] = useState<string>("");
-    const [payment, setPayment] = useState<string>("");
-  
-  
-  
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files && e.target.files.length > 0) {
-        setImage(e.target.files[0]);
-      }
-    };
-  
-    const handleSubmit = ()=>{
-  
+  const [image, setImage] = useState<File | null>(null);
+  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [payment, setPayment] = useState<string>("");
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setImage(e.target.files[0]);
     }
-    return (
-        <>
-        <div className={[style.wrapper].join(" ")}>
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (!image || !name || !description || !payment) {
+        toast.error("Please fill in all fields.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("image", image);
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("payment", payment);
+
+      const businessId = sessionStorage.getItem('user');
+
+      console.log(businessId)
+
+    //   await createService(1, formData);
+      toast.success("Service added successfully.");
+    } catch (error) {
+      console.error("Error adding service:", error);
+      toast.error("Failed to add service. Please try again.");
+    }
+  };
+
+  return (
+    <>
+      <div className={[style.wrapper].join(" ")}>
         <div className={[style.inputImage].join(" ")}>
           {image ? (
             <img src={URL.createObjectURL(image)} alt="" />
@@ -64,8 +82,8 @@ function Form() {
             <input
               type="text"
               id="serviceName"
-              value = {name}
-              onChange = {(e) => setName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className={[style.input].join(" ")}
             />
           </div>
@@ -77,8 +95,8 @@ function Form() {
               type="text"
               id="payment"
               className={[style.input].join(" ")}
-              value = {payment}
-              onChange = {(e) => setPayment(e.target.value)}
+              value={payment}
+              onChange={(e) => setPayment(e.target.value)}
             />
           </div>
           <div>
@@ -89,18 +107,17 @@ function Form() {
               type="text"
               id="description"
               className={[style.input].join(" ")}
-              value = {description}
-              onChange = {(e) => setDescription(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <button onClick={()=>handleSubmit} className={[style.buttonAddService].join(" ")}>
+          <button onClick={handleSubmit} className={[style.buttonAddService].join(" ")}>
             Add Service
           </button>
-  
         </div>
       </div>
-      </>
-    )
-
+    </>
+  );
 }
+
 export default AddService;
