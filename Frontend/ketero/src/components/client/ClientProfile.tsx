@@ -5,6 +5,8 @@ import { IoMdArrowBack, IoMdShare } from "react-icons/io";
 import { FaMoneyBillTransfer, FaBookmark } from "react-icons/fa6";
 import { IoWallet } from "react-icons/io5";
 import { Service1, Service2, Service3 } from "../../assets";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useEffect, useState } from 'react'
 
 interface HiredService {
   serviceImage: any;
@@ -35,22 +37,32 @@ const hiredServiceData: HiredService[] = [
 ];
 
 const ClientProfile: React.FC = () => {
+  const [user, setUser] = useState<any>(); 
+
+  useEffect(()=>{
+    const data = sessionStorage.getItem('user');
+    if(data){
+       setUser(JSON.parse(data));
+    }
+
+  }, [])
   return (
     <div className={style.clientContainer}>
       <div className={style.topNav}>
-        <IoMdArrowBack className={style.backIcon} />
-        <h1>Client Profile</h1>
-        <IoMdShare className={style.shareIcon} />
+
       </div>
       <div className={style.headerContainer}>
         <div className={style.imageCard}>
-          <Image
+          {/* <Image
             className={style.agentImage}
             src={Profile}
             alt="Client Profile Photo"
             width={100}
             height={50}
-          />
+          /> */}
+          <Avatar className={style.agentImage}>
+            <AvatarFallback>{user && user.name}</AvatarFallback>
+          </Avatar>
         </div>
         <div className={style.clientName}>
           <h3>Client Name</h3>
