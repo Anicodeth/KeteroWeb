@@ -32,7 +32,7 @@ const ClientProfile: React.FC = () => {
           <h3>{user && user.name}</h3>
         </div>
       </div>
-      <div className={style.miniDashboard}>
+      <div className="flex justify-between items-center p-5">
         <div className={style.analysis}>
           <FaBookmark className={style.icon} />
           <h5>Booked Services</h5>
@@ -43,14 +43,10 @@ const ClientProfile: React.FC = () => {
           <h5>Pending Services</h5>
           <h4>{user && user.pending.length}</h4>
         </div>
-        <div className={style.analysis}>
-          <IoWallet className={style.icon} />
-          <h5>Wallet Amount</h5>
-          <h4>$500</h4>
-        </div>
+
       </div>
       <div className={style.hiredContainer}>
-        <h2>Services Hired</h2>
+        <h2>Services Confirmed</h2>
         {user && user.confirmed.length > 0 ? (
           <div className={style.hiredServices}>
             {user.confirmed.map((service:any, index:any) => (
@@ -71,10 +67,10 @@ const ClientProfile: React.FC = () => {
           <p>No pending services</p>
         )}
       </div>
-      <div className={style.walletRecharge}>
+      {/* <div className={style.walletRecharge}>
         <h3>Recharge Wallet</h3>
         <button className={style.btn}>Top-Up</button>
-      </div>
+      </div> */}
     </div>
   );
 };
