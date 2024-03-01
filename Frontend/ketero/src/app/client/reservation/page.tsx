@@ -5,7 +5,8 @@ import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { getService } from "../../../services/ServiceServices";
 import { useQuery } from "react-query";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { useParams } from '../../../../node_modules/next/navigation';
 
 
 const ReservationSchema = z.object({
@@ -20,6 +21,13 @@ const ReservationForm = () => {
   const [errors, setErrors] = useState<z.ZodIssue[] | null>(null);
   const [dateAndTime, setDateAndTime ] = useState<any>();
 
+  console.log(useParams())
+
+//   const router = useRouter();
+//   const params = router.query;
+  
+
+//   const data = useQuery(["service", serviceId], (serviceId:string)=> getService(serviceId))
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
