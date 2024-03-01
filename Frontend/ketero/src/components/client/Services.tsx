@@ -83,33 +83,24 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
 
 
 const ServiceShadCard: React.FC<{ service: Service }> = ({ service }) => {
-
   return (
- 
-    
-            <Link href = '/booking'>
-                 <Card className = "h-fit">
-                    <CardHeader >
-                        <div className = "inset-0 bg-cover h-32 bg-center" 
-                          style={{ backgroundImage: `url(${service.imageUrl})` }}>
-                          {/* <img className = "w-full h-32" src = {service.image}></img> */}
-                        </div>
-                        <CardTitle>{service.name}</CardTitle>
-                        <CardDescription>{service.description}</CardDescription>
-                        <CardDescription>{service.price}</CardDescription>
-                    </CardHeader>
-
-                    <CardContent >
-                        <Button className = "w-full">
-                            Book
-                        </Button>
-                    </CardContent>
-                </Card>
-            </Link>
-
-        
-    
+    <Link href={`/client/reservation?serviceId=${service._id}`}>
+      <Card className="h-fit">
+        <CardHeader>
+          <div
+            className="inset-0 bg-cover h-32 bg-center"
+            style={{ backgroundImage: `url(${service.imageUrl})` }}
+          ></div>
+          <CardTitle>{service.name}</CardTitle>
+          <CardDescription>{service.description}</CardDescription>
+          <CardDescription>{service.price}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Button className="w-full">Book</Button>
+        </CardContent>
+      </Card>
+    </Link>
   );
-}
+};
 
 export default Services;
