@@ -4,7 +4,7 @@ import { useState } from 'react';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { getService } from "../../../../services/ServiceServices";
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import { useParams } from '../../../../../node_modules/next/navigation';
 import {
   Card,
@@ -15,6 +15,9 @@ import {
 } from "@/components/ui/card"
 import { Service } from '@/models/Service';
 import { Grid } from "react-loader-spinner";
+import {createReservation} from "../../../../services/ReservationService";
+import { Reservation } from '@/models/Reservation';
+import {toast} from 'sonner';
  
 const ReservationSchema = z.object({
   date: z.date(),
@@ -28,11 +31,16 @@ const ReservationForm = () => {
   const [errors, setErrors] = useState<z.ZodIssue[] | null>(null);
   const [dateAndTime, setDateAndTime ] = useState<any>();
 
+  const [businessId, setBusinessId] = useState("");
+  const [clientId, setClientId] = useState("")
+
+
    const params = useParams()
    const serviceId:string = params.serviceId as string;
 
 
   const {data, isLoading, isError} = useQuery( "service", () => getService(serviceId))
+  const createReservationMutation = useMutation((reservation:Reservation) => createReservation(reservation));
 
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,8 +54,25 @@ const ReservationForm = () => {
     e.preventDefault();
     const result = ReservationSchema.safeParse(formData);
     if (result.success) {
-      const dateAndTime = new Date(`${formData.date}T${formData.time}`);
-      setDateAndTime(dateAndTime);
+      const combined = new Date(`${formData.date}T${formData.time}`);
+      setDateAndTime(combined);
+      const sessionData:any = sessionStorage.getItem("user");
+      if(sessionData){
+        setClientId(sessionData._id);
+      }
+
+      //add use mutation
+      createReservationMutation.mutateAsync(
+        {
+          clientId,
+          businessId,
+          dateAndTime,
+          serviceId
+        }
+      );
+
+
+      
 
       setFormData({});
       setErrors(null);
@@ -97,7 +122,7 @@ const ReservationForm = () => {
       {errors && errors.find(error => error.path[0] === 'time') && (
         <div className="text-red-500">Time is required</div>
       )}
-        <Button>Submit Reservation</Button>
+        <Button>{createReservationMutation.isLoading ? "Reserving..." : "Submit Reservation"}</Button>
     </form>
   );
 };
