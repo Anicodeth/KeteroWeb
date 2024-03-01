@@ -56,14 +56,15 @@ const ReservationForm = () => {
     if (result.success) {
       const combined = new Date(`${formData.date}T${formData.time}`);
       setDateAndTime(combined);
-      console.log(data)
+      
       setBusinessId(data.businessId);
+    
       const sessionData:any = sessionStorage.getItem("user");
       if(sessionData){
-        setClientId(sessionData._id);
-      }
+       const parsed = JSON.parse(sessionData);
+        setClientId(parsed._id);
 
-      //add use mutation
+      }
       createReservationMutation.mutateAsync(
         {
           clientId,
