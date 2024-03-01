@@ -62,7 +62,7 @@ const ClientProfile: React.FC = () => {
         {user && user.pending.length > 0 ? (
           <div className={style.hiredServices}>
             {user.pending.map((service:any, index:any) => (
-              <HiredServiceCard key={index} service={service} />
+              <HiredServiceCard key={index} serviceId={service} />
             ))}
           </div>
         ) : (
@@ -77,7 +77,7 @@ const ClientProfile: React.FC = () => {
   );
 };
 
-const HiredServiceCard: React.FC<{ service: any }> = ({ serviceId }) => {
+const HiredServiceCard: React.FC<{ serviceId: any }> = ({ serviceId }) => {
   const { data, isLoading, isError } = useQuery('service', () => getService(serviceId));
 
   useEffect(() => {
