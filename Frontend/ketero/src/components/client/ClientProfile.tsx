@@ -8,6 +8,8 @@ import { Service1, Service2, Service3 } from "../../assets";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useEffect, useState } from 'react'
 import { Service } from "@/models/Service";
+import { getService } from "@/services/ServiceServices";
+import {useQuery} from 'react-query'
 
 const ClientProfile: React.FC = () => {
   const [user, setUser] = useState<any>(); 
@@ -75,20 +77,31 @@ const ClientProfile: React.FC = () => {
   );
 };
 
+const HiredServiceCard: React.FC<{ service: any }> = ({ serviceId }) => {
+  const { data, isLoading, isError } = useQuery('service', () => getService(serviceId));
 
-const HiredServiceCard: React.FC<{ service: Service }> = ({ service }) => {
+  useEffect(() => {
+    if (!isLoading && !isError) {
+      console.log(data); // Do something with the service data
+    }
+  }, [data, isLoading, isError]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error loading service</div>;
+  }
+
   return (
     <div className={style.cardContainer}>
-      <Image
-        className={style.serviceImage}
-        src={service.imageUrl}
-        alt="Service Image"
-      />
+      {/* Display service details */}
       <div className={style.serviceData}>
-        <h3>{service.name}</h3>
-        <h5>{service.description}</h5>
+        <h3>{data.name}</h3>
+        <h5>{data.description}</h5>
       </div>
-      <h3>{service.price} ETB</h3>
+      <h3>{data.price} ETB</h3>
     </div>
   );
 };
