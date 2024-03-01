@@ -1,9 +1,22 @@
 const Reservation = require('../models/Reservation');
+const Client = require('../models/Client');
+const Business = require('../models/Business');
 
 exports.createReservation = async (data) => {
     try {
+        const { businessId, clientId } = data;
         const reservation = new Reservation(data);
+
+        const business = await Business.findById(businessId);
+        const client = await Client.findById(clientId);
+
         await reservation.save();
+
+        business.pending.push(reservation);
+        client.pending.push(reservation);
+
+        business.save();
+        client.save();
         return reservation;
     } catch (error) {
         throw new Error(error.message);
