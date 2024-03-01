@@ -59,7 +59,7 @@ const ReservationForm = () => {
   return (
 
     <form onSubmit={handleSubmit} className="max-w-md flex flex-col p-10  mx-auto">
-      {isLoading &&<div> <Grid
+      {isLoading &&<div className = "flex items-center justify-center"> <Grid
         visible={true}
         height="80"
         width="80"
