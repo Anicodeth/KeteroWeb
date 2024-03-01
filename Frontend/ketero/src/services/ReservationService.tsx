@@ -15,7 +15,8 @@ export async function createReservation( reservation: Reservation):Promise<any>{
 
 export async function getReservation( id: string):Promise<any>{
     try{
-        const response = await axios.post(`${apiUrl}/${id}`);
+        const response = await axios.get(`${apiUrl}/${id}`);
+        console.log(response.data)
         return response.data;
     }
     catch(e){

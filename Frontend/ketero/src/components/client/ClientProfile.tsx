@@ -80,17 +80,17 @@ const ClientProfile: React.FC = () => {
 const HiredServiceCard: React.FC<{ serviceId: any }> = ({ serviceId }) => {
   const { data: reservationData, isLoading: isReservationLoading, isError: isReservationError } = useQuery('reservation', () => getReservation(serviceId));
 
-  const { data: serviceData, isLoading: isServiceLoading, isError: isServiceError } = useQuery(['service', reservationData?.serviceId], () => getService(reservationData?.serviceId));
+  const { data: serviceData, isLoading: isServiceLoading, isError: isServiceError } = useQuery(['service', reservationData?.data.serviceId], () => getService(reservationData?.data.serviceId));
 
   useEffect(() => {
     if (!isReservationLoading && !isReservationError && reservationData) {
-      console.log(reservationData); // Do something with the reservation data
+      console.log(reservationData); 
     }
   }, [reservationData, isReservationLoading, isReservationError]);
 
   useEffect(() => {
     if (!isServiceLoading && !isServiceError && serviceData) {
-      console.log(serviceData); // Do something with the service data
+      console.log(serviceData); 
     }
   }, [serviceData, isServiceLoading, isServiceError]);
 
@@ -105,6 +105,7 @@ const HiredServiceCard: React.FC<{ serviceId: any }> = ({ serviceId }) => {
   return (
     <div className={style.cardContainer}>
       {/* Display service details */}
+      <img  className = "bg-cover h-8" src = {serviceData.imageUrl}></img>
       <div className={style.serviceData}>
         <h3>{serviceData.name}</h3>
         <h5>{serviceData.description}</h5>
