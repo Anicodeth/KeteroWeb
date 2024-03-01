@@ -65,6 +65,11 @@ const ReservationForm = () => {
         setClientId(parsed._id);
 
       }
+
+      if ( !clientId || !businessId || !dateAndTime || !serviceId){
+        toast("Missing Data")
+        return 
+      }
       createReservationMutation.mutateAsync(
         {
           clientId,
