@@ -5,8 +5,15 @@ import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { getService } from "../../../../services/ServiceServices";
 import { useQuery } from "react-query";
-import { useRouter } from "next/navigation";
 import { useParams } from '../../../../../node_modules/next/navigation';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Service } from '@/models/Service';
 
 
 const ReservationSchema = z.object({
@@ -54,7 +61,7 @@ const ReservationForm = () => {
     <form onSubmit={handleSubmit} className="max-w-md flex flex-col p-10  mx-auto">
       {isLoading && <div> Loading... </div>}
       {isError && <div> Error Fetching </div>}
-      {data && <div> DATA </div>}
+      {data && <ServiceShadCard service={data}></ServiceShadCard>}
 
       <label htmlFor="date">Date:</label>
       <input
@@ -83,6 +90,23 @@ const ReservationForm = () => {
       )}
         <Button>Submit Reservation</Button>
     </form>
+  );
+};
+
+
+const ServiceShadCard: React.FC<{ service: Service }> = ({ service }) => {
+  return (
+      <Card className="h-fit">
+        <CardHeader>
+          <div
+            className="inset-0 bg-cover h-40 bg-center"
+            style={{ backgroundImage: `url(${service.imageUrl})` }}
+          ></div>
+          <CardTitle>{service.name}</CardTitle>
+          <CardDescription>{service.description}</CardDescription>
+          <CardDescription>{service.price}</CardDescription>
+        </CardHeader>
+      </Card>
   );
 };
 

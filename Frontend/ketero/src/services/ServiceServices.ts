@@ -4,7 +4,6 @@ import {CreateService, Service} from "../models/Service"
 const apiUrl = "https://ketero-web-dmow.vercel.app/api/v1/service";
 
 export async function getService(id: string):Promise<any> {
-    console.log(id, "here")
     try {
         const response = await axios.get(`${apiUrl}/${id}`);
         return response.data;
