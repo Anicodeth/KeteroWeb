@@ -65,17 +65,10 @@ const ClientProfile: React.FC = () => {
           </Avatar>
         </div>
         <div className={style.clientName}>
-          <h3>Client Name</h3>
+          <h3>{user && user.name}</h3>
         </div>
       </div>
-      <div className={style.clientBio}>
-        <div className={style.bio}>
-          <h2>Bio: </h2>
-        </div>
-        <div className={style.bioDescription}>
-          <h3>I&apos;m blessed to breath!!!</h3>
-        </div>
-      </div>
+
       <div className={style.miniDashboard}>
         <div className={style.analysis}>
           <FaBookmark className={style.icon} />
