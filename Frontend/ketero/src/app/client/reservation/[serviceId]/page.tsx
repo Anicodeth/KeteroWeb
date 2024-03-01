@@ -20,7 +20,7 @@ import { Reservation } from '@/models/Reservation';
 import {toast} from 'sonner';
  
 const ReservationSchema = z.object({
-  date: z.date(),
+  date: z.string(),
   time: z.string(),
 });
 
@@ -56,6 +56,8 @@ const ReservationForm = () => {
     if (result.success) {
       const combined = new Date(`${formData.date}T${formData.time}`);
       setDateAndTime(combined);
+      console.log(data)
+      setBusinessId(data.businessId);
       const sessionData:any = sessionStorage.getItem("user");
       if(sessionData){
         setClientId(sessionData._id);
@@ -77,6 +79,7 @@ const ReservationForm = () => {
       setFormData({});
       setErrors(null);
     } else {
+      console.log(result)
       setErrors(result.error.errors);
     }
   };
