@@ -22,7 +22,7 @@ const ReservationForm = () => {
   const [dateAndTime, setDateAndTime ] = useState<any>();
 
    const params = useParams()
-   const serviceId = params.serviceId;
+   const serviceId:string = params.serviceId as string;
 
 
   const {data, isLoading, isError} = useQuery( "service", ()=> getService(serviceId))
