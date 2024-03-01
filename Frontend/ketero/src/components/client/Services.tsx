@@ -84,7 +84,7 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
 
 const ServiceShadCard: React.FC<{ service: Service }> = ({ service }) => {
   return (
-    <Link href={`/client/reservation?serviceId=${service._id}`}>
+    <Link href={`/client/reservation/${service._id}`}>
       <Card className="h-fit">
         <CardHeader>
           <div
