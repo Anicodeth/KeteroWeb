@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 interface HiredService {
   serviceImage: any;
   serviceName: string;
-  companyAgent: string;
+  description: string;
   servicePrice: string;
 }
 
@@ -19,19 +19,19 @@ const hiredServiceData: HiredService[] = [
   {
     serviceImage: Service1,
     serviceName: "Service Name",
-    companyAgent: "Company Agent Name",
+    description: "Company Agent Name",
     servicePrice: "400",
   },
   {
     serviceImage: Service2,
     serviceName: "Service Name",
-    companyAgent: "Company Agent Name",
+    description: "Company Agent Name",
     servicePrice: "400",
   },
   {
     serviceImage: Service3,
     serviceName: "Service Name",
-    companyAgent: "Company Agent Name",
+    description: "Company Agent Name",
     servicePrice: "400",
   },
 ];
@@ -73,12 +73,12 @@ const ClientProfile: React.FC = () => {
         <div className={style.analysis}>
           <FaBookmark className={style.icon} />
           <h5>Booked Services</h5>
-          <h4>32</h4>
+          <h4>{user && user.confirmed.length}</h4>
         </div>
         <div className={style.analysis}>
           <FaMoneyBillTransfer className={style.icon} />
-          <h5>Total Transaction</h5>
-          <h4>$1500</h4>
+          <h5>Pending Services</h5>
+          <h4>{user && user.pending.length}</h4>
         </div>
         <div className={style.analysis}>
           <IoWallet className={style.icon} />
@@ -112,7 +112,7 @@ const HiredServiceCard: React.FC<{ service: HiredService }> = ({ service }) => {
       />
       <div className={style.serviceData}>
         <h3>{service.serviceName}</h3>
-        <h5>{service.companyAgent}</h5>
+        <h5>{service.description}</h5>
       </div>
       <h3>{service.servicePrice} ETB</h3>
     </div>
