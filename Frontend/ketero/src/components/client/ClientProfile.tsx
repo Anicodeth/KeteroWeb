@@ -9,8 +9,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useEffect, useState } from 'react'
 import { Service } from "@/models/Service";
 
-
-
 const ClientProfile: React.FC = () => {
   const [user, setUser] = useState<any>(); 
 
@@ -23,18 +21,9 @@ const ClientProfile: React.FC = () => {
   }, [])
   return (
     <div className={style.clientContainer}>
-      <div className={style.topNav}>
-
-      </div>
+      <div className={style.topNav}></div>
       <div className={style.headerContainer}>
         <div className={style.imageCard}>
-          {/* <Image
-            className={style.agentImage}
-            src={Profile}
-            alt="Client Profile Photo"
-            width={100}
-            height={50}
-          /> */}
           <Avatar className={style.agentImage}>
             <AvatarFallback>{user && user.name}</AvatarFallback>
           </Avatar>
@@ -43,7 +32,6 @@ const ClientProfile: React.FC = () => {
           <h3>{user && user.name}</h3>
         </div>
       </div>
-
       <div className={style.miniDashboard}>
         <div className={style.analysis}>
           <FaBookmark className={style.icon} />
@@ -63,17 +51,25 @@ const ClientProfile: React.FC = () => {
       </div>
       <div className={style.hiredContainer}>
         <h2>Services Hired</h2>
-        <div className={style.hiredServices}>
-          {user && user.confirmed.map((service:any, index:any) => (
-            <HiredServiceCard key={index} service={service} />
-          ))}
-        </div>
-        <h2>Services pending</h2>
-        <div className={style.hiredServices}>
-          {user && user.confirmed.map((service:any, index:any) => (
-            <HiredServiceCard key={index} service={service} />
-          ))}
-        </div>
+        {user && user.confirmed.length > 0 ? (
+          <div className={style.hiredServices}>
+            {user.confirmed.map((service:any, index:any) => (
+              <HiredServiceCard key={index} service={service} />
+            ))}
+          </div>
+        ) : (
+          <p>No confirmed services</p>
+        )}
+        <h2>Services Pending</h2>
+        {user && user.pending.length > 0 ? (
+          <div className={style.hiredServices}>
+            {user.pending.map((service:any, index:any) => (
+              <HiredServiceCard key={index} service={service} />
+            ))}
+          </div>
+        ) : (
+          <p>No pending services</p>
+        )}
       </div>
       <div className={style.walletRecharge}>
         <h3>Recharge Wallet</h3>
@@ -82,6 +78,7 @@ const ClientProfile: React.FC = () => {
     </div>
   );
 };
+
 
 const HiredServiceCard: React.FC<{ service: Service }> = ({ service }) => {
   return (
