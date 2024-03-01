@@ -59,7 +59,7 @@ const ReservationForm = () => {
   return (
 
     <form onSubmit={handleSubmit} className="max-w-md flex flex-col p-10  mx-auto">
-      {isLoading && <Grid
+      {isLoading &&<div> <Grid
         visible={true}
         height="80"
         width="80"
@@ -68,7 +68,7 @@ const ReservationForm = () => {
         radius="12.5"
         wrapperStyle={{}}
         wrapperClass="grid-wrapper"
-        />}
+        /></div>}
       {isError && <div> Error Fetching </div>}
       {data && <ServiceShadCard service={data}></ServiceShadCard>}
 
