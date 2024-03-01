@@ -14,8 +14,8 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Service } from '@/models/Service';
-
-
+import { Grid } from "react-loader-spinner";
+ 
 const ReservationSchema = z.object({
   date: z.date(),
   time: z.string(),
@@ -32,7 +32,7 @@ const ReservationForm = () => {
    const serviceId:string = params.serviceId as string;
 
 
-  const {data, isLoading, isError} = useQuery( "service", ()=> getService(serviceId))
+  const {data, isLoading, isError} = useQuery( "service", () => getService(serviceId))
 
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +59,16 @@ const ReservationForm = () => {
   return (
 
     <form onSubmit={handleSubmit} className="max-w-md flex flex-col p-10  mx-auto">
-      {isLoading && <div> Loading... </div>}
+      {isLoading && <Grid
+        visible={true}
+        height="80"
+        width="80"
+        color="#700F14"
+        ariaLabel="grid-loading"
+        radius="12.5"
+        wrapperStyle={{}}
+        wrapperClass="grid-wrapper"
+        />}
       {isError && <div> Error Fetching </div>}
       {data && <ServiceShadCard service={data}></ServiceShadCard>}
 
