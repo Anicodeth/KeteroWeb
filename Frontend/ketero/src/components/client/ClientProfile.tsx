@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react'
 import { Service } from "@/models/Service";
 import { getService } from "@/services/ServiceServices";
 import {useQuery} from 'react-query'
+import { getReservation } from "@/services/ReservationService";
 
 const ClientProfile: React.FC = () => {
   const [user, setUser] = useState<any>(); 
@@ -76,21 +77,28 @@ const ClientProfile: React.FC = () => {
     </div>
   );
 };
-
 const HiredServiceCard: React.FC<{ serviceId: any }> = ({ serviceId }) => {
-  const { data, isLoading, isError } = useQuery('service', () => getService(serviceId));
+  const { data: reservationData, isLoading: isReservationLoading, isError: isReservationError } = useQuery('reservation', () => getReservation(serviceId));
+
+  const { data: serviceData, isLoading: isServiceLoading, isError: isServiceError } = useQuery(['service', reservationData?.serviceId], () => getService(reservationData?.serviceId));
 
   useEffect(() => {
-    if (!isLoading && !isError) {
-      console.log(data); // Do something with the service data
+    if (!isReservationLoading && !isReservationError && reservationData) {
+      console.log(reservationData); // Do something with the reservation data
     }
-  }, [data, isLoading, isError]);
+  }, [reservationData, isReservationLoading, isReservationError]);
 
-  if (isLoading) {
+  useEffect(() => {
+    if (!isServiceLoading && !isServiceError && serviceData) {
+      console.log(serviceData); // Do something with the service data
+    }
+  }, [serviceData, isServiceLoading, isServiceError]);
+
+  if (isReservationLoading || isServiceLoading) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
+  if (isReservationError || isServiceError) {
     return <div>Error loading service</div>;
   }
 
@@ -98,12 +106,11 @@ const HiredServiceCard: React.FC<{ serviceId: any }> = ({ serviceId }) => {
     <div className={style.cardContainer}>
       {/* Display service details */}
       <div className={style.serviceData}>
-        <h3>{data.name}</h3>
-        <h5>{data.description}</h5>
+        <h3>{serviceData.name}</h3>
+        <h5>{serviceData.description}</h5>
       </div>
-      <h3>{data.price} ETB</h3>
+      <h3>{serviceData.price} ETB</h3>
     </div>
   );
 };
-
 export default ClientProfile;
