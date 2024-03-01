@@ -7,34 +7,9 @@ import { IoWallet } from "react-icons/io5";
 import { Service1, Service2, Service3 } from "../../assets";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useEffect, useState } from 'react'
+import { Service } from "@/models/Service";
 
-interface HiredService {
-  serviceImage: any;
-  serviceName: string;
-  description: string;
-  servicePrice: string;
-}
 
-const hiredServiceData: HiredService[] = [
-  {
-    serviceImage: Service1,
-    serviceName: "Service Name",
-    description: "Company Agent Name",
-    servicePrice: "400",
-  },
-  {
-    serviceImage: Service2,
-    serviceName: "Service Name",
-    description: "Company Agent Name",
-    servicePrice: "400",
-  },
-  {
-    serviceImage: Service3,
-    serviceName: "Service Name",
-    description: "Company Agent Name",
-    servicePrice: "400",
-  },
-];
 
 const ClientProfile: React.FC = () => {
   const [user, setUser] = useState<any>(); 
@@ -89,7 +64,13 @@ const ClientProfile: React.FC = () => {
       <div className={style.hiredContainer}>
         <h2>Services Hired</h2>
         <div className={style.hiredServices}>
-          {hiredServiceData.map((service, index) => (
+          {user && user.confirmed.map((service:any, index:any) => (
+            <HiredServiceCard key={index} service={service} />
+          ))}
+        </div>
+        <h2>Services pending</h2>
+        <div className={style.hiredServices}>
+          {user && user.confirmed.map((service:any, index:any) => (
             <HiredServiceCard key={index} service={service} />
           ))}
         </div>
@@ -102,19 +83,19 @@ const ClientProfile: React.FC = () => {
   );
 };
 
-const HiredServiceCard: React.FC<{ service: HiredService }> = ({ service }) => {
+const HiredServiceCard: React.FC<{ service: Service }> = ({ service }) => {
   return (
     <div className={style.cardContainer}>
       <Image
         className={style.serviceImage}
-        src={service.serviceImage}
+        src={service.imageUrl}
         alt="Service Image"
       />
       <div className={style.serviceData}>
-        <h3>{service.serviceName}</h3>
+        <h3>{service.name}</h3>
         <h5>{service.description}</h5>
       </div>
-      <h3>{service.servicePrice} ETB</h3>
+      <h3>{service.price} ETB</h3>
     </div>
   );
 };
