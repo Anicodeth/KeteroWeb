@@ -1,7 +1,7 @@
 
 const Client = require('../models/Client');
 
-exports.getclient = async (id) => {
+exports.getClient = async (id) => {
     try {
         const client = await Client.findById(id);
         if (!client) {
