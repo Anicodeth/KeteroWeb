@@ -40,3 +40,24 @@ export async function createService(businessid:string, serviceData: CreateServic
         throw error;
     }
 }
+
+export async function updateService(id: string, serviceData: CreateService):Promise<any> {
+    try {
+        const response = await axios.put(`${apiUrl}/${id}`, serviceData);
+        return response.data;
+    } catch (error) {
+        console.error("Error updating service:", error);
+        throw error;
+    }
+}
+
+export async function deleteService(id: string):Promise<any> {
+    try {
+        const response = await axios.delete(`${apiUrl}/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error deleting service:", error);
+        throw error;
+    }
+}
+
