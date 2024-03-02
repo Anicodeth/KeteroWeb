@@ -5,6 +5,8 @@ import style from "./Customers.module.css";
 import { AiOutlineMessage } from "react-icons/ai";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FcTodoList } from "react-icons/fc";
+import { useQuery } from "react-query";
+import { getPendingData } from "@/services/ReservationService";
 
 interface Appointment {
   customer: string;
@@ -102,76 +104,24 @@ const Customers: React.FC = () => {
 
   return (
     <div className={[style.customerComponent].join(" ")}>
-      <p className={[style.logo].join(" ")} id={style.customerComponent1}>
-        Logo
-      </p>
+
       <div id={style.customerComponent2}>
         <p className={[style.goodMorning].join(" ")}>Good morning!</p>
         <p className={[style.ownerName].join(" ")}>Owner's Name</p>
       </div>
-      <p className={[style.home].join(" ")}>Home</p>
-      <p className={[style.task].join(" ")}>Tasks</p>
-      <p className={[style.profile].join(" ")}>Profile</p>
-      <div
-        className={[style.messageWrapper].join(" ")}
-        id={style.customerComponent3}
-      >
-        <AiOutlineMessage size={25} />
-        <IoIosNotificationsOutline size={25} />
-      </div>
-      <div id={style.customerComponent4}>
-        <div className={[style.messageWrapper, style.notShow].join(" ")}>
-          <AiOutlineMessage size={25} />
-          <IoIosNotificationsOutline size={25} />
-        </div>
-        <img
-          src="https://png.pngtree.com/background/20230525/original/pngtree-cute-anime-girl-wearing-flowers-picture-image_2735301.jpg"
-          alt="Profile Picture"
-          className={[style.profileImage].join(" ")}
-        />
-      </div>
-      <div
-        className={[style.tabBarDate].join(" ")}
-        id={style.customerComponent5}
-      >
-        <p
-          className={`${
-            selectedTab === "Today" ? style.selectedTabBarDate : ""
-          } ${style.pointer}`}
-          onClick={() => setSelectedTab("Today")}
-        >
-          Today
-        </p>
-        <p
-          className={`${
-            selectedTab === "Week" ? style.selectedTabBarDate : ""
-          } ${style.pointer}`}
-          onClick={() => setSelectedTab("Week")}
-        >
-          This Week
-        </p>
-        <p
-          className={`${
-            selectedTab === "Month" ? style.selectedTabBarDate : ""
-          } ${style.pointer}`}
-          onClick={() => setSelectedTab("Month")}
-        >
-          This Month
-        </p>
-      </div>
+
       <div className={[].join(" ")} id={style.customerComponent6}>
         <div className={[style.topCard, style.unselectedTopCard].join(" ")}>
-          <p>Customers</p>
+          <p>Pending Orders</p>
           <p>30</p>
         </div>
         <div className={[style.topCard].join(" ")}>
-          <p>Revenue</p>
+          <p>Pending Revenue</p>
           <p>3000 ETB</p>
         </div>
       </div>
       <div id={style.customerComponent8}>
         <p>Upcoming Appointment</p>
-        <p id={style.seeAll}>see all</p>
       </div>
 
       <div
@@ -179,11 +129,49 @@ const Customers: React.FC = () => {
         id={style.customerComponent9}
       >
          {appointmentData.map((appointment, index)=> (
-              <div key={index} className={[style.appointmentCard].join(" ")}>
+              
+        ))} 
+
+      </div>
+      <div
+        className={[style.taskCard].join(" ")}
+        id={style.customerComponent10}
+      >
+        <div>
+          <FcTodoList />
+          <p>
+            1 Customers <span>to Confirmed</span>
+          </p>
+        </div>
+        <div>
+          <FcTodoList />
+          <p>
+            4 Customers <span>in Pending</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+function ReservationCard( reservationId: string) {
+
+
+  const {data: reservation, isLoading, isError} = useQuery(["reservation", reservationId], () =>
+    getPendingData(reservationId)
+  );
+
+  if(isLoading) {
+    return <div>Loading...</div>
+  }
+
+  return (
+    <div className={[style.appointmentCard].join(" ")}>
               <p>{appointment.customer}</p>
               <div className={[style.situation].join(" ")}>
                 <IoIosNotificationsOutline color="#DE3B40" />
-                <p>{appointment.status}</p>
+                <p>Pending</p>
               </div>
               <hr />
               <div>
@@ -205,34 +193,7 @@ const Customers: React.FC = () => {
               <hr />
               <button>Ready</button>
               </div>
-        ))} 
-
-      </div>
-      <div
-        className={[style.taskCard].join(" ")}
-        id={style.customerComponent10}
-      >
-        <div>
-          <FcTodoList />
-          <p>
-            1 Customers <span>to Confirm</span>
-          </p>
-        </div>
-        <div>
-          <FcTodoList />
-          <p>
-            4 Customers <span>in Waiting</span>
-          </p>
-        </div>
-        <div>
-          <FcTodoList />
-          <p>
-            6 Customers <span>in Service</span>
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
+  )
+}
 
 export default Customers;

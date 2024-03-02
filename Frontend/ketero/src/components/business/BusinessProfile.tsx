@@ -1,4 +1,4 @@
-import style from "./ClientProfile.module.css";
+import style from "./BusinessProfile.module.css";
 import { FaMoneyBillTransfer, FaBookmark } from "react-icons/fa6";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { useEffect, useState } from 'react'
@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 
 const BusinessProfile: React.FC = () => {
   const user = JSON.parse(sessionStorage.getItem('user')!); 
+  
 
   const { data: business } = useQuery("business", () => getBusiness(user._id));
 
@@ -41,11 +42,12 @@ const BusinessProfile: React.FC = () => {
       <div className={style.headerContainer}>
         <div className={style.imageCard}>
           <Avatar className={style.agentImage}>
-            <AvatarFallback>{user && user.name}</AvatarFallback>
+            <AvatarFallback>{user && user.ownerName}</AvatarFallback>
           </Avatar>
         </div>
         <div className={style.clientName}>
-          <h3>{user && user.name}</h3>
+          <h3>{user && user.ownerName} </h3>
+          <h3>{user && user.businessName} </h3>
         </div>
       </div>
       <div className="flex justify-between items-center p-5">
@@ -151,11 +153,15 @@ const ServiceShadCard: React.FC<{ serviceId: string }> = ({ serviceId }) => {
   if (isLoading) {
     return <SkeletonCard />;
   }
-  
+
+  if (isError || !service) {
+    return null;
+  }
+
   return (
     <Card className="h-fit">
       <CardHeader>
-        <div className="inset-0 bg-cover h-40 bg-center" style={{ backgroundImage: `url(${service.imageUrl})` }}></div>
+       { service.imageUrl && <div className="inset-0 bg-cover h-40 bg-center" style={{ backgroundImage: `url(${service.imageUrl})` }}></div>}
         <CardTitle>{service.name}</CardTitle>
         <CardDescription>{service.description}</CardDescription>
         <CardDescription>{service.price}</CardDescription>
