@@ -88,7 +88,7 @@ const HiredServiceCard: React.FC<{ reservationId: string }> = ({ reservationId }
   }
 
   if (isReservationError ) {
-    return <div>Error loading service</div>;
+    return null;
   }
 
 

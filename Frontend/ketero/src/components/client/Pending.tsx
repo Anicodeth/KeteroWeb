@@ -60,7 +60,7 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
   }
 
   if (isError || !reservation) {
-    return <div>Error loading reservation</div>;
+    return null;
   }
 
   return (
