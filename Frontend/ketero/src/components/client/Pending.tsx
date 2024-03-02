@@ -3,59 +3,57 @@ import style from "./Pending.module.css";
 import { CiPhone } from "react-icons/ci";
 import { CiTimer } from "react-icons/ci";
 import { MdOutlinePayment } from "react-icons/md";
+import { Reservation } from "../../models/Reservation";
+import { useQuery } from "react-query";
+import { getService } from "@/services/ServiceServices";
+import { getBusiness } from "@/services/BusinessService";
 
-interface Reservation {
-  serviceName: string;
-  companyName: string;
-  time: string;
-  payment: string;
-  phone: string;
-  status: string;
-}
 
 const Pending: React.FC = () => {
   const reservationData: Reservation[] = [
     {
-      serviceName: "Service 1",
-      companyName: "Company A",
-      time: "10:30",
-      payment: "1500Birr",
-      phone: "123-456-7890",
-      status: "Comfirmed",
+      serviceId: "4364643",
+      clientId: "34646346",
+      businessId: "36346436",
+      dateAndTime: "15:15" 
     },
+
     {
-      serviceName: "Service 2",
-      companyName: "Company B",
-      time: "15:00",
-      payment: "1500Birr",
-      phone: "987-654-3210",
-      status: "Pending",
+      serviceId: "4364643",
+      clientId: "34646346",
+      businessId: "36346436",
+      dateAndTime: "15:15" 
     },
+
     {
-      serviceName: "Service 3",
-      companyName: "Company C",
-      time: "12:00",
-      payment: "1500Birr",
-      phone: "555-123-4567",
-      status: "Pending",
+      serviceId: "4364643",
+      clientId: "34646346",
+      businessId: "36346436",
+      dateAndTime: "15:15" 
     },
+
     {
-      serviceName: "Service 4",
-      companyName: "Company D",
-      time: "09:15",
-      payment: "1500Birr",
-      phone: "789-012-3456",
-      status: "Pending",
+      serviceId: "4364643",
+      clientId: "34646346",
+      businessId: "36346436",
+      dateAndTime: "15:15" 
     },
+
     {
-      serviceName: "Service 5",
-      companyName: "Company E",
-      time: "17:30",
-      payment: "1500Birr",
-      phone: "444-555-6666",
-      status: "Pending",
+      serviceId: "4364643",
+      clientId: "34646346",
+      businessId: "36346436",
+      dateAndTime: "15:15" 
     },
+
+
   ];
+
+  //TODO
+  //fetch the user then iterate throught the pending array then fetch reservation date for each
+
+
+
   return (
     <div className={style.mainContainer}>
       <h1 className={style.mainHeader}>Pending Reservations</h1>
@@ -72,28 +70,41 @@ const Pending: React.FC = () => {
 const ReservationCard: React.FC<{ reservation: Reservation }> = ({
   reservation,
 }) => {
+  const serviceId = reservation.serviceId;
+  const businessId = reservation.businessId;
+
+  const { data: service } = useQuery(["service", serviceId], () =>
+    getService(serviceId)
+  );
+  const { data: business } = useQuery(["business", businessId], () =>
+    getBusiness(businessId)
+  );
+
+  if (!service || !business) {
+    return null; // or a loading placeholder
+  }
+
+  const serviceName = service.name;
+
   return (
     <div className={style.reservationCard}>
       <div className={style.reservationCardRow1}>
-        <h1 className={style.serviceName}>{reservation.serviceName}</h1>
-        <h1 className={style.serviceStatus}>{reservation.status}</h1>
+        <h1 className={style.serviceName}>{serviceName}</h1>
+        <h1 className={style.serviceStatus}>Pending</h1>
       </div>
 
       <div className={style.reservationCardRow2}>
-        <h1 className={style.companyName}>{reservation.companyName}</h1>
+        <h1 className={style.companyName}>{business.businessName}</h1>
       </div>
 
       <div className={style.reservationCardRow3}>
         <div className={style.cardBottomItem}>
           <CiTimer />
-          {reservation.time}
+          {reservation.dateAndTime}
         </div>
+
         <div className={style.cardBottomItem}>
-          <CiPhone />
-          {reservation.phone}
-        </div>
-        <div className={style.cardBottomItem}>
-          <MdOutlinePayment /> {reservation.payment}
+          <MdOutlinePayment /> {/* Add payment logic here */}
         </div>
       </div>
 
@@ -104,5 +115,6 @@ const ReservationCard: React.FC<{ reservation: Reservation }> = ({
     </div>
   );
 };
+
 
 export default Pending;
