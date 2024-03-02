@@ -61,21 +61,17 @@ const ReservationForm = () => {
       
       setBusinessId(data.businessId);
     
-      const sessionData:any = sessionStorage.getItem("user");
-      if(sessionData){
-       const parsed = JSON.parse(sessionData);
-        setClientId(parsed._id);
+      const sessionData:any = JSON.parse(sessionStorage.getItem("user")!);
+      setClientId(sessionData._id);
+      const client = sessionData._id;
 
-      }
-
-      if ( !clientId || !businessId || !dateAndTime || !serviceId){
-        console.log(clientId, businessId, dateAndTime, serviceId)
+      if ( !client || !businessId || !dateAndTime || !serviceId){
         toast("Missing Data")
         return 
       }
       createReservationMutation.mutateAsync(
         {
-          clientId,
+          clientId: client,
           businessId,
           dateAndTime,
           serviceId
