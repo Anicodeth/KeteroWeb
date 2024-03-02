@@ -51,7 +51,8 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
         </div>
 
         <div className={style.cardBottomItem}>
-          <MdOutlinePayment /> {/* Add payment logic here */}
+          <MdOutlinePayment /> 
+          {reservation.businessEmail}
         </div>
       </div>
 
