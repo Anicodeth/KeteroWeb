@@ -85,3 +85,36 @@ exports.updateReservation = async (id, data) => {
         throw new Error(error.message);
     }
 };
+
+
+exports.getPendingData = async (id) => {
+    try {
+        const reservation = await Reservation.findById(id);
+        if (!reservation) {
+            throw new Error('Reservation not found');
+        }
+        const business  = await Business.findById(reservation.businessId);
+        const client  = await Client.findById(reservation.clientId);
+
+        //extracting data from business and client
+        const pendingData = {
+            businessName: business.businessName,
+            businessEmail: business.email,
+            clientPhone: client.phone,
+            clientName: client.name,
+            dateAndTime: reservation.date,
+            serviceId: reservation.serviceId,
+            serviveName: serviceName.name,
+            reservationId: reservation._id,
+            businessId: business._id,
+            clientId: client._id,
+            confirmed: reservation.confirmed,
+            ownerName: business.ownerName,
+
+        }
+        
+        return pendingData;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
