@@ -137,4 +137,27 @@ router.delete('/:id', reservationController.deleteReservation);
 
 router.put('/:id', reservationController.updateReservation);
 
+
+/**
+ * @swagger
+ * /api/v1/reservations/pending/{id}:
+ *   get:
+ *     summary: Get pending data
+ *     tags: [Reservations]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID of the reservation to get
+ *     responses:
+ *       '200':
+ *         description: OK
+ *       '404':
+ *         description: Reservation not found
+ */
+
+router.get('/pending/:id', reservationController.getPendingData);
+
 module.exports = router;

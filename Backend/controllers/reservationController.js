@@ -1,4 +1,4 @@
-const { createReservation, confirmReservation, getReservation, getReservations, deleteReservation, updateReservation } = require('../services/reservationService');
+const { createReservation, confirmReservation, getReservation, getReservations, deleteReservation, updateReservation, getPendingData } = require('../services/reservationService');
 
 exports.createReservation = async (req, res) => {
     try {
@@ -53,3 +53,14 @@ exports.updateReservation = async (req, res) => {
         res.status(404).json({ success: false, error: error.message });
     }
 };
+
+exports.getPendingData = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = await getPendingData(id);
+        res.status(200).json({ data: data });
+    } catch (error) {
+        res.status(404).json({ success: false, error: error.message });
+    }
+
+}

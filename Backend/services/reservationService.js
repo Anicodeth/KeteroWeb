@@ -1,6 +1,7 @@
 const Reservation = require('../models/Reservation');
 const Client = require('../models/Client');
 const Business = require('../models/Business');
+const Service = require('../models/Service');
 
 exports.createReservation = async (data) => {
     try {
@@ -86,17 +87,21 @@ exports.updateReservation = async (id, data) => {
     }
 };
 
-
 exports.getPendingData = async (id) => {
     try {
         const reservation = await Reservation.findById(id);
+
         if (!reservation) {
             throw new Error('Reservation not found');
         }
-        const business  = await Business.findById(reservation.businessId);
-        const client  = await Client.findById(reservation.clientId);
 
-        //extracting data from business and client
+        const business = await Business.findById(reservation.businessId);
+
+        const client = await Client.findById(reservation.clientId);
+
+        // Assuming you have a Service model
+        const service = await Service.findById(reservation.serviceId);
+
         const pendingData = {
             businessName: business.businessName,
             businessEmail: business.email,
@@ -104,17 +109,21 @@ exports.getPendingData = async (id) => {
             clientName: client.name,
             dateAndTime: reservation.date,
             serviceId: reservation.serviceId,
-            serviveName: serviceName.name,
+            serviceName: service.name,
+            serviceDescription: service.description,
+            servicePrice: service.price,
             reservationId: reservation._id,
             businessId: business._id,
             clientId: client._id,
             confirmed: reservation.confirmed,
             ownerName: business.ownerName,
+        };
 
-        }
-        
+        console.log('Pending Data:', pendingData);
+
         return pendingData;
     } catch (error) {
+        console.error('Error:', error.message);
         throw new Error(error.message);
     }
 };
