@@ -5,7 +5,7 @@ import style from "./Customers.module.css";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FcTodoList } from "react-icons/fc";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { getPendingData } from "@/services/ReservationService";
+import { confirmReservation, getPendingData } from "@/services/ReservationService";
 import { getBusiness } from "@/services/BusinessService";
 import {Button} from "@/components/ui/button";
 
@@ -13,7 +13,6 @@ import {Button} from "@/components/ui/button";
 const Customers: React.FC = () => {
 
   const user = JSON.parse(sessionStorage.getItem('user')!);
-  const [sumi, setSumi] = React.useState(0);
 
   const {data: business, isLoading} = useQuery("business", () => getBusiness(user._id));
   
@@ -104,8 +103,8 @@ const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
 
   const [date, time] = reservation.dateAndTime.split("T");
 
-  function handleConfirm() {
-    confirmMutation.mutateAsync();
+  async function handleConfirm() {
+   await confirmMutation.mutateAsync();
     }
 
   return (
@@ -137,7 +136,7 @@ const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
                 <p>{reservation.servicePrice}</p>
               </div>
               <hr />
-              <Button onClick = {()=>handleComfirm}>Confirm</Button>
+              <Button onClick = {()=>handleConfirm}>Confirm</Button>
               </div>
   )
 }
