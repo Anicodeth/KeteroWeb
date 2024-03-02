@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Pending.module.css";
 import { CiTimer } from "react-icons/ci";
 import { MdOutlinePayment } from "react-icons/md";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getPendingData } from "@/services/ReservationService";
 import { Button } from "@/components/ui/button";
 import { getClient } from "@/services/ClientService";
@@ -35,26 +35,29 @@ const Pending: React.FC = () => {
     </div>
   );
 };
-
 const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId }) => {
+  const queryClient = useQueryClient();
+  
   const { data: reservation, isLoading, isError } = useQuery(["reservation", reservationId], () =>
     getPendingData(reservationId)
   );
 
+  const deleteMutation = useMutation((id:string) => deleteReservation(id), {
+    onSuccess: () => {
+      queryClient.invalidateQueries("client"); // Invalidate the client query to refresh the data
+    },
+  });
+
   function handleDelete(id: string) {
-    console.log(id);
+    deleteMutation.mutateAsync(id);
   }
 
-  if(isLoading){
-    return <SkeletonCard />
+  if (isLoading) {
+    return <SkeletonCard />;
   }
 
-  if(isError){
-    return <div>Error</div>
-  }
-  
-  if (!reservation) {
-    return null; 
+  if (isError || !reservation) {
+    return <div>Error loading reservation</div>;
   }
 
   return (
@@ -81,12 +84,13 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
       </div>
 
       <div className={style.buttonsContainer}>
-        <Button onClick = {()=>{handleDelete(reservationId)}} className={style.buttonCard}> Cancel</Button>
+        <Button onClick={() => handleDelete(reservationId)} className={style.buttonCard}> Cancel</Button>
         {/* <Button className={style.buttonCard}> Details</Button> */}
       </div>
     </div>
   );
 };
+
 
 
 export function SkeletonCard() {
