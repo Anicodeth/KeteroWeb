@@ -7,16 +7,21 @@ import {useQuery} from 'react-query'
 import { getReservation } from "@/services/ReservationService";
 import { Skeleton } from "@/components/ui/skeleton"
 
+import {getClient} from "@/services/ClientService";
+import { getPendingData } from "@/services/ReservationService";
+
 const ClientProfile: React.FC = () => {
-  const [user, setUser] = useState<any>(); 
+  const user = JSON.parse(sessionStorage.getItem('user')!); 
 
-  useEffect(()=>{
-    const data = sessionStorage.getItem('user');
-    if(data){
-       setUser(JSON.parse(data));
-    }
+  const { data: client } = useQuery("client", () => getClient(user._id));
 
-  }, [])
+  const pending = client?.pending;
+  const confirmed = client?.confirmed;
+
+  if(!client){
+    return null
+  }
+
   return (
     <div className={style.clientContainer}>
       <div className={style.topNav}></div>
@@ -47,8 +52,8 @@ const ClientProfile: React.FC = () => {
         <h2>Services Confirmed</h2>
         {user && user.confirmed.length > 0 ? (
           <div className={style.hiredServices}>
-            {user.confirmed.map((service:any, index:any) => (
-              <HiredServiceCard key={index} service={service} />
+            {confirmed.map((reservationId:string, index:any) => (
+              <HiredServiceCard key={index} reservationId={reservationId} />
             ))}
           </div>
         ) : (
@@ -57,8 +62,8 @@ const ClientProfile: React.FC = () => {
         <h2>Services Pending</h2>
         {user && user.pending.length > 0 ? (
           <div className={style.hiredServices}>
-            {user.pending.map((service:any, index:any) => (
-              <HiredServiceCard key={index} serviceId={service} />
+            {pending.map((reservationId:string, index:any) => (
+              <HiredServiceCard key={index} reservationId={reservationId} />
             ))}
           </div>
         ) : (
@@ -72,10 +77,9 @@ const ClientProfile: React.FC = () => {
     </div>
   );
 };
-const HiredServiceCard: React.FC<{ serviceId: any }> = ({ serviceId }) => {
-  const { data: reservationData, isLoading: isReservationLoading, isError: isReservationError } = useQuery('reservation', () => getReservation(serviceId));
+const HiredServiceCard: React.FC<{ reservationId: string }> = ({ reservationId }) => {
+  const { data: reservationData, isLoading: isReservationLoading, isError: isReservationError } = useQuery('reservation', () => getPendingData(reservationId));
 
-  const { data: serviceData, isLoading: isServiceLoading, isError: isServiceError } = useQuery(['service', reservationData?.data.serviceId], () => getService(reservationData?.data.serviceId));
 
   useEffect(() => {
     if (!isReservationLoading && !isReservationError && reservationData) {
@@ -83,30 +87,25 @@ const HiredServiceCard: React.FC<{ serviceId: any }> = ({ serviceId }) => {
     }
   }, [reservationData, isReservationLoading, isReservationError]);
 
-  useEffect(() => {
-    if (!isServiceLoading && !isServiceError && serviceData) {
-      console.log(serviceData); 
-    }
-  }, [serviceData, isServiceLoading, isServiceError]);
 
-  if (isReservationLoading || isServiceLoading) {
+  if (isReservationLoading) {
     return <SkeletonCard />
     ;
   }
 
-  if (isReservationError || isServiceError) {
+  if (isReservationError ) {
     return <div>Error loading service</div>;
   }
 
   return (
     <div className={style.cardContainer}>
       {/* Display service details */}
-      <img  className = "bg-cover h-8" src = {serviceData.imageUrl}></img>
+      <img  className = "bg-cover h-8" src = {reservationData.imageUrl}></img>
       <div className={style.serviceData}>
-        <h3>{serviceData.name}</h3>
-        <h5>{serviceData.description}</h5>
+        <h3>{reservationData.serviceName}</h3>
+        <h5>{reservationData.serviceDescription}</h5>
       </div>
-      <h3>{serviceData.price} ETB</h3>
+      <h3>{reservationData.servicePrice} ETB</h3>
     </div>
   );
 };
