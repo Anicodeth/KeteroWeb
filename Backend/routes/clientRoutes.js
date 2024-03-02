@@ -10,7 +10,7 @@ const clientController = require('../controllers/clientController');
  * /api/v1/client/{clientId}:
  *   get:
  *     summary: Get a client by ID
- *     tags: [Authentication]
+ *     tags: [Client]
  *     parameters:
  *       - in: path
  *         name: clientId
@@ -26,6 +26,6 @@ const clientController = require('../controllers/clientController');
  *       '500':
  *         description: Internal server error
  */
-router.get('/client/:clientId', clientController.getClient);
+router.get('/:clientId', clientController.getClient);
 
 module.exports = router;
