@@ -5,16 +5,21 @@ import { MdOutlinePayment } from "react-icons/md";
 import { useQuery } from "react-query";
 import { getPendingData } from "@/services/ReservationService";
 import { Button } from "@/components/ui/button";
+import { getClient } from "@/services/ClientService";
 
 
 
 const Pending: React.FC = () => {
   const user = JSON.parse(sessionStorage.getItem("user")!);
   const clientId = user._id;
+  const { data: client } = useQuery(["client", clientId], () => getClient(clientId));
 
   
+  if (!client || !client.pending) {
+    return null; // or a loading placeholder
+  }
 
-  const reservationIds = user.pending;
+  const reservationIds = client.pending;
 
   return (
     <div className={style.mainContainer}>
