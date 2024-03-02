@@ -27,8 +27,8 @@ export async function getReservation( id: string):Promise<any>{
 export async function getReservations():Promise<any>{
     try{
         const response = await axios.get(apiUrl);
-        console.log(response.data)
-        return response.data;
+        console.log(response.data.data)
+        return response.data.data;
     }
     catch(e){
         throw e;
@@ -38,7 +38,7 @@ export async function getReservations():Promise<any>{
 export async function getPendingData(id:string):Promise<any>{
     try{
         const response = await axios.get(`${apiUrl}/pending/${id}`);
-        console.log(response.data)
+        console.log(response.data, "here")
         return response.data;
     }
     catch(e){
