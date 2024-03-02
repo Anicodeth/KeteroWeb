@@ -10,6 +10,10 @@ import { Button } from "@/components/ui/button";
 
 const Pending: React.FC = () => {
   const user = JSON.parse(sessionStorage.getItem("user")!);
+  const clientId = user._id;
+
+  
+
   const reservationIds = user.pending;
 
   return (
