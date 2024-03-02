@@ -53,7 +53,7 @@ const BusinessProfile: React.FC = () => {
       <div className="flex justify-between items-center p-5">
         <div className={style.analysis}>
           <FaBookmark className={style.icon} />
-          <h5>Booked Services</h5>
+          <h5>Confirmed Services</h5>
           <h4>{confirmed && confirmed.length}</h4>
         </div>
         <div className={style.analysis}>
