@@ -107,7 +107,7 @@ exports.getPendingData = async (id) => {
             businessEmail: business.email,
             clientPhone: client.phone,
             clientName: client.name,
-            dateAndTime: reservation.date,
+            dateAndTime: reservation.dateAndTime,
             serviceId: reservation.serviceId,
             serviceName: service.name,
             serviceDescription: service.description,
