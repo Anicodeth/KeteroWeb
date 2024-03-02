@@ -17,6 +17,7 @@ import { Service } from '@/models/Service';
 import { Grid } from 'react-loader-spinner';
 import { createReservation } from '../../../../services/ReservationService';
 import { toast } from 'sonner';
+import { Reservation } from '@/models/Reservation';
 
 const ReservationSchema = z.object({
   date: z.string(),
@@ -61,15 +62,17 @@ const ReservationForm = () => {
 
       const sessionData: any = JSON.parse(sessionStorage.getItem('user')!);
       setClientId(sessionData._id);
+      const client = sessionData._id;
 
-      if (!clientId || !businessId || !dateAndTime || !serviceId) {
+
+      if (!client || !data.businessId || !combined || !serviceId) {
         toast('Missing Data');
         return;
       }
       createReservationMutation.mutateAsync({
-        clientId,
+        clientId:client,
         businessId: data.businessId,
-        dateAndTime,
+        dateAndTime:combined.toISOString(),
         serviceId,
       });
 
@@ -81,7 +84,7 @@ const ReservationForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md flex flex-col p-10  mx-auto" disabled={createReservationMutation.isLoading}>
+    <form onSubmit={handleSubmit} className="max-w-md flex flex-col p-10  mx-auto" >
       {isLoading && (
         <div className="flex items-center justify-center">
           <Grid visible={true} height="80" width="80" color="#700F14" ariaLabel="grid-loading" radius="12.5" wrapperStyle={{}} wrapperClass="grid-wrapper" />
