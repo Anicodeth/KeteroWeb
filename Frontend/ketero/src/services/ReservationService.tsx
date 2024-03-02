@@ -23,3 +23,25 @@ export async function getReservation( id: string):Promise<any>{
         throw e;
     }
 }
+
+export async function getReservations():Promise<any>{
+    try{
+        const response = await axios.get(apiUrl);
+        console.log(response.data)
+        return response.data;
+    }
+    catch(e){
+        throw e;
+    }
+}
+
+export async function getPendingData(id:string):Promise<any>{
+    try{
+        const response = await axios.get(`${apiUrl}/pending/${id}`);
+        console.log(response.data)
+        return response.data;
+    }
+    catch(e){
+        throw e;
+    }
+}

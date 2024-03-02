@@ -7,94 +7,51 @@ import { Reservation } from "../../models/Reservation";
 import { useQuery } from "react-query";
 import { getService } from "@/services/ServiceServices";
 import { getBusiness } from "@/services/BusinessService";
+import { getPendingData, getReservation } from "@/services/ReservationService";
+
 
 
 const Pending: React.FC = () => {
-  const reservationData: Reservation[] = [
-    {
-      serviceId: "4364643",
-      clientId: "34646346",
-      businessId: "36346436",
-      dateAndTime: "15:15" 
-    },
-
-    {
-      serviceId: "4364643",
-      clientId: "34646346",
-      businessId: "36346436",
-      dateAndTime: "15:15" 
-    },
-
-    {
-      serviceId: "4364643",
-      clientId: "34646346",
-      businessId: "36346436",
-      dateAndTime: "15:15" 
-    },
-
-    {
-      serviceId: "4364643",
-      clientId: "34646346",
-      businessId: "36346436",
-      dateAndTime: "15:15" 
-    },
-
-    {
-      serviceId: "4364643",
-      clientId: "34646346",
-      businessId: "36346436",
-      dateAndTime: "15:15" 
-    },
-
-
+  const reservationIds: string[] = [
+    "4364643",
+    "4364644",
+    "4364645",
+    "4364646",
+    "4364647"
   ];
-
-  //TODO
-  //fetch the user then iterate throught the pending array then fetch reservation date for each
-
-
 
   return (
     <div className={style.mainContainer}>
       <h1 className={style.mainHeader}>Pending Reservations</h1>
 
       <div className={style.reservationsContainer}>
-        {reservationData.map((reservation, index) => (
-          <ReservationCard key={index} reservation={reservation} />
+        {reservationIds.map((reservationId, index) => (
+          <ReservationCard key={index} reservationId={reservationId} />
         ))}
       </div>
     </div>
   );
 };
 
-const ReservationCard: React.FC<{ reservation: Reservation }> = ({
-  reservation,
-}) => {
-  const serviceId = reservation.serviceId;
-  const businessId = reservation.businessId;
-
-  const { data: service } = useQuery(["service", serviceId], () =>
-    getService(serviceId)
-  );
-  const { data: business } = useQuery(["business", businessId], () =>
-    getBusiness(businessId)
+const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId }) => {
+  const { data: reservation } = useQuery(["reservation", reservationId], () =>
+    getPendingData(reservationId)
   );
 
-  if (!service || !business) {
+  
+  if (!reservation) {
     return null; // or a loading placeholder
   }
-
-  const serviceName = service.name;
 
   return (
     <div className={style.reservationCard}>
       <div className={style.reservationCardRow1}>
-        <h1 className={style.serviceName}>{serviceName}</h1>
+        <h1 className={style.serviceName}>{reservation.serviceName}</h1>
         <h1 className={style.serviceStatus}>Pending</h1>
       </div>
 
       <div className={style.reservationCardRow2}>
-        <h1 className={style.companyName}>{business.businessName}</h1>
+        <h1 className={style.companyName}>{reservation.businessName}</h1>
       </div>
 
       <div className={style.reservationCardRow3}>
@@ -115,6 +72,5 @@ const ReservationCard: React.FC<{ reservation: Reservation }> = ({
     </div>
   );
 };
-
 
 export default Pending;
