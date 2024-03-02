@@ -22,8 +22,7 @@ import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 
 const BusinessProfile: React.FC = () => {
-  const user = JSON.parse(sessionStorage.getItem('user')!); 
-  
+  const user = typeof window !== 'undefined' ? JSON.parse(sessionStorage.getItem('user')!) : null;
 
   const { data: business } = useQuery("business", () => getBusiness(user._id));
 
@@ -84,7 +83,7 @@ const BusinessProfile: React.FC = () => {
         ) : (
           <p>No pending services</p>
         )}
-      </div>
+
       <h2>Services Offered</h2>
       {services && services.length > 0 ? (
         <div className={style.hiredServices}>
@@ -95,6 +94,8 @@ const BusinessProfile: React.FC = () => {
       ) : (
         <p>No services offered</p>
       )}
+      </div>
+
       {/* <div className={style.walletRecharge}>
         <h3>Recharge Wallet</h3>
         <button className={style.btn}>Top-Up</button>

@@ -8,11 +8,11 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { confirmReservation, getPendingData } from "@/services/ReservationService";
 import { getBusiness } from "@/services/BusinessService";
 import {Button} from "@/components/ui/button";
-
+import { toast } from "sonner";
 
 const Customers: React.FC = () => {
 
-  const user = JSON.parse(sessionStorage.getItem('user')!);
+  const user = typeof window !== 'undefined' ? JSON.parse(sessionStorage.getItem('user')!) : null;
 
   const {data: business, isLoading} = useQuery("business", () => getBusiness(user._id));
   
@@ -85,6 +85,7 @@ const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
   const queryClient = useQueryClient();
   const confirmMutation = useMutation(() => confirmReservation(reservationId), {
     onSuccess: () => {
+      toast("Reservation confirmed");
       queryClient.invalidateQueries("reservations")
     }
   })
@@ -136,7 +137,7 @@ const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
                 <p>{reservation.servicePrice}</p>
               </div>
               <hr />
-              <Button onClick = {()=>handleConfirm()}>Confirm</Button>
+              <Button onClick = {()=>handleConfirm()}>{confirmMutation.isLoading ? "Confirming...": "Confirm"}</Button>
               </div>
   )
 }
