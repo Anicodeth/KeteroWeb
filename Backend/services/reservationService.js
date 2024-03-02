@@ -16,8 +16,8 @@ exports.createReservation = async (data) => {
         business.pending.push(reservation);
         client.pending.push(reservation);
 
-        business.save();
-        client.save();
+        await business.save();
+        await client.save();
         return reservation;
     } catch (error) {
         throw new Error(error.message);
@@ -68,8 +68,10 @@ exports.deleteReservation = async (id) => {
         // Delete the reservation from the business and client
         const business = await Business.findById(reservation.businessId);
         const client = await Client.findById(reservation.clientId);
+
         business.pending = business.pending.filter(res => res.toString() !== id);
         client.pending = client.pending.filter(res => res.toString() !== id);
+
         business.confirmed = business.confirmed.filter(res => res.toString() !== id);
         client.confirmed = client.confirmed.filter(res => res.toString() !== id);
         
