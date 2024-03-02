@@ -1,113 +1,35 @@
 'use client'
 
-import React, { useState } from "react";
+import React from "react";
 import style from "./Customers.module.css";
-import { AiOutlineMessage } from "react-icons/ai";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FcTodoList } from "react-icons/fc";
 import { useQuery } from "react-query";
 import { getPendingData } from "@/services/ReservationService";
+import { getBusiness } from "@/services/BusinessService";
+import {Button} from "@/components/ui/button";
 
-interface Appointment {
-  customer: string;
-  status: string;
-  time: string;
-  payment: string;
-  amount: string;
-  phone: string;
-}
 
 const Customers: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState<string>("Today");
-  const appointmentData: Appointment[] = [
-    {
-      customer: "Ananya Fekeremariam",
-      status: "Waiting",
-      time: "09:34 AM",
-      payment: "1500Birr",
-      amount: "3 Services",
-      phone: "+251 911909090",
-    },
-    {
-      customer: "John Doe",
-      status: "Confirmed",
-      time: "10:00 AM",
-      payment: "1200Birr",
-      amount: "2 Services",
-      phone: "+251 922345678",
-    },
-    {
-      customer: "Jane Smith",
-      status: "In Service",
-      time: "11:30 AM",
-      payment: "2000Birr",
-      amount: "4 Services",
-      phone: "+251 933456789",
-    },
-    {
-      customer: "Mike Johnson",
-      status: "Waiting",
-      time: "01:00 PM",
-      payment: "1800Birr",
-      amount: "3 Services",
-      phone: "+251 944567890",
-    },
-    {
-      customer: "Emily Brown",
-      status: "Confirmed",
-      time: "02:30 PM",
-      payment: "1500Birr",
-      amount: "2 Services",
-      phone: "+251 955678901",
-    },
-    {
-      customer: "Daniel White",
-      status: "In Service",
-      time: "04:00 PM",
-      payment: "2500Birr",
-      amount: "5 Services",
-      phone: "+251 966789012",
-    },
-    {
-      customer: "Sophia Miller",
-      status: "Waiting",
-      time: "05:30 PM",
-      payment: "2000Birr",
-      amount: "4 Services",
-      phone: "+251 977890123",
-    },
-    {
-      customer: "William Davis",
-      status: "Confirmed",
-      time: "07:00 PM",
-      payment: "1800Birr",
-      amount: "3 Services",
-      phone: "+251 988901234",
-    },
-    {
-      customer: "Olivia Wilson",
-      status: "In Service",
-      time: "08:30 PM",
-      payment: "3000Birr",
-      amount: "6 Services",
-      phone: "+251 999012345",
-    },
-    {
-      customer: "Ethan Anderson",
-      status: "Waiting",
-      time: "10:00 PM",
-      payment: "2200Birr",
-      amount: "4 Services",
-      phone: "+251 9101234567",
-    },
-  ];
+
+  const user = JSON.parse(sessionStorage.getItem('user')!);
+
+  const {data: business, isLoading} = useQuery("business", () => getBusiness(user._id));
+  
+  if(isLoading) {
+    return <div>Loading...</div>
+  }
+
+  const pending = business?.pending;
+
+
 
   return (
     <div className={[style.customerComponent].join(" ")}>
 
       <div id={style.customerComponent2}>
-        <p className={[style.goodMorning].join(" ")}>Good morning!</p>
-        <p className={[style.ownerName].join(" ")}>Owner's Name</p>
+        <p className={[style.goodMorning].join(" ")}>Good Workday!</p>
+        <p className={[style.ownerName].join(" ")}> Hey, {business.ownerName}</p>
       </div>
 
       <div className={[].join(" ")} id={style.customerComponent6}>
@@ -128,8 +50,8 @@ const Customers: React.FC = () => {
         className={[style.appointmentCards].join(" ")}
         id={style.customerComponent9}
       >
-         {pending.map((reservationId:string, index:number)=> (
-              <ReservationCard key={index} reservationId={reservationId} />
+         {pending.map((reservationId:string, index:any)=> (
+              <ReservationCard reservationId={reservationId} />
         ))} 
 
       </div>
@@ -155,8 +77,7 @@ const Customers: React.FC = () => {
   );
 };
 
-function ReservationCard( reservationId: string) {
-
+const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
 
   const {data: reservation, isLoading, isError} = useQuery(["reservation", reservationId], () =>
     getPendingData(reservationId)
@@ -165,6 +86,12 @@ function ReservationCard( reservationId: string) {
   if(isLoading) {
     return <div>Loading...</div>
   }
+
+  if(isError || !reservation) {
+    return null;
+  }
+
+  const [date, time] = reservation.dateAndTime.split("T");
 
   return (
     <div className={[style.appointmentCard].join(" ")}>
@@ -176,7 +103,11 @@ function ReservationCard( reservationId: string) {
               <hr />
               <div>
                 <IoIosNotificationsOutline />
-                <p>{reservation.dateAndTime}</p>
+                <p className = "text-xs">{(date)}</p> 
+              </div>
+              <div>
+                <IoIosNotificationsOutline />
+                <p className = "text-xs">{(time).split('.')[0]}</p> 
               </div>
               <div>
                 <IoIosNotificationsOutline />
@@ -191,7 +122,7 @@ function ReservationCard( reservationId: string) {
                 <p>{reservation.servicePrice}</p>
               </div>
               <hr />
-              <button>Ready</button>
+              <Button>Ready</Button>
               </div>
   )
 }

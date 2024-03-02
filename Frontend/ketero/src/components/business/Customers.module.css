@@ -141,11 +141,11 @@
 
 .selectedTabBarDate {
     border-radius: 2rem;
-    background-color: #6D31EDBF;
+    background-color: #700F14;
 }
 
 .topCard {
-    background-color: #6D31EDBF;
+    background-color: #700F14;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -162,7 +162,7 @@
 }
 
 .unselectedTopCard {
-    background-color: #D3C1FA;
+    background-color: #902f34;
 }
 
 .taskCard {
@@ -210,7 +210,7 @@
 }
 
 .appointmentCards button {
-    background-color: #8E61F1;
+    background-color: #700F14;
     color: white;
     border-radius: 2rem;
     padding: 0.4rem 0 0.4rem 0;
