@@ -69,6 +69,7 @@ const ReservationForm = () => {
       }
 
       if ( !clientId || !businessId || !dateAndTime || !serviceId){
+        console.log(clientId, businessId, dateAndTime, serviceId)
         toast("Missing Data")
         return 
       }
