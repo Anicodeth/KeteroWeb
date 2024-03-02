@@ -95,11 +95,15 @@ const HiredServiceCard: React.FC<{ reservationId: string }> = ({ reservationId }
   return (
     <div className={style.cardContainer}>
       {/* Display service details */}
-      <img  className = "bg-cover h-8" src = {reservationData.imageUrl}></img>
+      <div className = "flex flex-row items-center"> 
+      <img  className = "bg-cover h-8 w-10" src = {reservationData.imageUrl}></img>
       <div className={style.serviceData}>
         <h3>{reservationData.serviceName}</h3>
-        <h5>{reservationData.serviceDescription}</h5>
+        <h5>{(reservationData.serviceDescription).slice(0, 10) + "..."}</h5>
       </div>
+      </div>
+
+
       <h3>{reservationData.servicePrice} ETB</h3>
     </div>
   );

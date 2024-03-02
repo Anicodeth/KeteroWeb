@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { getPendingData } from "@/services/ReservationService";
 import { Button } from "@/components/ui/button";
 import { getClient } from "@/services/ClientService";
+import { Skeleton } from "@/components/ui/skeleton"
 
 
 
@@ -35,9 +36,17 @@ const Pending: React.FC = () => {
 };
 
 const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId }) => {
-  const { data: reservation } = useQuery(["reservation", reservationId], () =>
+  const { data: reservation, isLoading, isError } = useQuery(["reservation", reservationId], () =>
     getPendingData(reservationId)
   );
+
+  if(isLoading){
+    return <SkeletonCard />
+  }
+
+  if(isError){
+    return <div>Error</div>
+  }
   
   if (!reservation) {
     return null; 
@@ -73,5 +82,19 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
     </div>
   );
 };
+
+
+export function SkeletonCard() {
+  return (
+    <div className="flex flex-col space-y-3 w-full">
+      <Skeleton className="h-[125px] w-full rounded-xl" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-full" />
+      </div>
+    </div>
+  )
+}
+
 
 export default Pending;
