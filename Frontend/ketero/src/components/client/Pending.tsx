@@ -1,31 +1,22 @@
 import React from "react";
 import style from "./Pending.module.css";
-import { CiPhone } from "react-icons/ci";
 import { CiTimer } from "react-icons/ci";
 import { MdOutlinePayment } from "react-icons/md";
-import { Reservation } from "../../models/Reservation";
 import { useQuery } from "react-query";
-import { getService } from "@/services/ServiceServices";
-import { getBusiness } from "@/services/BusinessService";
-import { getPendingData, getReservation } from "@/services/ReservationService";
+import { getPendingData } from "@/services/ReservationService";
 
 
 
 const Pending: React.FC = () => {
-  const reservationIds: string[] = [
-    "4364643",
-    "4364644",
-    "4364645",
-    "4364646",
-    "4364647"
-  ];
+  const user = JSON.parse(sessionStorage.getItem("user")!);
+  const reservationIds = user.pending;
 
   return (
     <div className={style.mainContainer}>
       <h1 className={style.mainHeader}>Pending Reservations</h1>
 
       <div className={style.reservationsContainer}>
-        {reservationIds.map((reservationId, index) => (
+        {reservationIds.map((reservationId:any, index:any) => (
           <ReservationCard key={index} reservationId={reservationId} />
         ))}
       </div>
@@ -37,10 +28,9 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
   const { data: reservation } = useQuery(["reservation", reservationId], () =>
     getPendingData(reservationId)
   );
-
   
   if (!reservation) {
-    return null; // or a loading placeholder
+    return null; 
   }
 
   return (
