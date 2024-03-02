@@ -31,6 +31,17 @@ exports.confirmReservation = async (id) => {
             throw new Error('Reservation not found');
         }
         reservation.confirmed = true;
+        const business = await Business.findById(reservation.businessId);
+        const client = await Client.findById(reservation.clientId);
+
+        business.pending = business.pending.filter(res => res.toString() !== id);
+        client.pending = client.pending.filter(res => res.toString() !== id);
+
+        business.confirmed.push(reservation);
+        client.confirmed.push(reservation);
+
+        await business.save();
+        await client.save();
         await reservation.save();
         return reservation;
     } catch (error) {
