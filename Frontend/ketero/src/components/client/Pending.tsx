@@ -4,6 +4,7 @@ import { CiTimer } from "react-icons/ci";
 import { MdOutlinePayment } from "react-icons/md";
 import { useQuery } from "react-query";
 import { getPendingData } from "@/services/ReservationService";
+import { Button } from "@/components/ui/button";
 
 
 
@@ -47,7 +48,7 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
       <div className={style.reservationCardRow3}>
         <div className={style.cardBottomItem}>
           <CiTimer />
-          {reservation.dateAndTime}
+          {(reservation.dateAndTime as string).slice(0, 10) + "..."}
         </div>
 
         <div className={style.cardBottomItem}>
@@ -57,8 +58,8 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
       </div>
 
       <div className={style.buttonsContainer}>
-        <button className={style.buttonCard}> Cancel Reservation</button>
-        <button className={style.buttonCard}> Details</button>
+        <Button className={style.buttonCard}> Cancel</Button>
+        <Button className={style.buttonCard}> Details</Button>
       </div>
     </div>
   );

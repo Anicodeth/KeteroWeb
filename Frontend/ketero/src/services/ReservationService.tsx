@@ -5,7 +5,6 @@ const apiUrl = "https://ketero-web-dmow.vercel.app/api/v1/reservations"
 export async function createReservation( reservation: Reservation):Promise<any>{
     try{
         const response = await axios.post(apiUrl, reservation);
-        console.log(response.data)
         return response.data;
     }
     catch(e){
@@ -16,7 +15,6 @@ export async function createReservation( reservation: Reservation):Promise<any>{
 export async function getReservation( id: string):Promise<any>{
     try{
         const response = await axios.get(`${apiUrl}/${id}`);
-        console.log(response.data)
         return response.data;
     }
     catch(e){
