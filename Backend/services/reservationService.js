@@ -70,6 +70,8 @@ exports.deleteReservation = async (id) => {
         const client = await Client.findById(reservation.clientId);
         business.pending = business.pending.filter(res => res.toString() !== id);
         client.pending = client.pending.filter(res => res.toString() !== id);
+        business.confirmed = business.confirmed.filter(res => res.toString() !== id);
+        client.confirmed = client.confirmed.filter(res => res.toString() !== id);
         
         await business.save();
         await client.save();
