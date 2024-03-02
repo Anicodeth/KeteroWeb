@@ -1,13 +1,7 @@
 import style from "./ClientProfile.module.css";
-import { Profile } from "../../assets";
-import Image from "next/image";
-import { IoMdArrowBack, IoMdShare } from "react-icons/io";
 import { FaMoneyBillTransfer, FaBookmark } from "react-icons/fa6";
-import { IoWallet } from "react-icons/io5";
-import { Service1, Service2, Service3 } from "../../assets";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { useEffect, useState } from 'react'
-import { Service } from "@/models/Service";
 import { getService } from "@/services/ServiceServices";
 import {useQuery} from 'react-query'
 import { getReservation } from "@/services/ReservationService";
