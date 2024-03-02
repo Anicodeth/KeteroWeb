@@ -35,6 +35,7 @@ export async function getReservations():Promise<any>{
 export async function getPendingData(id:string):Promise<any>{
     try{
         const response = await axios.get(`${apiUrl}/pending/${id}`);
+        console.log(response.data.data);
         return response.data.data;
     }
     catch(e){
