@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { getClient } from "@/services/ClientService";
 import { Skeleton } from "@/components/ui/skeleton";
 import { deleteReservation } from "@/services/ReservationService";
+import { toast } from "sonner";
 
 
 
@@ -44,7 +45,9 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
 
   const deleteMutation = useMutation((id:string) => deleteReservation(id), {
     onSuccess: () => {
-      queryClient.invalidateQueries("client"); // Invalidate the client query to refresh the data
+      queryClient.invalidateQueries("client"); 
+      toast("Reservation deleted successfully");
+
     },
   });
 
@@ -84,7 +87,9 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
       </div>
 
       <div className={style.buttonsContainer}>
-        <Button onClick={() => handleDelete(reservationId)} className={style.buttonCard}> Cancel</Button>
+        <Button onClick={() => handleDelete(reservationId)} className={style.buttonCard}>{
+          deleteMutation.isLoading ? "Deleting..." : "Cancel"
+        } </Button>
         {/* <Button className={style.buttonCard}> Details</Button> */}
       </div>
     </div>

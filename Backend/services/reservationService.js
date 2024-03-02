@@ -65,6 +65,15 @@ exports.deleteReservation = async (id) => {
         if (!reservation) {
             throw new Error('Reservation not found');
         }
+        //delete the reservation from the business and client
+        const business = await Business.findById(reservation.businessId);
+        const client = await Client.findById(reservation.clientId);
+        business.pending = business.pending.filter(res => res._id !== id);
+        client.pending = client.pending.filter(res => res._id !== id);
+        business.save();
+        client.save();
+        
+
         return reservation;
     } catch (error) {
         throw new Error(error.message);
