@@ -53,3 +53,14 @@ export async function deleteReservation(id:string):Promise<any>{
         throw e;
     }
 }
+
+//confirm reservation
+export async function confirmReservation(id:string):Promise<any>{
+    try{
+        const response = await axios.put(`${apiUrl}/confirm/${id}`);
+        return response.data;
+    }
+    catch(e){
+        throw e;
+    }
+}

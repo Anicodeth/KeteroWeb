@@ -4,7 +4,7 @@ import React from "react";
 import style from "./Customers.module.css";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FcTodoList } from "react-icons/fc";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getPendingData } from "@/services/ReservationService";
 import { getBusiness } from "@/services/BusinessService";
 import {Button} from "@/components/ui/button";
@@ -41,13 +41,10 @@ const Customers: React.FC = () => {
           <p>Pending Orders</p>
           <p>{pending.length}</p>
         </div>
-        <div className={[style.topCard].join(" ")}>
-          <p>Pending Revenue</p>
-          <p>{sumi}</p>
-        </div>
+
       </div>
       <div id={style.customerComponent8}>
-        <p>Upcoming Appointment</p>
+        <p>Pending Reservations</p>
       </div>
 
       <div
@@ -68,7 +65,7 @@ const Customers: React.FC = () => {
         <div>
           <FcTodoList />
           <p>
-            {confirmed.length} Customers <span>to Confirmed</span>
+            {confirmed.length} Customers <span>Confirmed</span>
           </p>
         </div>
         <div>
@@ -97,7 +94,19 @@ const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
     return null;
   }
 
+  const queryClient = useQueryClient();
+
+  const confirmMutation = useMutation(() => confirmReservation(reservationId), {
+    onSuccess: () => {
+      queryClient.invalidateQueries("reservations")
+    }
+  })
+
   const [date, time] = reservation.dateAndTime.split("T");
+
+  function handleConfirm() {
+    confirmMutation.mutateAsync();
+    }
 
   return (
     <div className={[style.appointmentCard].join(" ")}>
@@ -128,7 +137,7 @@ const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
                 <p>{reservation.servicePrice}</p>
               </div>
               <hr />
-              <Button>Ready</Button>
+              <Button onClick = {()=>handleComfirm}>Confirm</Button>
               </div>
   )
 }
