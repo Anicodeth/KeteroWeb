@@ -13,6 +13,7 @@ import {Button} from "@/components/ui/button";
 const Customers: React.FC = () => {
 
   const user = JSON.parse(sessionStorage.getItem('user')!);
+  const [sumi, setSumi] = React.useState(0);
 
   const {data: business, isLoading} = useQuery("business", () => getBusiness(user._id));
   
@@ -20,7 +21,10 @@ const Customers: React.FC = () => {
     return <div>Loading...</div>
   }
 
+
   const pending = business?.pending;
+  const confirmed = business?.confirmed;
+
 
 
 
@@ -35,11 +39,11 @@ const Customers: React.FC = () => {
       <div className={[].join(" ")} id={style.customerComponent6}>
         <div className={[style.topCard, style.unselectedTopCard].join(" ")}>
           <p>Pending Orders</p>
-          <p>30</p>
+          <p>{pending.length}</p>
         </div>
         <div className={[style.topCard].join(" ")}>
           <p>Pending Revenue</p>
-          <p>3000 ETB</p>
+          <p>{sumi}</p>
         </div>
       </div>
       <div id={style.customerComponent8}>
@@ -52,7 +56,9 @@ const Customers: React.FC = () => {
       >
          {pending.map((reservationId:string, index:any)=> (
               <ReservationCard reservationId={reservationId} />
-        ))} 
+        ))
+        
+        } 
 
       </div>
       <div
@@ -62,13 +68,13 @@ const Customers: React.FC = () => {
         <div>
           <FcTodoList />
           <p>
-            1 Customers <span>to Confirmed</span>
+            {confirmed.length} Customers <span>to Confirmed</span>
           </p>
         </div>
         <div>
           <FcTodoList />
           <p>
-            4 Customers <span>in Pending</span>
+            {pending.length} Customers <span>in Pending</span>
           </p>
         </div>
 
