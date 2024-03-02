@@ -117,6 +117,7 @@ exports.getPendingData = async (id) => {
             clientId: client._id,
             confirmed: reservation.confirmed,
             ownerName: business.ownerName,
+            imageUrl: service.imageUrl
         };
 
         console.log('Pending Data:', pendingData);
