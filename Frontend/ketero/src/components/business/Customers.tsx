@@ -24,9 +24,6 @@ const Customers: React.FC = () => {
   const pending = business?.pending;
   const confirmed = business?.confirmed;
 
-
-
-
   return (
     <div className={[style.customerComponent].join(" ")}>
 
@@ -85,6 +82,13 @@ const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
     getPendingData(reservationId)
   );
 
+  const queryClient = useQueryClient();
+  const confirmMutation = useMutation(() => confirmReservation(reservationId), {
+    onSuccess: () => {
+      queryClient.invalidateQueries("reservations")
+    }
+  })
+
   if(isLoading) {
     return <div>Loading...</div>
   }
@@ -93,17 +97,13 @@ const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
     return null;
   }
 
-  const queryClient = useQueryClient();
 
-  const confirmMutation = useMutation(() => confirmReservation(reservationId), {
-    onSuccess: () => {
-      queryClient.invalidateQueries("reservations")
-    }
-  })
+
 
   const [date, time] = reservation.dateAndTime.split("T");
 
   async function handleConfirm() {
+  
    await confirmMutation.mutateAsync();
     }
 
@@ -136,7 +136,7 @@ const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
                 <p>{reservation.servicePrice}</p>
               </div>
               <hr />
-              <Button onClick = {()=>handleConfirm}>Confirm</Button>
+              <Button onClick = {()=>handleConfirm()}>Confirm</Button>
               </div>
   )
 }

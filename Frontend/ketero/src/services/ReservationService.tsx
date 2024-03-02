@@ -57,7 +57,9 @@ export async function deleteReservation(id:string):Promise<any>{
 //confirm reservation
 export async function confirmReservation(id:string):Promise<any>{
     try{
+        
         const response = await axios.put(`${apiUrl}/confirm/${id}`);
+        console.log(response, "here");
         return response.data;
     }
     catch(e){
