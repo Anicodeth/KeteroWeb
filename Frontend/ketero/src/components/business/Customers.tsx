@@ -128,8 +128,8 @@ const Customers: React.FC = () => {
         className={[style.appointmentCards].join(" ")}
         id={style.customerComponent9}
       >
-         {appointmentData.map((appointment, index)=> (
-              
+         {pending.map((reservationId:string, index:number)=> (
+              <ReservationCard key={index} reservationId={reservationId} />
         ))} 
 
       </div>
@@ -168,7 +168,7 @@ function ReservationCard( reservationId: string) {
 
   return (
     <div className={[style.appointmentCard].join(" ")}>
-              <p>{appointment.customer}</p>
+              <p>{reservation.clientName}</p>
               <div className={[style.situation].join(" ")}>
                 <IoIosNotificationsOutline color="#DE3B40" />
                 <p>Pending</p>
@@ -176,19 +176,19 @@ function ReservationCard( reservationId: string) {
               <hr />
               <div>
                 <IoIosNotificationsOutline />
-                <p>{appointment.time}</p>
+                <p>{reservation.dateAndTime}</p>
               </div>
               <div>
                 <IoIosNotificationsOutline />
-                <p>{appointment.payment}</p>
+                <p>{reservation.serviceName}</p>
               </div>
               <div>
                 <IoIosNotificationsOutline />
-                <p>{appointment.phone}</p>
+                <p>{reservation.clientPhone}</p>
               </div>
               <div>
                 <IoIosNotificationsOutline />
-                <p>{appointment.amount}</p>
+                <p>{reservation.servicePrice}</p>
               </div>
               <hr />
               <button>Ready</button>
