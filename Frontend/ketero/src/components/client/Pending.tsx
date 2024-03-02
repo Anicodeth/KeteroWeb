@@ -6,7 +6,8 @@ import { useQuery } from "react-query";
 import { getPendingData } from "@/services/ReservationService";
 import { Button } from "@/components/ui/button";
 import { getClient } from "@/services/ClientService";
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/components/ui/skeleton";
+import { deleteReservation } from "@/services/ReservationService";
 
 
 
@@ -39,6 +40,10 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
   const { data: reservation, isLoading, isError } = useQuery(["reservation", reservationId], () =>
     getPendingData(reservationId)
   );
+
+  function handleDelete(id: string) {
+    console.log(id);
+  }
 
   if(isLoading){
     return <SkeletonCard />
@@ -76,8 +81,8 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
       </div>
 
       <div className={style.buttonsContainer}>
-        <Button className={style.buttonCard}> Cancel</Button>
-        <Button className={style.buttonCard}> Details</Button>
+        <Button onClick = {()=>{handleDelete(reservationId)}} className={style.buttonCard}> Cancel</Button>
+        {/* <Button className={style.buttonCard}> Details</Button> */}
       </div>
     </div>
   );

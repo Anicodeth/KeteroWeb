@@ -42,3 +42,14 @@ export async function getPendingData(id:string):Promise<any>{
         throw e;
     }
 }
+
+//delete reservation
+export async function deleteReservation(id:string):Promise<any>{
+    try{
+        const response = await axios.delete(`${apiUrl}/${id}`);
+        return response.data;
+    }
+    catch(e){
+        throw e;
+    }
+}
