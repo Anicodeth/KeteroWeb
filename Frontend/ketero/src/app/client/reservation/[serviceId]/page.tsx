@@ -18,6 +18,8 @@ import { Grid } from "react-loader-spinner";
 import {createReservation} from "../../../../services/ReservationService";
 import { Reservation } from '@/models/Reservation';
 import {toast} from 'sonner';
+import { Skeleton } from "@/components/ui/skeleton"
+
  
 const ReservationSchema = z.object({
   date: z.string(),
@@ -119,6 +121,7 @@ const ReservationForm = () => {
         <div className="text-red-500">Date is required</div>
       )}
 
+
       <label htmlFor="time">Time:</label>
       <input
         type="time"
@@ -133,7 +136,12 @@ const ReservationForm = () => {
       )}
         <Button>{createReservationMutation.isLoading ? "Reserving..." : "Submit Reservation"}</Button>
     </form>
+
   );
+
+
+
+  
 };
 
 

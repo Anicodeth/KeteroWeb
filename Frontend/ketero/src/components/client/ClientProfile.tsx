@@ -11,6 +11,7 @@ import { Service } from "@/models/Service";
 import { getService } from "@/services/ServiceServices";
 import {useQuery} from 'react-query'
 import { getReservation } from "@/services/ReservationService";
+import { Skeleton } from "@/components/ui/skeleton"
 
 const ClientProfile: React.FC = () => {
   const [user, setUser] = useState<any>(); 
@@ -95,7 +96,8 @@ const HiredServiceCard: React.FC<{ serviceId: any }> = ({ serviceId }) => {
   }, [serviceData, isServiceLoading, isServiceError]);
 
   if (isReservationLoading || isServiceLoading) {
-    return <div>Loading...</div>;
+    return <Skeleton className="w-[100px] h-[20px] rounded-full" />
+    ;
   }
 
   if (isReservationError || isServiceError) {
