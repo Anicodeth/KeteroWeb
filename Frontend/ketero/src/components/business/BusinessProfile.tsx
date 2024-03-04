@@ -1,25 +1,17 @@
 import style from "./BusinessProfile.module.css";
 import { FaMoneyBillTransfer, FaBookmark } from "react-icons/fa6";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { useEffect, useState } from 'react'
-import { getService } from "@/services/ServiceServices";
 import {useQuery} from 'react-query'
-import { getReservation } from "@/services/ReservationService";
 import { Skeleton } from "@/components/ui/skeleton"
-
-import {getClient} from "@/services/ClientService";
 import { getPendingData } from "@/services/ReservationService";
 import { getBusiness } from "@/services/BusinessService";
 
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import Link from 'next/link';
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 const BusinessProfile: React.FC = () => {
