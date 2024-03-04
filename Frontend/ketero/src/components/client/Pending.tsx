@@ -9,6 +9,7 @@ import { getClient } from "@/services/ClientService";
 import { Skeleton } from "@/components/ui/skeleton";
 import { deleteReservation } from "@/services/ReservationService";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 
 
@@ -30,7 +31,13 @@ const Pending: React.FC = () => {
 
       <div className={style.reservationsContainer}>
         {reservationIds.map((reservationId:any, index:any) => (
-          <ReservationCard key={index} reservationId={reservationId} />
+                      <motion.div
+                      initial = {{ opacity: 0, x:-50}}
+                      animate = {{ opacity: 1, x: 0}}
+                      transition= {{ duration: 0.5, delay:0.1}}
+                      >
+                            <ReservationCard key={index} reservationId={reservationId} />
+                    </motion.div>
         ))}
       </div>
     </div>
