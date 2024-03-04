@@ -1,10 +1,6 @@
 "use client"
 import React from "react";
-import { useState } from "react";
-import Image from "next/image";
 import style from "./Services.module.css";
-import { FaBuilding, FaUser, FaPhone, FaTag } from "react-icons/fa";
-// import { ServiceImage } from "../../assets";
 import { Service } from "../../models/Service"
 import {
   Card,
