@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { motion } from "framer-motion";
+import { getService } from "@/services/ServiceServices";
 
 const BusinessProfile: React.FC = () => {
   const user = typeof window !== 'undefined' ? JSON.parse(sessionStorage.getItem('user')!) : null;
