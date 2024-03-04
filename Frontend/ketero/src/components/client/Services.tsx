@@ -14,18 +14,18 @@ import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 import {getServices} from "../../services/ServiceServices"
 import { FallingLines } from 'react-loader-spinner'
-
+import { motion } from 'framer-motion';
 
 
 const Services: React.FC = () => {
   const { data: serviceData, isLoading, isError } = useQuery('services', getServices);
 
-  if (isLoading) return <div className = "h-full w-full flex items-center justify-center"><FallingLines
-  color="#700F14"
-  width="100"
-  visible={true}
-  /></div>
-
+  if (isLoading) return <div className = "h-full w-full flex items-center justify-center">
+                          <FallingLines
+                            color="#700F14"
+                            width="100"
+                            visible={true}
+                        /></div>
 
   if (isError) return <div>Error fetching services</div>;
 
@@ -35,7 +35,9 @@ const Services: React.FC = () => {
         <h1>Recent Services</h1>
         <div className={style.serviceContainer}>
           {serviceData.map((service: Service, index: number) => (
-            <ServiceShadCard key={index} service={service} />
+            <motion.div>
+                <ServiceShadCard key={index} service={service} />
+            </motion.div>
           ))}
         </div>
       </div>
