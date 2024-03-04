@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/card"
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 const BusinessProfile: React.FC = () => {
   const user = typeof window !== 'undefined' ? JSON.parse(sessionStorage.getItem('user')!) : null;
@@ -88,7 +89,13 @@ const BusinessProfile: React.FC = () => {
       {services && services.length > 0 ? (
         <div className={style.hiredServices}>
           {services.map((serviceId:string, index:any) => (
-            <ServiceShadCard key={serviceId} serviceId={serviceId} />
+                        <motion.div
+                        initial = {{ opacity: 0, x:-50}}
+                        animate = {{ opacity: 1, x: 0}}
+                        transition= {{ duration: 0.5, delay:0.1}}
+                        >
+              <ServiceShadCard key={serviceId} serviceId={serviceId} />
+            </motion.div>
           ))}
         </div>
       ) : (
@@ -96,10 +103,6 @@ const BusinessProfile: React.FC = () => {
       )}
       </div>
 
-      {/* <div className={style.walletRecharge}>
-        <h3>Recharge Wallet</h3>
-        <button className={style.btn}>Top-Up</button>
-      </div> */}
     </div>
   );
 };
