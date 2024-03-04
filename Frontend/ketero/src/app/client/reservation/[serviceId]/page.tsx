@@ -97,7 +97,14 @@ const ReservationForm = () => {
         </div>
       )}
       {isError && <div> Error Fetching </div>}
-      {data && <ServiceShadCard service={data} />}
+      {data && 
+                  <motion.div
+                      initial = {{ opacity: 0}}
+                      animate = {{ opacity: 1}}
+                      transition= {{ duration: 0.5, delay:0.1}}>
+                      <ServiceShadCard service={data} />
+                  </motion.div>
+                  }
 
       <label htmlFor="date">Date:</label>
       <input
