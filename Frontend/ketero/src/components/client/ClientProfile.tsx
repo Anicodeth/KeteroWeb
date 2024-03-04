@@ -9,6 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 import {getClient} from "@/services/ClientService";
 import { getPendingData } from "@/services/ReservationService";
+import { motion } from "framer-motion";
 
 const ClientProfile: React.FC = () => {
   const user = JSON.parse(sessionStorage.getItem('user')!); 
@@ -93,19 +94,26 @@ const HiredServiceCard: React.FC<{ reservationId: string }> = ({ reservationId }
 
 
   return (
-    <div className={style.cardContainer}>
-      {/* Display service details */}
-      <div className = "flex flex-row items-center"> 
-      <img  className = "bg-cover h-8 w-10" src = {reservationData.imageUrl}></img>
-      <div className={style.serviceData}>
-        <h3>{reservationData.serviceName}</h3>
-        <h5>{(reservationData.serviceDescription).slice(0, 10) + "..."}</h5>
-      </div>
-      </div>
+
+    <motion.div
+    initial = {{ opacity: 0, x:-50}}
+    animate = {{ opacity: 1, x: 0}}
+    transition= {{ duration: 0.5, delay:0.1}}
+    >
+      <div className={style.cardContainer}>
+        {/* Display service details */}
+        <div className = "flex flex-row items-center"> 
+        <img  className = "bg-cover h-8 w-10" src = {reservationData.imageUrl}></img>
+        <div className={style.serviceData}>
+          <h3>{reservationData.serviceName}</h3>
+          <h5>{(reservationData.serviceDescription).slice(0, 10) + "..."}</h5>
+        </div>
+        </div>
 
 
-      <h3>{reservationData.servicePrice} ETB</h3>
-    </div>
+        <h3>{reservationData.servicePrice} ETB</h3>
+      </div>
+    </motion.div>
   );
 };
 
