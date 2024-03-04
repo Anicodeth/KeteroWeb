@@ -61,7 +61,7 @@ const BusinessProfile: React.FC = () => {
         {confirmed && confirmed.length > 0 ? (
           <div className={style.hiredServices}>
             {confirmed.map((reservationId:string, index:any) => (
-              <HiredServiceCard key={reservationId} reservationId={reservationId} />
+              <HiredServiceCard key={index} reservationId={reservationId} />
             ))}
           </div>
         ) : (
@@ -114,8 +114,12 @@ const HiredServiceCard: React.FC<{ reservationId: string }> = ({ reservationId }
 
 
   return (
+    <motion.div
+    initial = {{ opacity: 0, x:-50}}
+    animate = {{ opacity: 1, x: 0}}
+    transition= {{ duration: 0.5, delay:0.1}}
+    >
     <div className={style.cardContainer}>
-      {/* Display service details */}
       <div className = "flex flex-row items-center"> 
       <img  className = "bg-cover h-8 w-10" src = {reservationData.imageUrl}></img>
       <div className={style.serviceData}>
@@ -127,6 +131,7 @@ const HiredServiceCard: React.FC<{ reservationId: string }> = ({ reservationId }
 
       <h3>{reservationData.servicePrice} ETB</h3>
     </div>
+    </motion.div>
   );
 };
 
@@ -156,6 +161,11 @@ const ServiceShadCard: React.FC<{ serviceId: string }> = ({ serviceId }) => {
   }
 
   return (
+    <motion.div
+    initial = {{ opacity: 0, x:-50}}
+    animate = {{ opacity: 1, x: 0}}
+    transition= {{ duration: 0.5, delay:0.1}}
+    >
     <Card className="h-fit">
       <CardHeader>
        { service.imageUrl && <div className="inset-0 bg-cover h-40 bg-center" style={{ backgroundImage: `url(${service.imageUrl})` }}></div>}
@@ -164,6 +174,7 @@ const ServiceShadCard: React.FC<{ serviceId: string }> = ({ serviceId }) => {
         <CardDescription>{service.price}</CardDescription>
       </CardHeader>
     </Card>
+    </motion.div>
   );
 };
 
