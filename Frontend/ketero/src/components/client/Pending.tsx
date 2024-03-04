@@ -97,7 +97,6 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
         <Button onClick={() => handleDelete(reservationId)} className={style.buttonCard}>{
           deleteMutation.isLoading ? "Deleting..." : "Cancel"
         } </Button>
-        {/* <Button className={style.buttonCard}> Details</Button> */}
       </div>
     </div>
   );
@@ -116,7 +115,6 @@ export function SkeletonCard() {
     </div>
   )
 }
-
 
 
 export default Pending;
