@@ -35,7 +35,11 @@ const Services: React.FC = () => {
         <h1>Recent Services</h1>
         <div className={style.serviceContainer}>
           {serviceData.map((service: Service, index: number) => (
-            <motion.div>
+            <motion.div
+              initial = {{ opacity: 0, x:-50}}
+              animate = {{ opacity: 1, x: 0}}
+              transition= {{ duration: 0.5, delay:0.1}}
+              >
                 <ServiceShadCard key={index} service={service} />
             </motion.div>
           ))}

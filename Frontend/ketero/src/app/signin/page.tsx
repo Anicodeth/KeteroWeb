@@ -38,9 +38,6 @@ function Form({router}:FormProps){
   const [password, setPassword] = useState("");
   const [ buttonText, setButtonText ] = useState("Login");
 
- 
-
-
   const loginScheme = z.object({
     email: z.string().email(),
     password: z.string().min(6),
