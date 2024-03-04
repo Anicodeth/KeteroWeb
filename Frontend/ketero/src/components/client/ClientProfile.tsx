@@ -101,7 +101,6 @@ const HiredServiceCard: React.FC<{ reservationId: string }> = ({ reservationId }
     transition= {{ duration: 0.5, delay:0.1}}
     >
       <div className={style.cardContainer}>
-        {/* Display service details */}
         <div className = "flex flex-row items-center"> 
         <img  className = "bg-cover h-8 w-10" src = {reservationData.imageUrl}></img>
         <div className={style.serviceData}>
