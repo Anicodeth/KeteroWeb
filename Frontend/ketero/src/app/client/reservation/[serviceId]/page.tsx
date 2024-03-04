@@ -8,7 +8,6 @@ import { useQuery, useMutation } from 'react-query';
 import { useParams } from 'next/navigation';
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
