@@ -9,6 +9,9 @@ import { confirmReservation, getPendingData } from "@/services/ReservationServic
 import { getBusiness } from "@/services/BusinessService";
 import {Button} from "@/components/ui/button";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
+import { FallingLines } from "react-loader-spinner";
+import { Skeleton } from "../ui/skeleton";
 
 const Customers: React.FC = () => {
 
@@ -17,7 +20,12 @@ const Customers: React.FC = () => {
   const {data: business, isLoading} = useQuery("business", () => getBusiness(user._id));
   
   if(isLoading) {
-    return <div>Loading...</div>
+    return <div className = "h-full w-full flex items-center justify-center">
+    <FallingLines
+      color="#700F14"
+      width="100"
+      visible={true}
+  /></div>
   }
 
 
@@ -48,7 +56,13 @@ const Customers: React.FC = () => {
         id={style.customerComponent9}
       >
          {pending.map((reservationId:string, index:any)=> (
-              <ReservationCard reservationId={reservationId} />
+              <motion.div
+              initial = {{ opacity: 0, x:-50}}
+              animate = {{ opacity: 1, x: 0}}
+              transition= {{ duration: 0.5, delay:0.1}}
+              >
+                <ReservationCard reservationId={reservationId} />
+              </motion.div>
         ))
         
         } 
@@ -91,7 +105,7 @@ const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
   })
 
   if(isLoading) {
-    return <div>Loading...</div>
+    return <SkeletonCard></SkeletonCard>
   }
 
   if(isError || !reservation) {
@@ -141,5 +155,18 @@ const ReservationCard:React.FC<{reservationId:string}> = ({reservationId}) => {
               </div>
   )
 }
+
+export function SkeletonCard() {
+  return (
+    <div className="flex flex-col space-y-3 w-full">
+      <Skeleton className="h-[125px] w-full rounded-xl" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-full" />
+      </div>
+    </div>
+  )
+}
+
 
 export default Customers;
