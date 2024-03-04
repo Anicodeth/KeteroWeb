@@ -18,6 +18,7 @@ import { Grid } from 'react-loader-spinner';
 import { createReservation } from '../../../../services/ReservationService';
 import { toast } from 'sonner';
 import { Reservation } from '@/models/Reservation';
+import { motion } from 'framer-motion';
 
 const ReservationSchema = z.object({
   date: z.string(),
@@ -84,6 +85,11 @@ const ReservationForm = () => {
   };
 
   return (
+    <motion.div
+    initial = {{ opacity: 0, x:-50}}
+    animate = {{ opacity: 1, x: 0}}
+    transition= {{ duration: 0.5, delay:0.1}}
+    >
     <form onSubmit={handleSubmit} className="max-w-md flex flex-col p-10  mx-auto" >
       {isLoading && (
         <div className="flex items-center justify-center">
@@ -116,6 +122,7 @@ const ReservationForm = () => {
       {errors && errors.find((error) => error.path[0] === 'time') && <div className="text-red-500">Time is required</div>}
       <Button type="submit">{createReservationMutation.isLoading ? 'Reserving...' : 'Submit Reservation'}</Button>
     </form>
+    </motion.div>
   );
 };
 
