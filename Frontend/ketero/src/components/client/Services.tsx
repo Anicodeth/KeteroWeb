@@ -12,7 +12,6 @@ import {
 import { useQuery } from 'react-query';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
-
 import {getServices} from "../../services/ServiceServices"
 import { FallingLines } from 'react-loader-spinner'
 
