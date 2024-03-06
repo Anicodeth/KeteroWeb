@@ -16,7 +16,7 @@ import { motion } from "framer-motion";
 import { FallingLines } from "react-loader-spinner";
 import { Skeleton } from "../ui/skeleton";
 
-const Customers: React.FC = () => {
+const Orders: React.FC = () => {
   const user =
     typeof window !== "undefined"
       ? JSON.parse(sessionStorage.getItem("user")!)
@@ -173,4 +173,4 @@ export function SkeletonCard() {
   );
 }
 
-export default Customers;
+export default Orders;
