@@ -5,7 +5,7 @@ import style from "@/app/business/Business.module.css";
 import { FaHome, FaUser } from "react-icons/fa";
 
 import MezgebuProfile from "@/components/mezgebu/MezgebuProfile";
-import Customers from "@/components/business/Customers";
+import Orders from "@/components/mezgebu/Orders";
 
 const Mezgebu: React.FC = () => {
   const [toggle, setToggle] = useState<string>("Customer");
@@ -17,14 +17,14 @@ const Mezgebu: React.FC = () => {
   return (
     <div className={style.activityContainer}>
       <div className={style.activeWindow}>
-        {toggle === "Customer" ? <Customers /> : ""}
-        {toggle === "Profile" ? <BusinessProfile /> : ""}
+        {toggle === "Pending" ? <Orders /> : ""}
+        {toggle === "Profile" ? <MezgebuProfile /> : ""}
       </div>
 
       <div className={style.bottomNav}>
         <button
           className={style.bottomNavButton}
-          onClick={() => handleClick("Customer")}
+          onClick={() => handleClick("Pending")}
         >
           <FaHome className={style.buttonIcon} />
           <p className={style.buttonText}>Home</p>
