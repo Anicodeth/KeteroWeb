@@ -38,9 +38,9 @@ function Form() {
 
   const mutation = useMutation(
     async (data: CreateService) => {
-      const user: any = sessionStorage.getItem('user');
+      const user: any = sessionStorage.getItem("user");
       if (user) {
-       const businessId = JSON.parse(user)._id;
+        const businessId = JSON.parse(user)._id;
 
         await createService(businessId, data);
       } else {
@@ -74,9 +74,9 @@ function Form() {
       const data = {
         name: name,
         description: description,
-        price:payment,
-        image:image
-      }
+        price: payment,
+        image: image,
+      };
 
       serviceScheme.parse({ name, description, payment });
       await mutation.mutateAsync(data);
@@ -91,71 +91,74 @@ function Form() {
 
   return (
     <>
-    <motion.div
-              initial = {{ opacity: 0, x:-50}}
-              animate = {{ opacity: 1, x: 0}}
-              transition= {{ duration: 0.5, delay:0.1}}
-              >
-      <div className={[style.wrapper].join(" ")}>
-        <div className={[style.inputImage].join(" ")}>
-          {image ? (
-            <img src={URL.createObjectURL(image)} alt="" />
-          ) : (
-            <IoIosAddCircle size={60} color="#700F14" />
-          )}
-          <label htmlFor="image" className={[style.icon].join(" ")}>
-            +
-            <input
-              type="file"
-              id="image"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={handleImageChange}
-            />
-          </label>
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        <div className={[style.wrapper].join(" ")}>
+          <div className={[style.inputImage].join(" ")}>
+            {image ? (
+              <img src={URL.createObjectURL(image)} alt="" />
+            ) : (
+              <IoIosAddCircle size={60} color="#700F14" />
+            )}
+            <label htmlFor="image" className={[style.icon].join(" ")}>
+              +
+              <input
+                type="file"
+                id="image"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={handleImageChange}
+              />
+            </label>
+          </div>
+          <div className={[style.inputFields].join(" ")}>
+            <div>
+              <label htmlFor="serviceName" className={[style.block].join(" ")}>
+                Service Title
+              </label>
+              <input
+                type="text"
+                id="serviceName"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={[style.input].join(" ")}
+              />
+            </div>
+            <div>
+              <label htmlFor="payment" className={[style.block].join(" ")}>
+                Payment
+              </label>
+              <input
+                type="text"
+                id="payment"
+                className={[style.input].join(" ")}
+                value={payment}
+                onChange={(e) => setPayment(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="description" className={[style.block].join(" ")}>
+                Description
+              </label>
+              <input
+                type="text"
+                id="description"
+                className={[style.input].join(" ")}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <button
+              onClick={handleSubmit}
+              className={[style.buttonAddService].join(" ")}
+            >
+              Add Service
+            </button>
+          </div>
         </div>
-        <div className={[style.inputFields].join(" ")}>
-          <div>
-            <label htmlFor="serviceName" className={[style.block].join(" ")}>
-              Service Title
-            </label>
-            <input
-              type="text"
-              id="serviceName"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={[style.input].join(" ")}
-            />
-          </div>
-          <div>
-            <label htmlFor="payment" className={[style.block].join(" ")}>
-              Payment
-            </label>
-            <input
-              type="text"
-              id="payment"
-              className={[style.input].join(" ")}
-              value={payment}
-              onChange={(e) => setPayment(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="description" className={[style.block].join(" ")}>
-              Description
-            </label>
-            <input
-              type="text"
-              id="description"
-              className={[style.input].join(" ")}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-          <button onClick={handleSubmit} className={[style.buttonAddService].join(" ")}>
-            Add Service
-          </button>
-        </div>
-      </div>
       </motion.div>
     </>
   );
