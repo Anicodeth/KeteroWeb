@@ -1,5 +1,6 @@
 const Business = require('../models/Business');
 const Service = require('../models/Service');
+const Mezgebu = require('../models/Mezgebu');
 
 exports.getBusinessServices = async (businessId) => {
     try {
@@ -89,5 +90,30 @@ exports.addMezgebuToBusiness = async (businessId, mezgebuId) => {
         }
         business.mezgebs.push(mezgebu);
         await business.save();
+
+        //add all business services to mezgebu
+        const services = business.services;
+        services.forEach(async (service) => {
+            mezgebu.services.push(service);
+        });
+
+        //add all reservations to mezgebu
+        const reservationsConfirmed = business.confirmed;
+        reservationsConfirmed.forEach(async (reservation) => {
+            mezgebu.reservations.push(reservation);
+        });
+
+        const reservationsPending = business.pending;
+        reservationsPending.forEach(async (reservation) => {
+            mezgebu.reservations.push(reservation);
+        });
+
+        await mezgebu.save();
+
+
         return business;
     }
+    catch (error) {
+        throw new Error(error.message);
+    }
+};
