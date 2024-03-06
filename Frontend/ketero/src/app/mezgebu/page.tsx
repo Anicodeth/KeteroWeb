@@ -8,7 +8,7 @@ import MezgebuProfile from "@/components/mezgebu/MezgebuProfile";
 import Orders from "@/components/mezgebu/Orders";
 
 const Mezgebu: React.FC = () => {
-  const [toggle, setToggle] = useState<string>("Customer");
+  const [toggle, setToggle] = useState<string>("Pending");
 
   const handleClick = (activity: string) => {
     setToggle(activity);

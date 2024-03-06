@@ -27,7 +27,10 @@ const MezgebuSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Service'
       }],
-
+    Reservations: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Reservation'
+      }],
 })
 
 module.exports = mongoose.model('Mezgebu', MezgebuSchema)
