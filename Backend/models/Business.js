@@ -44,7 +44,11 @@ const BusinessSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref: 'Reservation'
         }
-    ]
+    ],
+    mezgebs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Mezgebu'
+      }],
 })
 
 
