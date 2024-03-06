@@ -1,12 +1,11 @@
 "use client";
 
 import React, { useState } from "react"; // Import useState from React
-import style from "@/app/mezgebu/Mezgebu.module.css";
-import { FaHome, FaPlus, FaUser } from "react-icons/fa";
+import style from "@/app/business/Business.module.css";
+import { FaHome, FaUser } from "react-icons/fa";
 
-import BusinessProfile from "@/components/business/BusinessProfile";
+import MezgebuProfile from "@/components/mezgebu/MezgebuProfile";
 import Customers from "@/components/business/Customers";
-// import AddService from '@/components/business/AddService';
 
 const Mezgebu: React.FC = () => {
   const [toggle, setToggle] = useState<string>("Customer");
@@ -20,7 +19,6 @@ const Mezgebu: React.FC = () => {
       <div className={style.activeWindow}>
         {toggle === "Customer" ? <Customers /> : ""}
         {toggle === "Profile" ? <BusinessProfile /> : ""}
-        {/* {toggle === 'AddService' ? <AddService /> : ''}  */}
       </div>
 
       <div className={style.bottomNav}>
@@ -32,13 +30,13 @@ const Mezgebu: React.FC = () => {
           <p className={style.buttonText}>Home</p>
         </button>
 
-        <button
+        {/* <button
           className={style.bottomNavButton}
           onClick={() => handleClick("AddService")}
         >
           <FaPlus className={style.buttonIcon} />
           <p className={style.buttonText}>Add</p>
-        </button>
+        </button> */}
 
         <button
           className={style.bottomNavButton}
