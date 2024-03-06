@@ -15,7 +15,7 @@ import {
 import { motion } from "framer-motion";
 import { getService } from "@/services/ServiceServices";
 
-const BusinessProfile: React.FC = () => {
+const MezgebuProfile: React.FC = () => {
   const user =
     typeof window !== "undefined"
       ? JSON.parse(sessionStorage.getItem("user")!)
@@ -195,4 +195,4 @@ const ServiceShadCard: React.FC<{ serviceId: string }> = ({ serviceId }) => {
   );
 };
 
-export default BusinessProfile;
+export default MezgebuProfile;
