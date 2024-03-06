@@ -88,10 +88,13 @@ exports.deleteBusiness = async (id) => {
   }
 };
 
-exports.addMezgebuToBusiness = async (businessId, mezgebuId) => {
+exports.addMezgebuToBusiness = async (businessId, mezgebuEmail) => {
   try {
     const business = await Business.findById(businessId);
-    const mezgebu = await Mezgebu.findById(mezgebuId);
+    const mezgebu = await Mezgebu.findOne({ email: mezgebuEmail });
+    //find the mezgeby by emaul
+
+
     if (!business || !mezgebu) {
       throw new Error("Invalid data entry");
     }
