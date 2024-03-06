@@ -79,3 +79,15 @@ exports.deleteBusiness = async (id) => {
         throw new Error(error.message);
     }
 };
+
+exports.addMezgebuToBusiness = async (businessId, mezgebuId) => {
+    try {
+        const business = await Business.findById(businessId);
+        const mezgebu = await Mezgebu.findById(mezgebuId);
+        if (!business || !mezgebu) {
+            throw new Error("Invalid data entry");
+        }
+        business.mezgebs.push(mezgebu);
+        await business.save();
+        return business;
+    }
