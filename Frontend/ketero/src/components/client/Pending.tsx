@@ -11,14 +11,13 @@ import { deleteReservation } from "@/services/ReservationService";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 
-
-
 const Pending: React.FC = () => {
   const user = JSON.parse(sessionStorage.getItem("user")!);
   const clientId = user._id;
-  const { data: client } = useQuery(["client", clientId], () => getClient(clientId));
+  const { data: client } = useQuery(["client", clientId], () =>
+    getClient(clientId)
+  );
 
-  
   if (!client || !client.pending) {
     return null; // or a loading placeholder
   }
@@ -30,31 +29,36 @@ const Pending: React.FC = () => {
       <h1 className={style.mainHeader}>Pending Reservations</h1>
 
       <div className={style.reservationsContainer}>
-        {reservationIds.map((reservationId:any, index:any) => (
-                      <motion.div
-                      initial = {{ opacity: 0, x:-50}}
-                      animate = {{ opacity: 1, x: 0}}
-                      transition= {{ duration: 0.5, delay:0.1}}
-                      >
-                            <ReservationCard key={index} reservationId={reservationId} />
-                    </motion.div>
+        {reservationIds.map((reservationId: any, index: any) => (
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <ReservationCard key={index} reservationId={reservationId} />
+          </motion.div>
         ))}
       </div>
     </div>
   );
 };
-const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId }) => {
+const ReservationCard: React.FC<{ reservationId: string }> = ({
+  reservationId,
+}) => {
   const queryClient = useQueryClient();
-  
-  const { data: reservation, isLoading, isError } = useQuery(["reservation", reservationId], () =>
+
+  const {
+    data: reservation,
+    isLoading,
+    isError,
+  } = useQuery(["reservation", reservationId], () =>
     getPendingData(reservationId)
   );
 
-  const deleteMutation = useMutation((id:string) => deleteReservation(id), {
+  const deleteMutation = useMutation((id: string) => deleteReservation(id), {
     onSuccess: () => {
-      queryClient.invalidateQueries("client"); 
+      queryClient.invalidateQueries("client");
       toast("Reservation deleted successfully");
-
     },
   });
 
@@ -88,21 +92,22 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({ reservationId })
         </div>
 
         <div className={style.cardBottomItem}>
-          <MdOutlinePayment /> 
+          <MdOutlinePayment />
           {reservation.businessEmail}
         </div>
       </div>
 
       <div className={style.buttonsContainer}>
-        <Button onClick={() => handleDelete(reservationId)} className={style.buttonCard}>{
-          deleteMutation.isLoading ? "Deleting..." : "Cancel"
-        } </Button>
+        <Button
+          onClick={() => handleDelete(reservationId)}
+          className={style.buttonCard}
+        >
+          {deleteMutation.isLoading ? "Deleting..." : "Cancel"}{" "}
+        </Button>
       </div>
     </div>
   );
 };
-
-
 
 export function SkeletonCard() {
   return (
@@ -113,8 +118,7 @@ export function SkeletonCard() {
         <Skeleton className="h-4 w-full" />
       </div>
     </div>
-  )
+  );
 }
-
 
 export default Pending;
