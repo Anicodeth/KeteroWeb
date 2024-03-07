@@ -97,6 +97,8 @@ exports.addMezgebuToBusiness = async (req, res) => {
     try {
         const { id } = req.params;
         const { mezgebuEmail } = req.body;
+        console.log(id, mezgebuEmail);
+
         const mezgebu = await addMezgebuToBusiness( id, mezgebuEmail );
         res.status(201).json(mezgebu);
     }

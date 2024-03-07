@@ -18,7 +18,7 @@ export async function addMezgebu(id: string, mezgebuEmail: any):Promise<any> {
     try {
         const response = await axios.post(
           `${apiUrl}/addmezgeb/${id}`,
-          mezgebuEmail
+          { mezgebuEmail }
         );
         return response.data;
     } catch (error) {
