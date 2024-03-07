@@ -17,22 +17,22 @@ import { FallingLines } from "react-loader-spinner";
 import { Skeleton } from "../ui/skeleton";
 
 const Orders: React.FC = () => {
-  const user =
+  const business =
     typeof window !== "undefined"
       ? JSON.parse(sessionStorage.getItem("user")!)
       : null;
 
-  const { data: business, isLoading } = useQuery("business", () =>
-    getBusiness(user._id)
-  );
+  // const { data: business, isLoading } = useQuery("business", () =>
+  //   getBusiness(user._id)
+  // );
 
-  if (isLoading) {
-    return (
-      <div className="h-full w-full flex items-center justify-center">
-        <FallingLines color="#700F14" width="100" visible={true} />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="h-full w-full flex items-center justify-center">
+  //       <FallingLines color="#700F14" width="100" visible={true} />
+  //     </div>
+  //   );
+  // }
 
   const pending = business?.pending;
   const confirmed = business?.confirmed;
@@ -43,14 +43,14 @@ const Orders: React.FC = () => {
         <p className={[style.goodMorning].join(" ")}>Good Workday!</p>
         <p className={[style.ownerName].join(" ")}>
           {" "}
-          Hey, {business.ownerName}
+          Hey, {business.name}
         </p>
       </div>
 
       <div className={[].join(" ")} id={style.customerComponent6}>
         <div className={[style.topCard, style.unselectedTopCard].join(" ")}>
           <p>Pending Orders</p>
-          <p>{pending.length}</p>
+          <p>5</p>
         </div>
       </div>
       <div id={style.customerComponent8}>
@@ -61,7 +61,7 @@ const Orders: React.FC = () => {
         className={[style.appointmentCards].join(" ")}
         id={style.customerComponent9}
       >
-        {pending.map((reservationId: string, index: any) => (
+        {/* {pending.map((reservationId: string, index: any) => (
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -69,7 +69,7 @@ const Orders: React.FC = () => {
           >
             <ReservationCard reservationId={reservationId} />
           </motion.div>
-        ))}
+        ))} */}
       </div>
       <div
         className={[style.taskCard].join(" ")}
@@ -78,13 +78,13 @@ const Orders: React.FC = () => {
         <div>
           <FcTodoList />
           <p>
-            {confirmed.length} Customers <span>Confirmed</span>
+            5 Customers <span>Confirmed</span>
           </p>
         </div>
         <div>
           <FcTodoList />
           <p>
-            {pending.length} Customers <span>in Pending</span>
+            5 Customers <span>in Pending</span>
           </p>
         </div>
       </div>
