@@ -209,6 +209,9 @@ const MezgebAdder: React.FC= () => {
     onSuccess: () => {
       toast("Mezgebu added successfully");
     },
+    onError: (error: any) => {
+      toast(`${error.response.data.error}`);
+    },
   });
 
   function handleAddMezgebu() {
