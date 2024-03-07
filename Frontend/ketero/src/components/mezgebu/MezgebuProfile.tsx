@@ -65,7 +65,9 @@ const MezgebuProfile: React.FC = () => {
         {revs && revs.length > 0 ? (
           <div className={style.hiredServices}>
             {revs.map((reservationId: string, index: any) => (
-              <HiredServiceCard key={index} reservationId={reservationId} />
+              <HiredServiceCard key={index} reservationId={reservationId}
+              status={true}
+              />
             ))}
           </div>
         ) : (
@@ -78,6 +80,7 @@ const MezgebuProfile: React.FC = () => {
               <HiredServiceCard
                 key={reservationId}
                 reservationId={reservationId}
+                status={false}
               />
             ))}
           </div>
@@ -105,8 +108,8 @@ const MezgebuProfile: React.FC = () => {
     </div>
   );
 };
-const HiredServiceCard: React.FC<{ reservationId: string }> = ({
-  reservationId,
+const HiredServiceCard: React.FC<{ reservationId: string, status:boolean }> = ({
+  reservationId,status
 }) => {
   const {
     data: reservationData,
@@ -121,6 +124,10 @@ const HiredServiceCard: React.FC<{ reservationId: string }> = ({
   }
 
   if (isReservationError) {
+    return null;
+  }
+
+  if(status !== reservationData.confirmed){
     return null;
   }
 
