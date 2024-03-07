@@ -61,6 +61,7 @@ const BusinessProfile: React.FC = () => {
         </div>
       </div>
       <div className={style.hiredContainer}>
+        <MezgebAdder />
         <h2>Services Confirmed</h2>
         {confirmed && confirmed.length > 0 ? (
           <div className={style.hiredServices}>
@@ -199,6 +200,29 @@ const ServiceShadCard: React.FC<{ serviceId: string }> = ({ serviceId }) => {
   );
 };
 
+const MezgebAdder: React.FC= () => {
+  const user = JSON.parse(sessionStorage.getItem("user")!);
 
+  const businessId = user._id;
+  const [ email, setEmail ] = useState("");
+  const mezgebuAdderMutation = useMutation(() => addMezgebu(businessId, email), {
+    onSuccess: () => {
+      toast("Mezgebu added successfully");
+    },
+  });
+
+  function handleAddMezgebu() {
+    mezgebuAdderMutation.mutateAsync();
+  }
+  return (
+    <div className="flex">
+      <h1>Add Mezgeb</h1>
+      <input type="text" placeholder="Mezgeb Email"
+      onChange = {(e)=>{setEmail(e.target.value)}}  />
+      <Button onClick = {()=>{handleAddMezgebu()}}>Add Mezgeb</Button>
+
+    </div>
+  );
+}
 
 export default BusinessProfile;
