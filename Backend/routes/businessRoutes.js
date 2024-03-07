@@ -208,4 +208,7 @@ router.put('/:id', businessController.updateBusiness);
  */
 router.delete('/:id', businessController.deleteBusiness);
 
+
+router.post('/addmezgeb/:id', businessController.addMezgebuToBusiness);
+
 module.exports = router;

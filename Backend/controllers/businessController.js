@@ -4,7 +4,8 @@ const {
     getBusinesses, 
     addServiceToBusiness, 
     updateBusiness, 
-    deleteBusiness
+    deleteBusiness,
+    addMezgebuToBusiness
 } = require('../services/businessService');
 
 const admin = require("../data/firebase");
@@ -91,3 +92,18 @@ exports.deleteBusiness = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+
+exports.addMezgebuToBusiness = async (req, res) => {
+    try {
+        const { businessId } = req.params;
+        const { mezgebuEmail } = req.body;
+        const mezgebu = await addMezgebuToBusiness( businessId, mezgebuEmail );
+        res.status(201).json(mezgebu);
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+
+}
+
+    
