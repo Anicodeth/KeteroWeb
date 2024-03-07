@@ -15,7 +15,7 @@ exports.getMezgebu = async (req, res) => {
   }
 };
 
-exports.getMezgebues = async (req, res) => {
+exports.getMezgebus = async (req, res) => {
   try {
     const mezgebues = await getMezgebues();
     res.status(200).json(mezgebues);
