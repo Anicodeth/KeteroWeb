@@ -103,7 +103,7 @@ exports.addMezgebuToBusiness = async (businessId, mezgebuEmail) => {
       (m) => m.toString() === mezgebu._id.toString()
     );
     if (mezgebuExists) {
-      return "Mezgebu already added to business"
+      throw new Error("Mezgebu already added to business");
     }
 
     business.mezgebs.push(mezgebu);
