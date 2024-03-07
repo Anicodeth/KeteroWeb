@@ -41,7 +41,7 @@ router.get("/:mezgebuId", mezgebuController.getMezgebu);
 
 /**
  * @swagger
- * /api/v1/Mezgebu:
+ * /api/v1/mezgebu:
  *   post:
  *     summary: Create a new mezgebu
  *     tags: [Mezgebu]
@@ -71,7 +71,7 @@ router.post("/", mezgebuController.createMezgebu);
 
 /**
  * @swagger
- * /api/v1/Mezgebu/{mezgebuId}:
+ * /api/v1/mezgebu/{mezgebuId}:
  *   put:
  *     summary: Update a mezgebu by ID
  *     tags: [Mezgebu]
@@ -110,7 +110,7 @@ router.put("/:mezgebuId", mezgebuController.updateMezgebu);
 
 /**
  * @swagger
- * /api/v1/Mezgebu/{mezgebuId}:
+ * /api/v1/mezgebu/{mezgebuId}:
  *   delete:
  *     summary: Delete a mezgebu by ID
  *     tags: [Mezgebu]

@@ -46,6 +46,7 @@ const serviceRoutes = require("./routes/serviceRoutes");
 const businessRoutes = require('./routes/businessRoutes');
 const reservationRoutes = require("./routes/reservationRoutes");
 const clientRoutes = require("./routes/clientRoutes");
+const mezgebuRoutes = require("./routes/mezgebuRoutes");
 
 
 
@@ -57,6 +58,7 @@ app.use(`/api/${VERSION}/business`, businessRoutes);
 app.use(`/api/${VERSION}/service`, serviceRoutes);
 app.use(`/api/${VERSION}/reservations`, reservationRoutes);
 app.use(`/api/${VERSION}/client`, clientRoutes);
+app.use(`/api/${VERSION}/mezgebu`, mezgebuRoutes);
 
 app.listen(4000, ()=>{
     console.log("Connected") }
