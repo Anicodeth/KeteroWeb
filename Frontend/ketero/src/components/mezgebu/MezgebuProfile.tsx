@@ -1,4 +1,4 @@
-import style from "./BusinessProfile.module.css";
+import style from "./MezgebuProfile.module.css";
 import { FaMoneyBillTransfer, FaBookmark } from "react-icons/fa6";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useMutation, useQuery } from "react-query";

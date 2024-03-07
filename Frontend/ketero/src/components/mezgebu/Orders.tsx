@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import style from "./Customers.module.css";
+import style from "./Orders.module.css";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FcTodoList } from "react-icons/fc";
 import { useMutation, useQuery, useQueryClient } from "react-query";
