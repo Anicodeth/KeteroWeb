@@ -1,4 +1,9 @@
-const { getMezgebu, getMezgebues, deleteMezgebu, updateMezgebu } = require("../services/MezgebuService");
+const {
+  getMezgebu,
+  getMezgebues,
+  deleteMezgebu,
+  updateMezgebu,
+} = require("../services/MezgebuService");
 
 exports.getMezgebu = async (req, res) => {
   try {
