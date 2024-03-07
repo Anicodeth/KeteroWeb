@@ -1,10 +1,10 @@
 import style from "./BusinessProfile.module.css";
 import { FaMoneyBillTransfer, FaBookmark } from "react-icons/fa6";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getPendingData } from "@/services/ReservationService";
-import { getBusiness } from "@/services/BusinessService";
+import { addMezgebu, getBusiness } from "@/services/BusinessService";
 
 import {
   Card,
@@ -14,6 +14,9 @@ import {
 } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { getService } from "@/services/ServiceServices";
+import { Button } from "../ui/button";
+import { toast } from "sonner";
+import { useState } from "react";
 
 const MezgebuProfile: React.FC = () => {
   const user =
@@ -194,5 +197,8 @@ const ServiceShadCard: React.FC<{ serviceId: string }> = ({ serviceId }) => {
     </motion.div>
   );
 };
+
+
+
 
 export default MezgebuProfile;
