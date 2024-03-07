@@ -18,7 +18,7 @@ router.get("/", mezgebuController.getMezgebus);
 
 /**
  * @swagger
- * /api/v1/Mezgebu/{mezgebuId}:
+ * /api/v1/Mezgebu/{id}:
  *   get:
  *     summary: Get a mezgebu by ID
  *     tags: [Mezgebu]
@@ -37,7 +37,7 @@ router.get("/", mezgebuController.getMezgebus);
  *       '500':
  *         description: Internal server error
  */
-router.get("/:mezgebuId", mezgebuController.getMezgebu);
+router.get("/:id", mezgebuController.getMezgebu);
 
 
 /**
@@ -77,7 +77,7 @@ router.get("/:mezgebuId", mezgebuController.getMezgebu);
  *       '500':
  *         description: Internal server error
  */
-router.put("/:mezgebuId", mezgebuController.updateMezgebu);
+router.put("/:id", mezgebuController.updateMezgebu);
 
 /**
  * @swagger
@@ -100,6 +100,6 @@ router.put("/:mezgebuId", mezgebuController.updateMezgebu);
  *       '500':
  *         description: Internal server error
  */
-router.delete("/:mezgebuId", mezgebuController.deleteMezgebu);
+router.delete("/:id", mezgebuController.deleteMezgebu);
 
 module.exports = router;

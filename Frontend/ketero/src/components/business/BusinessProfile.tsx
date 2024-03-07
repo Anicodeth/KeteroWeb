@@ -216,7 +216,7 @@ const MezgebAdder: React.FC= () => {
   }
   return (
     <>
-      <h1>Add Mezgeb</h1>
+      <h2>Add Mezgeb</h2>
       <div className="flex">
         <input
           type="text"
@@ -230,7 +230,7 @@ const MezgebAdder: React.FC= () => {
             handleAddMezgebu();
           }}
         >
-          Add Mezgeb
+         { mezgebuAdderMutation.isLoading ? "Adding..." : "Add Mezgeb"}
         </Button>
       </div>
     </>
