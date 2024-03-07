@@ -12,3 +12,13 @@ export async function getBusiness(id: string):Promise<any> {
         throw error;
     }
 }
+
+export async function addMezgebu(id: string, data: any):Promise<any> {
+    try {
+        const response = await axios.post(`${apiUrl}/${id}/addmezgebu`, data);
+        return response.data;
+    } catch (error) {
+        console.error("Error adding mezgebu:", error);
+        throw error;
+    }
+}
