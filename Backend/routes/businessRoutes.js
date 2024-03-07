@@ -209,6 +209,45 @@ router.put('/:id', businessController.updateBusiness);
 router.delete('/:id', businessController.deleteBusiness);
 
 
+
+/**
+ * @swagger
+ * /api/v1/business/addmezgeb/{id}:
+ *   post:
+ *     summary: Add a mezgebu to a business
+ *     tags: [Business]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the business to add the mezgebu to
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *             required:
+ *               - name
+ *               - email
+ *     responses:
+ *       '200':
+ *         description: Mezgebu added to the business successfully
+ *       '400':
+ *         description: Invalid request body
+ *       '404':
+ *         description: Business not found
+ *       '500':
+ *         description: Internal server error
+ */
+
 router.post('/addmezgeb/:id', businessController.addMezgebuToBusiness);
 
 module.exports = router;
