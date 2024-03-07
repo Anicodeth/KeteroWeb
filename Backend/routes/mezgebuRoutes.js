@@ -39,35 +39,6 @@ router.get("/", mezgebuController.getMezgebus);
  */
 router.get("/:mezgebuId", mezgebuController.getMezgebu);
 
-/**
- * @swagger
- * /api/v1/mezgebu:
- *   post:
- *     summary: Create a new mezgebu
- *     tags: [Mezgebu]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               age:
- *                 type: number
- *             required:
- *               - name
- *               - age
- *     responses:
- *       '201':
- *         description: mezgebu created successfully
- *       '400':
- *         description: Invalid request body
- *       '500':
- *         description: Internal server error
- */
-router.post("/", mezgebuController.createMezgebu);
 
 /**
  * @swagger

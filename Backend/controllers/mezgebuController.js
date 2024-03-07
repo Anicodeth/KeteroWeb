@@ -3,7 +3,7 @@ const {
   getMezgebues,
   deleteMezgebu,
   updateMezgebu,
-} = require("../services/MezgebuService");
+} = require("../services/mezgebuServices");
 
 exports.getMezgebu = async (req, res) => {
   try {
