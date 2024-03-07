@@ -65,9 +65,9 @@ const BusinessProfile: React.FC = () => {
         <h2>Services Confirmed</h2>
         {confirmed && confirmed.length > 0 ? (
           <div className={style.hiredServices}>
-            {confirmed.map((reservationId: string, index: any) => (
-              <HiredServiceCard key={index} reservationId={reservationId} />
-            ))}
+            {/* {confirmed.map((reservationId: string, index: any) => (
+              // <HiredServiceCard key={index} reservationId={reservationId} />
+            ))} */}
           </div>
         ) : (
           <p>No confirmed services</p>
@@ -76,21 +76,21 @@ const BusinessProfile: React.FC = () => {
         <h2>Services Pending</h2>
         {pending && pending.length > 0 ? (
           <div className={style.hiredServices}>
-            {pending.map((reservationId: string, index: any) => (
-              <HiredServiceCard
-                key={reservationId}
-                reservationId={reservationId}
-              />
-            ))}
+            {/* {pending.map((reservationId: string, index: any) => (
+              // <HiredServiceCard
+              //   key={reservationId}
+              //   reservationId={reservationId}
+              // />
+            ))} */}
           </div>
         ) : (
           <p>No pending services</p>
         )}
 
         <h2>Services Offered</h2>
-        {services && services.length > 0 ? (
-          <div className={style.hiredServices}>
-            {services.map((serviceId: string, index: any) => (
+        {/* {services && services.length > 0 ? (
+          <div className={style.hiredServices}> */}
+            {/* {services.map((serviceId: string, index: any) => (
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -102,7 +102,7 @@ const BusinessProfile: React.FC = () => {
           </div>
         ) : (
           <p>No services offered</p>
-        )}
+        )} */}
       </div>
     </div>
   );
