@@ -98,6 +98,14 @@ exports.addMezgebuToBusiness = async (businessId, mezgebuEmail) => {
     if (!business || !mezgebu) {
       throw new Error("Invalid data entry");
     }
+
+    const mezgebuExists = business.mezgebs.find(
+      (m) => m.toString() === mezgebu._id.toString()
+    );
+    if (mezgebuExists) {
+      throw new Error("Mezgebu already added to business");
+    }
+
     business.mezgebs.push(mezgebu);
     await business.save();
 
