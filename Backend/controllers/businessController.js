@@ -95,9 +95,9 @@ exports.deleteBusiness = async (req, res) => {
 
 exports.addMezgebuToBusiness = async (req, res) => {
     try {
-        const { businessId } = req.params;
+        const { id } = req.params;
         const { mezgebuEmail } = req.body;
-        const mezgebu = await addMezgebuToBusiness( businessId, mezgebuEmail );
+        const mezgebu = await addMezgebuToBusiness( id, mezgebuEmail );
         res.status(201).json(mezgebu);
     }
     catch (error) {

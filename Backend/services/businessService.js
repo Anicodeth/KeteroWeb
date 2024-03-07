@@ -93,7 +93,7 @@ exports.addMezgebuToBusiness = async (businessId, mezgebuEmail) => {
     const business = await Business.findById(businessId);
     const mezgebu = await Mezgebu.findOne({ email: mezgebuEmail });
     //find the mezgeby by emaul
-
+    console.log(business);
 
     if (!business || !mezgebu) {
       throw new Error("Invalid data entry");
