@@ -13,9 +13,9 @@ export async function getBusiness(id: string):Promise<any> {
     }
 }
 
-export async function addMezgebu(id: string, data: any):Promise<any> {
+export async function addMezgebu(id: string, email: any):Promise<any> {
     try {
-        const response = await axios.post(`${apiUrl}/${id}/addmezgebu`, data);
+        const response = await axios.post(`${apiUrl}/addmezgebu/${id}`, email);
         return response.data;
     } catch (error) {
         console.error("Error adding mezgebu:", error);

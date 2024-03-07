@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useMutation, useQuery } from "react-query";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getPendingData } from "@/services/ReservationService";
-import { getBusiness } from "@/services/BusinessService";
+import { addMezgebu, getBusiness } from "@/services/BusinessService";
 
 import {
   Card,
@@ -15,6 +15,8 @@ import {
 import { motion } from "framer-motion";
 import { getService } from "@/services/ServiceServices";
 import { Button } from "../ui/button";
+import { toast } from "sonner";
+import { useState } from "react";
 
 const BusinessProfile: React.FC = () => {
   const user =
@@ -198,17 +200,27 @@ const ServiceShadCard: React.FC<{ serviceId: string }> = ({ serviceId }) => {
   );
 };
 
-const MezgebAdder: React.FC = () => {
-  const mezgebuAdderMutation = useMutation((email: string) => addMezgebu(email), {
+const MezgebAdder: React.FC= () => {
+  const user = JSON.parse(sessionStorage.getItem("user")!);
+
+  const businessId = user._id;
+  const [ email, setEmail ] = useState("");
+  const mezgebuAdderMutation = useMutation(() => addMezgebu(businessId, email), {
     onSuccess: () => {
       toast("Mezgebu added successfully");
     },
   });
+
+  function handleAddMezgebu() {
+    mezgebuAdderMutation.mutateAsync();
+  }
   return (
     <div className="flex">
       <h1>Add Mezgeb</h1>
-      <input type="text" placeholder="Mezgeb Email" />
-      <Button>Add Mezgeb</Button>
+      <input type="text" placeholder="Mezgeb Email"
+      onChange = {(e)=>{setEmail(e.target.value)}}  />
+      <Button onClick = {()=>{handleAddMezgebu()}}>Add Mezgeb</Button>
+
     </div>
   );
 }
