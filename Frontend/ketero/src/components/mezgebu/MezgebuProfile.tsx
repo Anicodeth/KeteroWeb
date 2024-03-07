@@ -26,9 +26,9 @@ const MezgebuProfile: React.FC = () => {
 
   const { data: business } = useQuery("business", () => getBusiness(user._id));
 
-  const pending = business?.pending;
-  const confirmed = business?.confirmed;
+  const revs = business?.reservations;
   const services = business?.services;
+  
 
   if (!business) {
     return null;
@@ -52,19 +52,19 @@ const MezgebuProfile: React.FC = () => {
         <div className={style.analysis}>
           <FaBookmark className={style.icon} />
           <h5>Confirmed Services</h5>
-          <h4>{confirmed && confirmed.length}</h4>
+          <h4>5</h4>
         </div>
         <div className={style.analysis}>
           <FaMoneyBillTransfer className={style.icon} />
           <h5>Pending Services</h5>
-          <h4>{pending && pending.length}</h4>
+          <h4>5</h4>
         </div>
       </div>
       <div className={style.hiredContainer}>
         <h2>Services Confirmed</h2>
-        {confirmed && confirmed.length > 0 ? (
+        {revs && revs.length > 0 ? (
           <div className={style.hiredServices}>
-            {confirmed.map((reservationId: string, index: any) => (
+            {revs.map((reservationId: string, index: any) => (
               <HiredServiceCard key={index} reservationId={reservationId} />
             ))}
           </div>
@@ -72,9 +72,9 @@ const MezgebuProfile: React.FC = () => {
           <p>No confirmed services</p>
         )}
         <h2>Services Pending</h2>
-        {pending && pending.length > 0 ? (
+        {revs && revs.length > 0 ? (
           <div className={style.hiredServices}>
-            {pending.map((reservationId: string, index: any) => (
+            {revs.map((reservationId: string, index: any) => (
               <HiredServiceCard
                 key={reservationId}
                 reservationId={reservationId}
