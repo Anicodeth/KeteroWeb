@@ -1,7 +1,7 @@
 import style from "./BusinessProfile.module.css";
 import { FaMoneyBillTransfer, FaBookmark } from "react-icons/fa6";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getPendingData } from "@/services/ReservationService";
 import { getBusiness } from "@/services/BusinessService";
@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { getService } from "@/services/ServiceServices";
+import { Button } from "../ui/button";
 
 const BusinessProfile: React.FC = () => {
   const user =
@@ -58,6 +59,7 @@ const BusinessProfile: React.FC = () => {
         </div>
       </div>
       <div className={style.hiredContainer}>
+        <MezgebAdder />
         <h2>Services Confirmed</h2>
         {confirmed && confirmed.length > 0 ? (
           <div className={style.hiredServices}>
@@ -68,6 +70,7 @@ const BusinessProfile: React.FC = () => {
         ) : (
           <p>No confirmed services</p>
         )}
+
         <h2>Services Pending</h2>
         {pending && pending.length > 0 ? (
           <div className={style.hiredServices}>
@@ -194,5 +197,20 @@ const ServiceShadCard: React.FC<{ serviceId: string }> = ({ serviceId }) => {
     </motion.div>
   );
 };
+
+const MezgebAdder: React.FC = () => {
+  const mezgebuAdderMutation = useMutation((email: string) => addMezgebu(email), {
+    onSuccess: () => {
+      toast("Mezgebu added successfully");
+    },
+  });
+  return (
+    <div className="flex">
+      <h1>Add Mezgeb</h1>
+      <input type="text" placeholder="Mezgeb Email" />
+      <Button>Add Mezgeb</Button>
+    </div>
+  );
+}
 
 export default BusinessProfile;
