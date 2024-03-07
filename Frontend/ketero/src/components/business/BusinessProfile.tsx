@@ -215,13 +215,25 @@ const MezgebAdder: React.FC= () => {
     mezgebuAdderMutation.mutateAsync();
   }
   return (
-    <div className="flex">
+    <>
       <h1>Add Mezgeb</h1>
-      <input type="text" placeholder="Mezgeb Email"
-      onChange = {(e)=>{setEmail(e.target.value)}}  />
-      <Button onClick = {()=>{handleAddMezgebu()}}>Add Mezgeb</Button>
-
-    </div>
+      <div className="flex">
+        <input
+          type="text"
+          placeholder="Mezgeb Email"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <Button
+          onClick={() => {
+            handleAddMezgebu();
+          }}
+        >
+          Add Mezgeb
+        </Button>
+      </div>
+    </>
   );
 }
 
