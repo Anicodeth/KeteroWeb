@@ -20,14 +20,16 @@ const Orders: React.FC = () => {
       : null;
 
   //get fresh data
-  const { data: mezgebuData, isLoading } = useQuery("mezgebu", () => getMezgebu(mezgebu._id));
+  const { data: mezgebuData, isLoading } = useQuery("mezgebu", () =>
+    getMezgebu(mezgebu._id)
+  );
 
   if (!mezgebuData) {
     return null;
   }
 
-  if(isLoading){
-    return <SkeletonCard />
+  if (isLoading) {
+    return <SkeletonCard />;
   }
 
   const reservations = mezgebuData?.reservations;
