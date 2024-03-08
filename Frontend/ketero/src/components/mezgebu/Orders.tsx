@@ -43,8 +43,8 @@ const Orders: React.FC = () => {
 
       <div className={[].join(" ")} id={style.customerComponent6}>
         <div className={[style.topCard, style.unselectedTopCard].join(" ")}>
-          <p>Pending Orders</p>
-          <p>5</p>
+          <p>Reservations</p>
+          <p>{reservations.length}</p>
         </div>
       </div>
       <div id={style.customerComponent8}>
@@ -65,23 +65,7 @@ const Orders: React.FC = () => {
           </motion.div>
         ))}
       </div>
-      <div
-        className={[style.taskCard].join(" ")}
-        id={style.customerComponent10}
-      >
-        <div>
-          <FcTodoList />
-          <p>
-            5 Customers <span>Confirmed</span>
-          </p>
-        </div>
-        <div>
-          <FcTodoList />
-          <p>
-            5 Customers <span>in Pending</span>
-          </p>
-        </div>
-      </div>
+
     </div>
   );
 };
