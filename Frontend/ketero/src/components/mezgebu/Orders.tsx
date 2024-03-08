@@ -42,15 +42,15 @@ const Orders: React.FC = () => {
         className={[style.appointmentCards].join(" ")}
         id={style.customerComponent9}
       >
-        {/* {pending.map((reservationId: string, index: any) => (
+        {reservations.map((reservationId: string, index: any) => (
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <ReservationCard reservationId={reservationId} />
+            <ReservationCard reservationId={reservationId} confirmed ={false} />
           </motion.div>
-        ))} */}
+        ))}
       </div>
       <div
         className={[style.taskCard].join(" ")}
