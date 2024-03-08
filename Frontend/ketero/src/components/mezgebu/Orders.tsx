@@ -48,7 +48,7 @@ const Orders: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <ReservationCard reservationId={reservationId} confirmed ={false} />
+            <ReservationCard reservationId={reservationId} confirmed={false} />
           </motion.div>
         ))}
       </div>
@@ -73,9 +73,10 @@ const Orders: React.FC = () => {
   );
 };
 
-const ReservationCard: React.FC<{ reservationId: string , confirmed: boolean}> = ({
-  reservationId, confirmed
-}) => {
+const ReservationCard: React.FC<{
+  reservationId: string;
+  confirmed: boolean;
+}> = ({ reservationId, confirmed }) => {
   const {
     data: reservation,
     isLoading,
