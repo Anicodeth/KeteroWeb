@@ -38,6 +38,7 @@ const MezgebuProfile: React.FC = () => {
 
 
   const revs = mezgebuData?.reservations;
+  const services = mezgebuData?.services;
 
   
 
@@ -48,24 +49,18 @@ const MezgebuProfile: React.FC = () => {
       <div className={style.headerContainer}>
         <div className={style.imageCard}>
           <Avatar className={style.agentImage}>
-            <AvatarFallback>{user && user.ownerName}</AvatarFallback>
+            <AvatarFallback>{mezgebuData && mezgebuData.name}</AvatarFallback>
           </Avatar>
         </div>
         <div className={style.clientName}>
-          <h3>{user && user.ownerName} </h3>
-          <h3>{user && user.businessName} </h3>
+          <h3>{mezgebuData && mezgebuData.name} </h3>
         </div>
       </div>
       <div className="flex justify-between items-center p-5">
         <div className={style.analysis}>
           <FaBookmark className={style.icon} />
-          <h5>Confirmed Services</h5>
-          <h4>5</h4>
-        </div>
-        <div className={style.analysis}>
-          <FaMoneyBillTransfer className={style.icon} />
-          <h5>Pending Services</h5>
-          <h4>5</h4>
+          <h5>Reservations</h5>
+          <h4>{revs.length}</h4>
         </div>
       </div>
       <div className={style.hiredContainer}>
@@ -73,8 +68,10 @@ const MezgebuProfile: React.FC = () => {
         {revs && revs.length > 0 ? (
           <div className={style.hiredServices}>
             {revs.map((reservationId: string, index: any) => (
-              <HiredServiceCard key={index} reservationId={reservationId}
-              status={true}
+              <HiredServiceCard
+                key={index}
+                reservationId={reservationId}
+                status={true}
               />
             ))}
           </div>
