@@ -5,6 +5,7 @@ const Mezgebu = require("../models/Mezgebu");
 exports.getMezgebu = async (id) => {
     try {
         const mezgebu = await Mezgebu.findById(id);
+
         if (!mezgebu) {
         throw new Error("Invalid Mezgebu Id");
         }

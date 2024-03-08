@@ -1,10 +1,8 @@
-"use client";
-
 import React from "react";
 import style from "./Orders.module.css";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FcTodoList } from "react-icons/fc";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import {
   confirmReservation,
   getPendingData,
@@ -13,7 +11,6 @@ import { getBusiness } from "@/services/BusinessService";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { FallingLines } from "react-loader-spinner";
 import { Skeleton } from "../ui/skeleton";
 
 const Orders: React.FC = () => {
@@ -22,18 +19,6 @@ const Orders: React.FC = () => {
       ? JSON.parse(sessionStorage.getItem("user")!)
       : null;
 
-  // const { data: business, isLoading } = useQuery("business", () =>
-  //   getBusiness(user._id)
-  // );
-
-  // if (isLoading) {
-  //   return (
-  //     <div className="h-full w-full flex items-center justify-center">
-  //       <FallingLines color="#700F14" width="100" visible={true} />
-  //     </div>
-  //   );
-  // }
-
   const pending = business?.pending;
   const confirmed = business?.confirmed;
 
@@ -41,10 +26,7 @@ const Orders: React.FC = () => {
     <div className={[style.customerComponent].join(" ")}>
       <div id={style.customerComponent2}>
         <p className={[style.goodMorning].join(" ")}>Good Workday!</p>
-        <p className={[style.ownerName].join(" ")}>
-          {" "}
-          Hey, {business.name}
-        </p>
+        <p className={[style.ownerName].join(" ")}>Hey, {business.name}</p>
       </div>
 
       <div className={[].join(" ")} id={style.customerComponent6}>
@@ -103,16 +85,15 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({
     getPendingData(reservationId)
   );
 
-  const queryClient = useQueryClient();
   const confirmMutation = useMutation(() => confirmReservation(reservationId), {
     onSuccess: () => {
       toast("Reservation confirmed");
-      queryClient.invalidateQueries("reservations");
+      // queryClient.invalidateQueries("reservations");
     },
   });
 
   if (isLoading) {
-    return <SkeletonCard></SkeletonCard>;
+    return <SkeletonCard />;
   }
 
   if (isError || !reservation) {

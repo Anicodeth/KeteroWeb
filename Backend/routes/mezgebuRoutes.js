@@ -24,7 +24,7 @@ router.get("/", mezgebuController.getMezgebus);
  *     tags: [Mezgebu]
  *     parameters:
  *       - in: path
- *         name: mezgebuId
+ *         name: id
  *         schema:
  *           type: string
  *         required: true
