@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getPendingData } from "@/services/ReservationService";
 import { addMezgebu, getBusiness } from "@/services/BusinessService";
 
+import { getMezgebu, getMezgebus } from "@/services/MezgebuService";
 import {
   Card,
   CardDescription,
@@ -24,15 +25,22 @@ const MezgebuProfile: React.FC = () => {
       ? JSON.parse(sessionStorage.getItem("user")!)
       : null;
 
-  const { data: business } = useQuery("business", () => getBusiness(user._id));
+  const { data: mezgebuData, isLoading: isBusinessLoading } = useQuery(
+    "mezgebu",
+    () => getMezgebu(user._id)
+  );
 
-  const revs = business?.reservations;
-  const services = business?.services;
+  if(isBusinessLoading){
+    return <SkeletonCard/>
+  }
+
   
 
-  if (!business) {
-    return null;
-  }
+
+  const revs = mezgebuData?.reservations;
+
+  
+
 
   return (
     <div className={style.clientContainer}>
