@@ -30,18 +30,12 @@ const MezgebuProfile: React.FC = () => {
     () => getMezgebu(user._id)
   );
 
-  if(isBusinessLoading){
-    return <SkeletonCard/>
+  if (isBusinessLoading) {
+    return <SkeletonCard />;
   }
-
-  
-
 
   const revs = mezgebuData?.reservations;
   const services = mezgebuData?.services;
-
-  
-
 
   return (
     <div className={style.clientContainer}>
@@ -56,7 +50,7 @@ const MezgebuProfile: React.FC = () => {
           <h3>{mezgebuData && mezgebuData.name} </h3>
         </div>
       </div>
-      <div className="flex justify-between items-center p-5">
+      <div className="flex justify-center items-center p-5">
         <div className={style.analysis}>
           <FaBookmark className={style.icon} />
           <h5>Reservations</h5>
@@ -113,9 +107,10 @@ const MezgebuProfile: React.FC = () => {
     </div>
   );
 };
-const HiredServiceCard: React.FC<{ reservationId: string, status:boolean }> = ({
-  reservationId,status
-}) => {
+const HiredServiceCard: React.FC<{
+  reservationId: string;
+  status: boolean;
+}> = ({ reservationId, status }) => {
   const {
     data: reservationData,
     isLoading: isReservationLoading,
@@ -132,7 +127,7 @@ const HiredServiceCard: React.FC<{ reservationId: string, status:boolean }> = ({
     return null;
   }
 
-  if(status !== reservationData.confirmed){
+  if (status !== reservationData.confirmed) {
     return null;
   }
 
@@ -209,8 +204,5 @@ const ServiceShadCard: React.FC<{ serviceId: string }> = ({ serviceId }) => {
     </motion.div>
   );
 };
-
-
-
 
 export default MezgebuProfile;
