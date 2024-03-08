@@ -19,7 +19,18 @@ const Orders: React.FC = () => {
       ? JSON.parse(sessionStorage.getItem("user")!)
       : null;
 
-  const reservations = mezgebu?.reservations;
+  //get fresh data
+  const { data: mezgebuData, isLoading } = useQuery("mezgebu", () => getMezgebu(mezgebu._id));
+
+  if (!mezgebuData) {
+    return null;
+  }
+
+  if(isLoading){
+    return <SkeletonCard />
+  }
+
+  const reservations = mezgebuData?.reservations;
 
   return (
     <div className={[style.customerComponent].join(" ")}>
