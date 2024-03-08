@@ -7,20 +7,19 @@ import {
   confirmReservation,
   getPendingData,
 } from "@/services/ReservationService";
-import { getBusiness } from "@/services/BusinessService";
+import { getMezgebu, getMezgebus } from "@/services/MezgebuService";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { Skeleton } from "../ui/skeleton";
 
 const Orders: React.FC = () => {
-  const business =
+  const mezgebu =
     typeof window !== "undefined"
       ? JSON.parse(sessionStorage.getItem("user")!)
       : null;
 
-  const pending = business?.pending;
-  const confirmed = business?.confirmed;
+  const reservations = mezgebu?.reservations;
 
   return (
     <div className={[style.customerComponent].join(" ")}>
@@ -74,8 +73,8 @@ const Orders: React.FC = () => {
   );
 };
 
-const ReservationCard: React.FC<{ reservationId: string }> = ({
-  reservationId,
+const ReservationCard: React.FC<{ reservationId: string , confirmed: boolean}> = ({
+  reservationId, confirmed
 }) => {
   const {
     data: reservation,
@@ -97,6 +96,10 @@ const ReservationCard: React.FC<{ reservationId: string }> = ({
   }
 
   if (isError || !reservation) {
+    return null;
+  }
+
+  if (reservation.confirmed === confirmed) {
     return null;
   }
 
