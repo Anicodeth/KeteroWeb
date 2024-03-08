@@ -25,7 +25,7 @@ const Orders: React.FC = () => {
     <div className={[style.customerComponent].join(" ")}>
       <div id={style.customerComponent2}>
         <p className={[style.goodMorning].join(" ")}>Good Workday!</p>
-        <p className={[style.ownerName].join(" ")}>Hey, {business.name}</p>
+        <p className={[style.ownerName].join(" ")}>Hey, {mezgebu.name}</p>
       </div>
 
       <div className={[].join(" ")} id={style.customerComponent6}>
@@ -99,7 +99,7 @@ const ReservationCard: React.FC<{ reservationId: string , confirmed: boolean}> =
     return null;
   }
 
-  if (reservation.confirmed === confirmed) {
+  if (reservation.confirmed !== confirmed) {
     return null;
   }
 
