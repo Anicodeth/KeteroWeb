@@ -1,11 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const serviceController = require('../controllers/serviceController');
-const multer = require('multer');
+const serviceController = require("../controllers/serviceController");
+const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 // Service
-
 
 /**
  * @swagger
@@ -51,7 +50,7 @@ const upload = multer({ storage: storage });
  *         description: Internal server error
  */
 
-router.get('/', serviceController.getServices);
+router.get("/", serviceController.getServices);
 
 /**
  * @swagger
@@ -79,8 +78,7 @@ router.get('/', serviceController.getServices);
  *         description: Internal server error
  */
 
-router.get('/:id', serviceController.getService);
-
+router.get("/:id", serviceController.getService);
 
 /**
  * @swagger
@@ -116,10 +114,7 @@ router.get('/:id', serviceController.getService);
  *       '500':
  *         description: Internal server error
  */
- router.post('/', upload.single('image'), serviceController.createService);
-
-
-
+router.post("/", upload.single("image"), serviceController.createService);
 
 /**
  * @swagger
@@ -154,7 +149,7 @@ router.get('/:id', serviceController.getService);
  *       '500':
  *         description: Internal server error
  */
-router.put('/:id', serviceController.updateService);
+router.put("/:id", serviceController.updateService);
 
 /**
  * @swagger
@@ -177,6 +172,6 @@ router.put('/:id', serviceController.updateService);
  *       '500':
  *         description: Internal server error
  */
-router.delete('/:id', serviceController.deleteService);
+router.delete("/:id", serviceController.deleteService);
 
 module.exports = router;
