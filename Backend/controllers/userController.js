@@ -1,7 +1,3 @@
-const userService = require('../services/userService');
+const userService = require("../services/userService");
 
-
-exports.getUser = async (req, res) => {
-
-};
-
+exports.getUser = async (req, res) => {};
