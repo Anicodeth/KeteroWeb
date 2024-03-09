@@ -1,13 +1,12 @@
-const User = require('../models/User');
-
+const User = require("../models/User");
 
 async function asyncWrapper(callback) {
   try {
     return await callback();
   } catch (error) {
-    if (error.name == 'MongoError') {
+    if (error.name == "MongoError") {
       if (error.code == 2) {
-        throw new NotFoundError('User not found.');
+        throw new NotFoundError("User not found.");
       } else {
         throw new InternalServerError("Internal server error.");
       }
@@ -18,8 +17,5 @@ async function asyncWrapper(callback) {
 }
 
 exports.getUser = async (userId) => {
-    return await User.findById(userId);
-
-}
-
-
+  return await User.findById(userId);
+};
