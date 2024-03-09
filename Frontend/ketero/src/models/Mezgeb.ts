@@ -1,5 +1,5 @@
-export interface Mezgeb{
-    name:string;
-    email:string;
-    password:string;
+export interface Mezgeb {
+  name: string;
+  email: string;
+  password: string;
 }
