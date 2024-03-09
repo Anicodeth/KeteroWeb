@@ -1,7 +1,6 @@
-
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const clientController = require('../controllers/clientController');
+const clientController = require("../controllers/clientController");
 
 /**
  * @swagger
@@ -24,6 +23,6 @@ const clientController = require('../controllers/clientController');
  *       '500':
  *         description: Internal server error
  */
-router.get('/:clientId', clientController.getClient);
+router.get("/:clientId", clientController.getClient);
 
 module.exports = router;
