@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const reservationController = require('../controllers/reservationController');
+const reservationController = require("../controllers/reservationController");
 
 /**
  * @swagger
@@ -36,7 +36,7 @@ const reservationController = require('../controllers/reservationController');
  *         description: Internal server error
  */
 
-router.post('/', reservationController.createReservation);
+router.post("/", reservationController.createReservation);
 
 /**
  * @swagger
@@ -60,7 +60,7 @@ router.post('/', reservationController.createReservation);
  *         description: Internal server error
  */
 
-router.get('/:id', reservationController.getReservation);
+router.get("/:id", reservationController.getReservation);
 
 /**
  * @swagger
@@ -75,7 +75,7 @@ router.get('/:id', reservationController.getReservation);
  *         description: Internal server error
  */
 
-router.get('/', reservationController.getReservations);
+router.get("/", reservationController.getReservations);
 
 /**
  * @swagger
@@ -99,7 +99,7 @@ router.get('/', reservationController.getReservations);
  *         description: Internal server error
  */
 
-router.delete('/:id', reservationController.deleteReservation);
+router.delete("/:id", reservationController.deleteReservation);
 
 /**
  * @swagger
@@ -135,8 +135,7 @@ router.delete('/:id', reservationController.deleteReservation);
  *         description: Internal server error
  */
 
-router.put('/:id', reservationController.updateReservation);
-
+router.put("/:id", reservationController.updateReservation);
 
 /**
  * @swagger
@@ -158,12 +157,8 @@ router.put('/:id', reservationController.updateReservation);
  *         description: Reservation not found
  */
 
-router.get('/pending/:id', reservationController.getPendingData);
+router.get("/pending/:id", reservationController.getPendingData);
 
-
-
-
-router.put('/confirm/:id', reservationController.confirmReservation);
-
+router.put("/confirm/:id", reservationController.confirmReservation);
 
 module.exports = router;
