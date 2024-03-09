@@ -1,7 +1,6 @@
-
-export interface Business{
-    ownerName: string;
-    businessName:string;
-    email:string;
-    password:string;
+export interface Business {
+  ownerName: string;
+  businessName: string;
+  email: string;
+  password: string;
 }
