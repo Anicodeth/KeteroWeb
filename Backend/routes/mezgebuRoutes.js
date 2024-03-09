@@ -39,7 +39,6 @@ router.get("/", mezgebuController.getMezgebus);
  */
 router.get("/:id", mezgebuController.getMezgebu);
 
-
 /**
  * @swagger
  * /api/v1/mezgebu/{mezgebuId}:
