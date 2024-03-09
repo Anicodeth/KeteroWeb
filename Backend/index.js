@@ -3,9 +3,7 @@ const app = express();
 const cors = require("cors");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-const mongoose = require('mongoose');
-
-
+const mongoose = require("mongoose");
 
 mongoose
   .connect(
@@ -24,31 +22,28 @@ app.use(
   })
 );
 
-
 // Swagger configuration
 const swaggerSpec = swaggerJsdoc({
   definition: {
-    openapi: '3.0.0',
+    openapi: "3.0.0",
     info: {
-      title: 'KeteroWeb',
-      version: '1.0.0',
-      description: 'Ketero 1.0 Web App API documentation',
+      title: "KeteroWeb",
+      version: "1.0.0",
+      description: "Ketero 1.0 Web App API documentation",
     },
   },
-  apis: ['./routes/*.js'], // Specify the file(s) where JSDoc annotations are present
+  apis: ["./routes/*.js"], // Specify the file(s) where JSDoc annotations are present
 });
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Route imports  
+// Route imports
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 const serviceRoutes = require("./routes/serviceRoutes");
-const businessRoutes = require('./routes/businessRoutes');
+const businessRoutes = require("./routes/businessRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
 const clientRoutes = require("./routes/clientRoutes");
 const mezgebuRoutes = require("./routes/mezgebuRoutes");
-
-
 
 // Route definitions
 VERSION = "v1";
@@ -60,8 +55,8 @@ app.use(`/api/${VERSION}/reservations`, reservationRoutes);
 app.use(`/api/${VERSION}/client`, clientRoutes);
 app.use(`/api/${VERSION}/mezgebu`, mezgebuRoutes);
 
-app.listen(4000, ()=>{
-    console.log("Connected") }
-)
+app.listen(4000, () => {
+  console.log("Connected");
+});
 
 module.exports = app;
