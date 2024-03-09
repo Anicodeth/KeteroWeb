@@ -65,7 +65,6 @@ const Orders: React.FC = () => {
           </motion.div>
         ))}
       </div>
-
     </div>
   );
 };
