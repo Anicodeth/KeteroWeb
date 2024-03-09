@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const businessController = require('../controllers/businessController');
-const multer = require('multer');
+const businessController = require("../controllers/businessController");
+const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
@@ -49,7 +49,7 @@ const upload = multer({ storage: storage });
  *       '500':
  *         description: Internal server error
  */
-router.get('/', businessController.getBusinesses);
+router.get("/", businessController.getBusinesses);
 
 /**
  * @swagger
@@ -76,7 +76,7 @@ router.get('/', businessController.getBusinesses);
  *       '500':
  *         description: Internal server error
  */
-router.get('/:id', businessController.getBusiness);
+router.get("/:id", businessController.getBusiness);
 
 /**
  * @swagger
@@ -119,7 +119,11 @@ router.get('/:id', businessController.getBusiness);
  *       '500':
  *         description: Internal server error
  */
- router.post('/:businessId/service', upload.single('image'), businessController.addServiceToBusiness);
+router.post(
+  "/:businessId/service",
+  upload.single("image"),
+  businessController.addServiceToBusiness
+);
 
 /**
  * @swagger
@@ -148,7 +152,7 @@ router.get('/:id', businessController.getBusiness);
  *       '500':
  *         description: Internal server error
  */
-router.get('/:businessId/services', businessController.getBusinessServices);
+router.get("/:businessId/services", businessController.getBusinessServices);
 
 /**
  * @swagger
@@ -183,7 +187,7 @@ router.get('/:businessId/services', businessController.getBusinessServices);
  *       '500':
  *         description: Internal server error
  */
-router.put('/:id', businessController.updateBusiness);
+router.put("/:id", businessController.updateBusiness);
 
 /**
  * @swagger
@@ -206,9 +210,7 @@ router.put('/:id', businessController.updateBusiness);
  *       '500':
  *         description: Internal server error
  */
-router.delete('/:id', businessController.deleteBusiness);
-
-
+router.delete("/:id", businessController.deleteBusiness);
 
 /**
  * @swagger
@@ -248,6 +250,6 @@ router.delete('/:id', businessController.deleteBusiness);
  *         description: Internal server error
  */
 
-router.post('/addmezgeb/:id', businessController.addMezgebuToBusiness);
+router.post("/addmezgeb/:id", businessController.addMezgebuToBusiness);
 
 module.exports = router;
