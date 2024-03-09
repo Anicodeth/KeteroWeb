@@ -34,7 +34,7 @@ exports.addServiceToBusiness = async (data) => {
       mezgebu.services.push(service);
       await mezgebu.save();
     });
-    
+
     await business.save();
     await service.save();
     return service;
