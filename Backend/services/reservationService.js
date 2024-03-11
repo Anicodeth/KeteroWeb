@@ -2,6 +2,7 @@ const Reservation = require("../models/Reservation");
 const Client = require("../models/Client");
 const Business = require("../models/Business");
 const Service = require("../models/Service");
+const Mezgeb = require("../models/Mezgeb");
 
 exports.createReservation = async (data) => {
   try {
@@ -16,11 +17,12 @@ exports.createReservation = async (data) => {
     business.pending.push(reservation);
     client.pending.push(reservation);
 
-    business.mezgebs.forEach(async (mezgebEmail) => {
-      const mezgeb = await Mezgeb.findOne({ email: mezgebEmail });
+    business.mezgebs.forEach(async (mezgebu) => {
+      const mezgeb = await Mezgeb.findById(mezgebu);
       mezgeb.reservations.push(reservation);
       await mezgeb.save();
     });
+    
 
     await business.save();
     await client.save();
