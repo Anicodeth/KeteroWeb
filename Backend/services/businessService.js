@@ -30,7 +30,8 @@ exports.addServiceToBusiness = async (data) => {
     }
 
     business.services.push(service);
-    business.mezgebs.forEach(async (mezgebu) => {
+    business.mezgebs.forEach(async (mezgebuId) => {
+      const mezgebu = await Mezgebu.findById(mezgebuId);
       mezgebu.services.push(service);
       await mezgebu.save();
     });
