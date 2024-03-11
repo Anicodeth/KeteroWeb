@@ -16,6 +16,12 @@ exports.createReservation = async (data) => {
     business.pending.push(reservation);
     client.pending.push(reservation);
 
+    business.mezgebs.forEach(async (mezgebEmail) => {
+      const mezgeb = await Mezgeb.findOne({ email: mezgebEmail });
+      mezgeb.reservations.push(reservation);
+      await mezgeb.save();
+    });
+
     await business.save();
     await client.save();
     return reservation;
