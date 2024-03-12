@@ -22,7 +22,6 @@ exports.createReservation = async (data) => {
       mezgeb.reservations.push(reservation);
       await mezgeb.save();
     });
-    
 
     await business.save();
     await client.save();
