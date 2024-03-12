@@ -1,37 +1,35 @@
 .activityContainer {
-    height:100vh;
-    display: flex;
-    flex-direction: column;
-
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.activeWindow{
-     height:94vh;
-     overflow: scroll;
+.activeWindow {
+  height: 94vh;
+  overflow: scroll;
 }
 
-.bottomNav{
-    display:flex;
-    justify-content: space-between;
-    padding: 0.2rem;
-    flex:1;
-
+.bottomNav {
+    
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem;
+  flex: 1;
 }
 
-.bottomNavButton{
-    text-align: center;
-    flex:1;
-    padding: 0.25rem;
-    display:grid;
-    place-items: center;
-
+.bottomNavButton {
+  text-align: center;
+  flex: 1;
+  padding: 0.25rem;
+  display: grid;
+  place-items: center;
 }
 
-.buttonIcon{
-    font-size: 1.25rem !important;
-    color: #565D6D;
+.buttonIcon {
+  font-size: 1.25rem !important;
+  color: #565d6d;
 }
 
-.buttonText{
-    color: #565D6D;
+.buttonText {
+  color: #565d6d;
 }
