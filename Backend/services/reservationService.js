@@ -2,7 +2,7 @@ const Reservation = require("../models/Reservation");
 const Client = require("../models/Client");
 const Business = require("../models/Business");
 const Service = require("../models/Service");
-const Mezgeb = require("../models/Mezgeb");
+const Mezgeb = require("../models/Mezgebu");
 
 exports.createReservation = async (data) => {
   try {
