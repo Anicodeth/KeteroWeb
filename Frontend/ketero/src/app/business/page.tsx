@@ -1,15 +1,15 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react';  // Import useState from React
-import style from '@/app/business/Business.module.css';
-import { FaHome, FaPlus, FaUser } from 'react-icons/fa';
+import React, { useState } from "react"; // Import useState from React
+import style from "@/app/business/Business.module.css";
+import { FaHome, FaPlus, FaUser } from "react-icons/fa";
 
-import BusinessProfile from '@/components/business/BusinessProfile';
-import Customers from '@/components/business/Customers';
-import AddService from '@/components/business/AddService';
+import BusinessProfile from "@/components/business/BusinessProfile";
+import Customers from "@/components/business/Customers";
+import AddService from "@/components/business/AddService";
 
 const Business: React.FC = () => {
-  const [toggle, setToggle] = useState<string>('Customer');
+  const [toggle, setToggle] = useState<string>("Customer");
 
   const handleClick = (activity: string) => {
     setToggle(activity);
@@ -18,15 +18,15 @@ const Business: React.FC = () => {
   return (
     <div className={style.activityContainer}>
       <div className={style.activeWindow}>
-         {toggle === 'Customer' ? <Customers /> : ''} 
-         {toggle === 'Profile' ? <BusinessProfile /> : ''} 
-         {toggle === 'AddService' ? <AddService /> : ''} 
+        {toggle === "Customer" ? <Customers /> : ""}
+        {toggle === "Profile" ? <BusinessProfile /> : ""}
+        {toggle === "AddService" ? <AddService /> : ""}
       </div>
 
       <div className={style.bottomNav}>
         <button
           className={style.bottomNavButton}
-          onClick={() => handleClick('Customer')}
+          onClick={() => handleClick("Customer")}
         >
           <FaHome className={style.buttonIcon} />
           <p className={style.buttonText}>Home</p>
@@ -34,7 +34,7 @@ const Business: React.FC = () => {
 
         <button
           className={style.bottomNavButton}
-          onClick={() => handleClick('AddService')}
+          onClick={() => handleClick("AddService")}
         >
           <FaPlus className={style.buttonIcon} />
           <p className={style.buttonText}>Add</p>
@@ -42,7 +42,7 @@ const Business: React.FC = () => {
 
         <button
           className={style.bottomNavButton}
-          onClick={() => handleClick('Profile')}
+          onClick={() => handleClick("Profile")}
         >
           <FaUser className={style.buttonIcon} />
           <p className={style.buttonText}>Profile</p>
