@@ -33,11 +33,11 @@ exports.createBusiness = async (data) => {
     if (!validateData(data, createBusinessDTO)) {
       throw new Error("Not valid Business data");
     }
-    const { ownerName, businessName, email, password } = data;
+    const { ownerName, businessName, phone, email, password } = data;
     if (await checkEmail(email)) {
       throw new Error("Email already exists");
     }
-    const business = new Business({ ownerName, businessName, email, password });
+    const business = new Business({ ownerName, businessName,phone, email, password });
     await business.save();
     return business;
   } catch (error) {
@@ -54,7 +54,7 @@ exports.createMezgeb = async (data) => {
     if (await checkEmail(email)) {
       throw new Error("Email already exists");
     }
-    const mezgeb = new Mezgebu({ name, email, password });
+    const mezgeb = new Mezgebu({ name, email,phone, password });
     await mezgeb.save();
     return mezgeb;
   } catch (error) {
