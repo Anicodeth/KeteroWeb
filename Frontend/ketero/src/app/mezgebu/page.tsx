@@ -2,10 +2,11 @@
 
 import React, { useState } from "react"; // Import useState from React
 import style from "@/app/business/Business.module.css";
-import { FaHome, FaUser } from "react-icons/fa";
+import { FaHome, FaPlus, FaUser } from "react-icons/fa";
 
 import MezgebuProfile from "@/components/mezgebu/MezgebuProfile";
 import Orders from "@/components/mezgebu/Orders";
+import AddMezgebService from "@/components/mezgebu/AddMezgebService";
 
 const Mezgebu: React.FC = () => {
   const [toggle, setToggle] = useState<string>("Pending");
@@ -19,6 +20,7 @@ const Mezgebu: React.FC = () => {
       <div className={style.activeWindow}>
         {toggle === "Pending" ? <Orders /> : ""}
         {toggle === "Profile" ? <MezgebuProfile /> : ""}
+        {toggle === "Service" ? <AddMezgebService /> : ""}
       </div>
 
       <div className={style.bottomNav}>
@@ -30,13 +32,13 @@ const Mezgebu: React.FC = () => {
           <p className={style.buttonText}>Home</p>
         </button>
 
-        {/* <button
+        <button
           className={style.bottomNavButton}
-          onClick={() => handleClick("AddService")}
+          onClick={() => handleClick("Service")}
         >
           <FaPlus className={style.buttonIcon} />
-          <p className={style.buttonText}>Add</p>
-        </button> */}
+          <p className={style.buttonText}>Service</p>
+        </button>
 
         <button
           className={style.bottomNavButton}
