@@ -1,5 +1,5 @@
 const Mezgebu = require("../models/Mezgebu");
-
+const Business = require("../models/Business");
 exports.getMezgebu = async (id) => {
   try {
     const mezgebu = await Mezgebu.findById(id);
