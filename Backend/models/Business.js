@@ -39,6 +39,11 @@ const BusinessSchema = new mongoose.Schema({
       ref: "Reservation",
     },
   ],
+  phone: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   confirmed: [
     {
       type: mongoose.Schema.Types.ObjectId,
