@@ -39,7 +39,7 @@ function Form({router}:FormProps){
   const [ buttonText, setButtonText ] = useState("Login");
 
   const loginScheme = z.object({
-    email: z.string().email(),
+    phone: z.string().email(),
     password: z.string().min(6),
   });
 
@@ -95,7 +95,7 @@ function Form({router}:FormProps){
         <div>
           <h1 className={[styles.heading].join(" ")}>Welcome</h1>
           <p className={[styles.paragraph].join(" ")}>
-            Hi, Enter your details to get login to your account
+            Hi, Enter your details to get logged in to your account
           </p>
         </div>
         <form onSubmit = {handleSubmit} className={[styles.form].join(" ")}>
