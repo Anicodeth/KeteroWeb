@@ -63,13 +63,13 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
     e.preventDefault();
     try {
       if (loginMethod === "email") {
-        loginScheme.parse({ email, password });
+        // loginScheme.parse({ email, password });
         await loginMutation.mutateAsync({
           email,
           password,
         });
       } else {
-        loginScheme.parse({ phone, password });
+        // loginScheme.parse({ phone, password });
         await loginMutation.mutateAsync({
           phone,
           password,
