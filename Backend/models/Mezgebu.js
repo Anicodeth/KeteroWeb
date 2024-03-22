@@ -38,6 +38,12 @@ const MezgebuSchema = new mongoose.Schema({
       ref: "Reservation",
     },
   ],
+  business: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Business",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Mezgebu", MezgebuSchema);
