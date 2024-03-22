@@ -50,3 +50,26 @@ exports.deleteMezgebu = async (id) => {
     throw new Error(error.message);
   }
 };
+
+
+exports.getMezgebBusinesses = async (id) => {
+  try{
+    const mezgebu = await Mezgebu.findById(id);
+    if( !mezgebu){
+      throw new Error("Invalid Mezgebu Id")
+    }
+    const businessesList = [];
+
+    mezgebu.businesses.forEach(async (businessId) => {
+      const business = await Business.findById(businessId);
+      if(business){
+             businessesList.push(business);
+
+            }     
+    });
+    
+  }
+  catch{
+
+  }
+}
