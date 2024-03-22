@@ -59,6 +59,7 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
       toast("SignIn successful");
     },
     onError: (error: any) => {
+
       toast(error.response.data.error);
     },
   });
@@ -68,6 +69,7 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
     try {
       if (loginMethod === "email") {
         loginScheme.parse({ email, password });
+        
         await loginMutation.mutateAsync({
           email,
           password,
