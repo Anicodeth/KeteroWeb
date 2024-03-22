@@ -44,7 +44,11 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
 
   const loginScheme = z.object({
     email: z.string().email(),
-    phone: z.string().min(6),
+    password: z.string().min(6),
+  });
+  
+  const phoneLoginScheme = z.object({
+    phone: z.string().min(8),
     password: z.string().min(6),
   });
 
@@ -63,13 +67,13 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
     e.preventDefault();
     try {
       if (loginMethod === "email") {
-        // loginScheme.parse({ email, password });
+        loginScheme.parse({ email, password });
         await loginMutation.mutateAsync({
           email,
           password,
         });
       } else {
-        // loginScheme.parse({ phone, password });
+        phoneLoginScheme.parse({ phone, password });
         await loginMutation.mutateAsync({
           phone,
           password,
