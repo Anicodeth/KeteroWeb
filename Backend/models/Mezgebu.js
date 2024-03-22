@@ -21,7 +21,11 @@ const MezgebuSchema = new mongoose.Schema({
     required: true,
     minLength: [8, "Password must be at least 8 Characters"],
   },
-
+  phone: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   services: [
     {
       type: mongoose.Schema.Types.ObjectId,
