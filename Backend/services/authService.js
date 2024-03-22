@@ -17,8 +17,8 @@ exports.createClient = async (data) => {
     }
 
     const { name, email, phone, password } = data;
-    if (await checkEmail(email)) {
-      throw new Error("Email already exists");
+    if ((await checkEmail(email)) && (await checkPhone(phone))) {
+      throw new Error("Email or Phone already exists");
     }
     const client = new Client({ name, phone, email, password });
     await client.save();
@@ -34,10 +34,16 @@ exports.createBusiness = async (data) => {
       throw new Error("Not valid Business data");
     }
     const { ownerName, businessName, phone, email, password } = data;
-    if (await checkEmail(email)) {
+    if ((await checkEmail(email)) && (await checkPhone(phone))) {
       throw new Error("Email already exists");
     }
-    const business = new Business({ ownerName, businessName,phone, email, password });
+    const business = new Business({
+      ownerName,
+      businessName,
+      phone,
+      email,
+      password,
+    });
     await business.save();
     return business;
   } catch (error) {
@@ -50,11 +56,12 @@ exports.createMezgeb = async (data) => {
     if (!validateData(data, createMezgebDTO)) {
       throw new Error("Not valid mezgebu data");
     }
-    const { name, email, password } = data;
-    if (await checkEmail(email)) {
-      throw new Error("Email already exists");
+
+    const { name, email, phone, password } = data;
+    if ((await checkEmail(email)) && (await checkPhone(phone))) {
+      throw new Error("Email or Phone already exists");
     }
-    const mezgeb = new Mezgebu({ name, email,phone, password });
+    const mezgeb = new Mezgebu({ name, email, phone, password });
     await mezgeb.save();
     return mezgeb;
   } catch (error) {
@@ -65,81 +72,79 @@ exports.createMezgeb = async (data) => {
 exports.loginUser = async (data) => {
   const { email, phone, password } = data;
 
-  if (phone){
-  try {
-    let user = await Client.findOne({ phone });
-    if (user && user.password === password) {
-      const token = jwt.sign({ email: email, role: "Client" }, secretKey);
-      return {
-        user: { ...user.toJSON(), password: undefined },
-        token,
-        role: "Client",
-      };
-    }
-
-    user = await Business.findOne({ phone });
-    if (user && user.password === password) {
-      const token = jwt.sign({ email: email, role: "Business" }, secretKey);
-      return {
-        user: { ...user.toJSON(), password: undefined },
-        token,
-        role: "Business",
-      };
-    }
-
-    user = await Mezgebu.findOne({ phone });
-    if (user && user.password === password) {
-      const token = jwt.sign({ email: email, role: "Mezgebu" }, secretKey);
-      return {
-        user: { ...user.toJSON(), password: undefined },
-        token,
-        role: "Mezgebu",
-      };
-    }
-
-    throw new Error("Invalid Credentials");
-  } catch (error) {
-    throw new Error(error.message);
-  }
-  }
-  else{
-      try {
-        let user = await Client.findOne({ email });
-        if (user && user.password === password) {
-          const token = jwt.sign({ email: email, role: "Client" }, secretKey);
-          return {
-            user: { ...user.toJSON(), password: undefined },
-            token,
-            role: "Client",
-          };
-        }
-
-        user = await Business.findOne({ email });
-        if (user && user.password === password) {
-          const token = jwt.sign({ email: email, role: "Business" }, secretKey);
-          return {
-            user: { ...user.toJSON(), password: undefined },
-            token,
-            role: "Business",
-          };
-        }
-
-        user = await Mezgebu.findOne({ email });
-        if (user && user.password === password) {
-          const token = jwt.sign({ email: email, role: "Mezgebu" }, secretKey);
-          return {
-            user: { ...user.toJSON(), password: undefined },
-            token,
-            role: "Mezgebu",
-          };
-        }
-
-        throw new Error("Invalid Credentials");
-      } catch (error) {
-        throw new Error(error.message);
+  if (phone) {
+    try {
+      let user = await Client.findOne({ phone });
+      if (user && user.password === password) {
+        const token = jwt.sign({ email: email, role: "Client" }, secretKey);
+        return {
+          user: { ...user.toJSON(), password: undefined },
+          token,
+          role: "Client",
+        };
       }
-  }
 
+      user = await Business.findOne({ phone });
+      if (user && user.password === password) {
+        const token = jwt.sign({ email: email, role: "Business" }, secretKey);
+        return {
+          user: { ...user.toJSON(), password: undefined },
+          token,
+          role: "Business",
+        };
+      }
+
+      user = await Mezgebu.findOne({ phone });
+      if (user && user.password === password) {
+        const token = jwt.sign({ email: email, role: "Mezgebu" }, secretKey);
+        return {
+          user: { ...user.toJSON(), password: undefined },
+          token,
+          role: "Mezgebu",
+        };
+      }
+
+      throw new Error("Invalid Credentials");
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  } else {
+    try {
+      let user = await Client.findOne({ email });
+      if (user && user.password === password) {
+        const token = jwt.sign({ email: email, role: "Client" }, secretKey);
+        return {
+          user: { ...user.toJSON(), password: undefined },
+          token,
+          role: "Client",
+        };
+      }
+
+      user = await Business.findOne({ email });
+      if (user && user.password === password) {
+        const token = jwt.sign({ email: email, role: "Business" }, secretKey);
+        return {
+          user: { ...user.toJSON(), password: undefined },
+          token,
+          role: "Business",
+        };
+      }
+
+      user = await Mezgebu.findOne({ email });
+      if (user && user.password === password) {
+        const token = jwt.sign({ email: email, role: "Mezgebu" }, secretKey);
+        return {
+          user: { ...user.toJSON(), password: undefined },
+          token,
+          role: "Mezgebu",
+        };
+      }
+
+      throw new Error("Invalid Credentials");
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 };
 
 async function checkEmail(email) {
@@ -147,6 +152,17 @@ async function checkEmail(email) {
     const clientExists = await Client.exists({ email });
     const businessExists = await Business.exists({ email });
     const mezgebExists = await Mezgebu.exists({ email });
+    return clientExists || businessExists || mezgebExists;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+async function checkPhone(phone) {
+  try {
+    const clientExists = await Client.exists({ phone });
+    const businessExists = await Business.exists({ phone });
+    const mezgebExists = await Mezgebu.exists({ phone });
     return clientExists || businessExists || mezgebExists;
   } catch (error) {
     throw new Error(error.message);
