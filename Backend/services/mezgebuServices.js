@@ -51,25 +51,19 @@ exports.deleteMezgebu = async (id) => {
   }
 };
 
-
 exports.getMezgebBusinesses = async (id) => {
-  try{
+  try {
     const mezgebu = await Mezgebu.findById(id);
-    if( !mezgebu){
-      throw new Error("Invalid Mezgebu Id")
+    if (!mezgebu) {
+      throw new Error("Invalid Mezgebu Id");
     }
     const businessesList = [];
 
     mezgebu.businesses.forEach(async (businessId) => {
       const business = await Business.findById(businessId);
-      if(business){
-             businessesList.push(business);
-
-            }     
+      if (business) {
+        businessesList.push(business);
+      }
     });
-    
-  }
-  catch{
-
-  }
-}
+  } catch {}
+};
