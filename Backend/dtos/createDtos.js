@@ -11,6 +11,7 @@ const createBusinessDTO = {
   ownerName: String,
   businessName: String,
   password: String,
+  phone: String,
 };
 
 // DTOs for createMezgeb
@@ -18,6 +19,7 @@ const createMezgebDTO = {
   name: String,
   email: String,
   password: String,
+  phone: String,
 };
 
 // DTOs for loginUser
