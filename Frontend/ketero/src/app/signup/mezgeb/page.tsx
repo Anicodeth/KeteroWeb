@@ -28,11 +28,13 @@ const Form: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [phone, setPhone] = useState("");
 
   const signupSchema = z.object({
     name: z.string().min(2),
     email: z.string().email(),
     password: z.string().min(6),
+    phone: z.string()
   });
 
   const signupMutation = useMutation(
@@ -54,11 +56,12 @@ const Form: React.FC = () => {
       if (password !== confirmPassword) {
         return "Password not matching";
       }
-      signupSchema.parse({ name, email, password });
+      signupSchema.parse({ name, email, password, phone });
       await signupMutation.mutateAsync({
         name,
         email,
         password,
+        phone
       });
     } catch (error: any) {
       if (error instanceof ZodError) {
@@ -99,6 +102,19 @@ const Form: React.FC = () => {
             </div>
             <hr />
           </div>
+            <div className={[styles.inputWrapper, styles.center].join(" ")}>
+              <div className={[styles.center].join(" ")}>
+                <CiUser></CiUser>
+              </div>
+              <input
+                type="text"
+                placeholder="Phone"
+                className="outline-none border-none"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </div>
+            <hr />
 
           <div>
             <div className={[styles.inputWrapper, styles.center].join(" ")}>
