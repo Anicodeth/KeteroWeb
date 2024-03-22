@@ -65,5 +65,8 @@ exports.getMezgebBusinesses = async (id) => {
         businessesList.push(business);
       }
     });
-  } catch {}
+    return businessesList;
+  } catch {
+    throw new Error(error.message);
+  }
 };
