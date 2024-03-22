@@ -101,4 +101,29 @@ router.put("/:id", mezgebuController.updateMezgebu);
  */
 router.delete("/:id", mezgebuController.deleteMezgebu);
 
+
+/**
+ * @swagger
+ * /api/v1/mezgebu/{mezgebuId}/businesses:
+ *   get:
+ *     summary: Get all businesses of a mezgebu
+ *     tags: [Mezgebu]
+ *     parameters:
+ *       - in: path
+ *         name: mezgebuId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID of the mezgebu
+ *     responses:
+ *       '200':
+ *         description: A list of businesses
+ *       '404':
+ *         description: mezgebu not found
+ *       '500':
+ *         description: Internal server error
+ */
+router.get("/:id/businesses", mezgebuController.getMezgebBusinesses);
+
+
 module.exports = router;
