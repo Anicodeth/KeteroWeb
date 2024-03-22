@@ -24,7 +24,6 @@ const ClientSchema = new mongoose.Schema({
 
   phone: {
     type: String,
-    required: true,
     unique: true,
   },
   pending: [
