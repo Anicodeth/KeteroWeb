@@ -29,6 +29,7 @@ const BusinessProfile: React.FC = () => {
   const pending = business?.pending;
   const confirmed = business?.confirmed;
   const services = business?.services;
+  const numberOfMezgebs = business?.mezgebs.length;
 
   if (!business) {
     return null;
@@ -61,7 +62,7 @@ const BusinessProfile: React.FC = () => {
         </div>
       </div>
       <div className={style.hiredContainer}>
-        <MezgebAdder />
+       { numberOfMezgebs > 1 ? "" : <MezgebAdder />}
         <h2>Services Confirmed</h2>
         {confirmed && confirmed.length > 0 ? (
           <div className={style.hiredServices}>
