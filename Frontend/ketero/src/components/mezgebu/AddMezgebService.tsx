@@ -80,7 +80,6 @@ const AddMezgebService: React.FC = () => {
         image: image,
       };
 
-
       serviceScheme.parse(data);
       await mutation.mutateAsync(data);
     } catch (error) {
@@ -185,7 +184,7 @@ const AddMezgebService: React.FC = () => {
               onClick={handleSubmit}
               className={[style.buttonAddService].join(" ")}
             >
-              { mutation.isLoading ? "Adding..." : "Add Service"}
+              {mutation.isLoading ? "Adding..." : "Add Service"}
             </button>
           </div>
         </div>
