@@ -57,16 +57,17 @@ exports.getMezgebBusinesses = async (id) => {
     if (!mezgebu) {
       throw new Error("Invalid Mezgebu Id");
     }
-    const businessesList = [];
+    let businessesList = [];
 
-    mezgebu.businesses.forEach(async (businessId) => {
+    for (const businessId of mezgebu.businesses) {
       const business = await Business.findById(businessId);
       if (business) {
         businessesList.push(business);
       }
-    });
+    }
+
     return businessesList;
-  } catch {
+  } catch (error) {
     throw new Error(error.message);
   }
 };

@@ -19,4 +19,11 @@ export async function getMezgebus(): Promise<any> {
   }
 }
 
-
+export async function getMezgebuBusinesses(id: string): Promise<any> {
+  try {
+    const response = await axios.get(`${apiUrl}/${id}/businesses`);
+    return response.data;
+  } catch (e) {
+    throw e;
+  }
+}
