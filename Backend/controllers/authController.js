@@ -19,10 +19,11 @@ exports.createClient = async (req, res) => {
 // Controller for creating a business
 exports.createBusiness = async (req, res) => {
   try {
-    const { ownerName, businessName, email, password } = req.body;
+    const { ownerName, phone, businessName, email, password } = req.body;
     const business = await createBusiness({
       ownerName,
       businessName,
+      phone,
       email,
       password,
     });
@@ -116,8 +117,8 @@ exports.deleteBusiness = async (id) => {
 // Controller for creating a mezgeb
 exports.createMezgeb = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    const mezgeb = await createMezgeb({ name, email, password });
+    const { name, email, password, phone } = req.body;
+    const mezgeb = await createMezgeb({ name, email, password, phone });
     res.status(201).json(mezgeb);
   } catch (error) {
     res.status(400).json({ error: error.message });

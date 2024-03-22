@@ -104,10 +104,9 @@ exports.addMezgebuToBusiness = async (businessId, mezgebuEmail) => {
             throw new Error("You already have a mezgeb");
     }
 
-
     if (!business || !mezgebu) {
       throw new Error("Invalid data entry");
-    }
+    } 
 
     const mezgebuExists = business.mezgebs.find(
       (m) => m.toString() === mezgebu._id.toString()

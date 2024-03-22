@@ -3,6 +3,7 @@ const {
   getMezgebues,
   deleteMezgebu,
   updateMezgebu,
+  getMezgebBusinesses,
 } = require("../services/mezgebuServices");
 
 exports.getMezgebu = async (req, res) => {
@@ -48,7 +49,7 @@ exports.deleteMezgebu = async (req, res) => {
 exports.getMezgebBusinesses = async (req, res) => {
   try {
     const { id } = req.params;
-    const businesses = await getMezgebu(id);
+    const businesses = await getMezgebBusinesses(id);
 
     res.status(200).json(businesses);
   } catch (error) {
