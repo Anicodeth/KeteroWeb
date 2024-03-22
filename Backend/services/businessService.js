@@ -131,6 +131,8 @@ exports.addMezgebuToBusiness = async (businessId, mezgebuEmail) => {
       mezgebu.reservations.push(reservation);
     });
 
+    mezgebu.businesses.push(business);
+
     await mezgebu.save();
 
     return business;

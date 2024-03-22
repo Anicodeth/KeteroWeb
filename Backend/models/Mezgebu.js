@@ -38,7 +38,7 @@ const MezgebuSchema = new mongoose.Schema({
       ref: "Reservation",
     },
   ],
-  business: [
+  businesses: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Business",
