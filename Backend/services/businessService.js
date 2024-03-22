@@ -100,6 +100,11 @@ exports.addMezgebuToBusiness = async (businessId, mezgebuEmail) => {
     const mezgebu = await Mezgebu.findOne({ email: mezgebuEmail });
     //find the mezgeby by emaul
 
+    if(business.mezgebs.length > 1){
+            throw new Error("You already have a mezgeb");
+    }
+
+
     if (!business || !mezgebu) {
       throw new Error("Invalid data entry");
     }
