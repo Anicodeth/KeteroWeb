@@ -58,12 +58,13 @@ const Form: React.FC = () => {
       if (password !== confirmPassword) {
         return "Password not matching";
       }
-      signupSchema.parse({ businessName, ownerName, email, password });
+      signupSchema.parse({ businessName, ownerName, email, password,phone });
       await signupMutation.mutateAsync({
         businessName,
         ownerName,
         email,
         password,
+        phone
       });
     } catch (error: any) {
       if (error instanceof ZodError) {
