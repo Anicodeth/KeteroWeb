@@ -7,7 +7,7 @@ import { AiOutlineApple } from "react-icons/ai";
 import styles from "./SignIn.module.css";
 import Link from "next/link";
 import { z, ZodError } from "zod";
-import { Login } from "@/models/Login";
+import { Login, PhoneLogin } from "@/models/Login";
 import { signIn } from "../../services/AuthService";
 import { toast } from "sonner";
 import { useMutation, QueryClient, QueryClientProvider } from "react-query";
@@ -48,7 +48,7 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
     password: z.string().min(6),
   });
 
-  const loginMutation = useMutation((login: Login) => signIn(login), {
+  const loginMutation = useMutation((login: Login | PhoneLogin) => signIn(login), {
     onSuccess: (role: string) => {
       router.push(`/${role.toLowerCase()}`);
 

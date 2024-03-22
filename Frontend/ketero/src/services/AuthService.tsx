@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Business } from "@/models/Business";
 import { Client } from "@/models/Client";
-import { Login } from "@/models/Login";
+import { Login, PhoneLogin } from "@/models/Login";
 import { Mezgeb } from "@/models/Mezgeb";
 
 const apiUrl = "https://ketero-web-dmow.vercel.app/api/v1/auth"; // Assuming this is your base API URL
@@ -38,7 +38,7 @@ export async function signUpMezgeb(mezgeb: Mezgeb): Promise<any> {
     }
 }
 
-export async function signIn(login: Login): Promise<any> {
+export async function signIn(login: Login | PhoneLogin): Promise<any> {
     try {
         const response = await axios.post(`${apiUrl}/login`, login);
         
