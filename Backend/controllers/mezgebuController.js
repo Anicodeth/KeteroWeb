@@ -44,3 +44,14 @@ exports.deleteMezgebu = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+exports.getMezgebBusinesses = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const businesses = await getMezgebu(id);
+
+    res.status(200).json(businesses);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
