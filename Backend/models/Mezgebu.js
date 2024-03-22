@@ -23,7 +23,6 @@ const MezgebuSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: true,
     unique: true,
   },
   services: [
