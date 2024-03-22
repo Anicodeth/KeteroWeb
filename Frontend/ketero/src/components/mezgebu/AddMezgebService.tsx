@@ -80,7 +80,6 @@ const AddMezgebService: React.FC = () => {
         image: image,
       };
 
-      console.log("here");
 
       serviceScheme.parse(data);
       await mutation.mutateAsync(data);
