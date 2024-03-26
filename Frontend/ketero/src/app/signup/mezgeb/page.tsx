@@ -140,7 +140,7 @@ const Form: React.FC = () => {
                   <CiUser></CiUser>
                 </div>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="Password"
                   className="outline-none border-none"
                   value={password}
@@ -155,7 +155,7 @@ const Form: React.FC = () => {
                   <CiUser></CiUser>
                 </div>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="Confirm Password"
                   className="outline-none border-none"
                   value={confirmPassword}
