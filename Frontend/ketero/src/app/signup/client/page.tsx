@@ -73,13 +73,13 @@ function Form(){
       }
     }
   };
-  return(
-
+  return (
     <motion.div
-    initial={{ opacity: 0, x: -50 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.5, delay: 0.1 }}>
-<div className={[styles.screen, styles.center].join(" ")}>
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+    >
+      <div className={[styles.screen, styles.center].join(" ")}>
         <div className={styles.mainWrapper}>
           <h1></h1>
           <div>
@@ -90,9 +90,7 @@ function Form(){
           </div>
           <form onSubmit={handleSubmit} className={styles.form}>
             <div>
-              <div
-                className={[styles.inputWrapper, styles.center].join(" ")}
-              >
+              <div className={[styles.inputWrapper, styles.center].join(" ")}>
                 <div className={[styles.center].join(" ")}>
                   <CiUser></CiUser>
                 </div>
@@ -108,9 +106,7 @@ function Form(){
             </div>
 
             <div>
-              <div
-                className={[styles.inputWrapper, styles.center].join(" ")}
-              >
+              <div className={[styles.inputWrapper, styles.center].join(" ")}>
                 <div className={[styles.center].join(" ")}>
                   <CiUser></CiUser>
                 </div>
@@ -126,9 +122,7 @@ function Form(){
             </div>
 
             <div>
-              <div
-                className={[styles.inputWrapper, styles.center].join(" ")}
-              >
+              <div className={[styles.inputWrapper, styles.center].join(" ")}>
                 <div className={[styles.center].join(" ")}>
                   <CiUser></CiUser>
                 </div>
@@ -144,14 +138,12 @@ function Form(){
             </div>
 
             <div>
-              <div
-                className={[styles.inputWrapper, styles.center].join(" ")}
-              >
+              <div className={[styles.inputWrapper, styles.center].join(" ")}>
                 <div className={[styles.center].join(" ")}>
                   <CiUser></CiUser>
                 </div>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="Password"
                   className="outline-none border-none"
                   value={password}
@@ -161,14 +153,12 @@ function Form(){
               <hr />
             </div>
             <div>
-              <div
-                className={[styles.inputWrapper, styles.center].join(" ")}
-              >
+              <div className={[styles.inputWrapper, styles.center].join(" ")}>
                 <div className={[styles.center].join(" ")}>
                   <CiUser></CiUser>
                 </div>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="Confirm Password"
                   className="outline-none border-none"
                   value={confirmPassword}
@@ -195,27 +185,17 @@ function Form(){
           <div>
             <p className={styles.paragraph}>Or Sign in via</p>
             <div className={styles.otherOption}>
-              <div
-                className={[styles.containerIcon, styles.center].join(" ")}
-              >
-                <FaGoogle
-                  className={styles.icon}
-                  size={20}
-                  color="#FF56A5"
-                />
+              <div className={[styles.containerIcon, styles.center].join(" ")}>
+                <FaGoogle className={styles.icon} size={20} color="#FF56A5" />
               </div>
-              <div
-                className={[styles.containerIcon, styles.center].join(" ")}
-              >
+              <div className={[styles.containerIcon, styles.center].join(" ")}>
                 <AiOutlineApple
                   className={styles.icon}
                   size={20}
                   color="grey"
                 />
               </div>
-              <div
-                className={[styles.containerIcon, styles.center].join(" ")}
-              >
+              <div className={[styles.containerIcon, styles.center].join(" ")}>
                 <FaFacebookSquare
                   className={styles.icon}
                   size={20}
@@ -226,9 +206,8 @@ function Form(){
           </div>
         </div>
       </div>
-      </motion.div>
-
-  )
+    </motion.div>
+  );
 }
 
 export default SignUp;
