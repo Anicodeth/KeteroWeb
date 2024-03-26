@@ -161,7 +161,7 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
                   <CiUser></CiUser>
                 </div>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="Password"
                   className="outline-none border-none"
                   value={password}
