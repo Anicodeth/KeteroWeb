@@ -1,11 +1,10 @@
+import Customers from "@/components/business/Customers";
 
 
 
 
 export default function section(){
     return (
-      <h1>
-        Section
-      </h1>
+      <Customers/>
     )
 }
