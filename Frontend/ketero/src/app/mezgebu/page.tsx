@@ -6,6 +6,9 @@ import { FaHome, FaPlus, FaUser } from "react-icons/fa";
 import MezgebuProfile from "@/components/mezgebu/MezgebuProfile";
 import Orders from "@/components/mezgebu/Orders";
 import AddMezgebService from "@/components/mezgebu/AddMezgebService";
+import { FaBusinessTime } from "react-icons/fa";
+import Businesses from "@/components/mezgebu/Businesses";
+
 
 const Mezgebu: React.FC = () => {
   const [toggle, setToggle] = useState<string>("Pending");
@@ -20,6 +23,7 @@ const Mezgebu: React.FC = () => {
         {toggle === "Pending" ? <Orders /> : ""}
         {toggle === "Profile" ? <MezgebuProfile /> : ""}
         {toggle === "Service" ? <AddMezgebService /> : ""}
+        {toggle === "Businesses" ? <Businesses/> : ""}
       </div>
 
       <div className={style.bottomNav}>
@@ -31,12 +35,22 @@ const Mezgebu: React.FC = () => {
           <p className={style.buttonText}>Home</p>
         </button>
 
+        
+
         <button
           className={style.bottomNavButton}
           onClick={() => handleClick("Service")}
         >
           <FaPlus className={style.buttonIcon} />
           <p className={style.buttonText}>Service</p>
+        </button>
+
+        <button
+          className={style.bottomNavButton}
+          onClick={() => handleClick("Businesses")}
+        >
+          <FaBusinessTime className={style.buttonIcon} />
+          <p className={style.buttonText}>Businesses</p>
         </button>
 
         <button
