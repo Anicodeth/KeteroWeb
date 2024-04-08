@@ -2,15 +2,12 @@ import React from "react";
 import { FaUserTie } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
-import { FaLock } from "react-icons/fa";
 import style from "./Businesses.module.css";
 import { useQuery } from "react-query";
 import { getMezgebuBusinesses } from "../../services/MezgebuService";
-import { error } from "console";
 import { Business } from "@/models/Business";
 
 const Businesses: React.FC = () => {
-  const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   const user =
     typeof window !== "undefined"
       ? JSON.parse(sessionStorage.getItem("user")!)
