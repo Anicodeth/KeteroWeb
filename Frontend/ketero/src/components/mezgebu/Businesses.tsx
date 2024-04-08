@@ -52,9 +52,7 @@ const BusinessCard: React.FC<{business:Business}> = ({business}) => {
       <div className={[style.horizontal].join("")}>
         <FaEnvelope /> <p>{business.email}</p>
       </div>
-      {/* <div className={[style.horizontal].join("")}>
-        <FaLock /> <p>{business.password}</p>
-      </div> */}
+
       <div className={[style.horizontal].join("")}>
         <FaPhone /> <p>{business.phone}</p>
       </div>
