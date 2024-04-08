@@ -83,7 +83,6 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
       }
     } catch (error: any) {
       if (error instanceof ZodError) {
-        console.log(error.errors);
       } else {
         if (error.response) {        
           toast(error.response.data.error);
