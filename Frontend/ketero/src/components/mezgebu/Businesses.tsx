@@ -6,6 +6,24 @@ import style from "./Businesses.module.css";
 import { useQuery } from "react-query";
 import { getMezgebuBusinesses } from "../../services/MezgebuService";
 import { Business } from "@/models/Business";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useMutation } from "react-query";
+import {
+  signUpBusinessMezgeb,
+} from "../../services/AuthService";
+import { toast } from "sonner";
+import { ZodError, z } from "zod";
 
 const Businesses: React.FC = () => {
   const user =
@@ -59,25 +77,7 @@ const BusinessCard: React.FC<{ business: Business }> = ({ business }) => {
   );
 };
 
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useMutation } from "react-query";
-import {
-  signUpBusiness,
-  signUpBusinessMezgeb,
-} from "../../services/AuthService";
-import { toast } from "sonner";
-import { ZodError, z } from "zod";
+
 
 export function DialogDemo() {
   const [businessName, setBusinessName] = useState("");
