@@ -19,9 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useMutation } from "react-query";
-import {
-  signUpBusinessMezgeb,
-} from "../../services/AuthService";
+import { signUpBusinessMezgeb } from "../../services/AuthService";
 import { toast } from "sonner";
 import { ZodError, z } from "zod";
 
@@ -76,8 +74,6 @@ const BusinessCard: React.FC<{ business: Business }> = ({ business }) => {
     </div>
   );
 };
-
-
 
 export function AddBusinessDialog() {
   const [businessName, setBusinessName] = useState("");
