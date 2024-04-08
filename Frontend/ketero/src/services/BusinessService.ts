@@ -25,3 +25,24 @@ export async function addMezgebu(id: string, mezgebuEmail: any):Promise<any> {
         throw error;
     }
 }
+
+export async function deleteBusiness(id: string):Promise<any> {
+    try {
+        const response = await axios.delete(`${apiUrl}/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error deleting business:", error);
+        throw error;
+    }
+}
+
+
+export async function updateBusiness(id: string, business: any):Promise<any> {
+    try {
+        const response = await axios.put(`${apiUrl}/${id}`, business);
+        return response.data;
+    } catch (error) {
+        console.error("Error updating business:", error);
+        throw error;
+    }
+}

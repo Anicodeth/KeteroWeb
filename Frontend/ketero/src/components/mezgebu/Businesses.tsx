@@ -22,6 +22,7 @@ import { useMutation } from "react-query";
 import { signUpBusinessMezgeb } from "../../services/AuthService";
 import { toast } from "sonner";
 import { ZodError, z } from "zod";
+import { deleteBusiness } from "@/services/BusinessService";
 
 const Businesses: React.FC = () => {
   const user =
@@ -141,7 +142,7 @@ function AddBusinessDialog() {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button>Add Business</Button>
+        <Button className="w-full">Add Business</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -223,6 +224,17 @@ function AddBusinessDialog() {
 }
 
 function DeleteBusinessDialog() {
+  const deleteMutation = useMutation(
+    (id: string) => deleteBusiness(id),
+    {
+      onSuccess: () => {
+        toast("Business deleted successfully");
+      },
+      onError: (error) => {
+        console.error("Error deleting business:", error);
+      },
+    }
+  );
   return (
     <Dialog>
       <DialogTrigger>
