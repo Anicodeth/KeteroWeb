@@ -224,17 +224,14 @@ function AddBusinessDialog() {
 }
 
 function DeleteBusinessDialog() {
-  const deleteMutation = useMutation(
-    (id: string) => deleteBusiness(id),
-    {
-      onSuccess: () => {
-        toast("Business deleted successfully");
-      },
-      onError: (error) => {
-        console.error("Error deleting business:", error);
-      },
-    }
-  );
+  const deleteMutation = useMutation((id: string) => deleteBusiness(id), {
+    onSuccess: () => {
+      toast("Business deleted successfully");
+    },
+    onError: (error) => {
+      console.error("Error deleting business:", error);
+    },
+  });
   return (
     <Dialog>
       <DialogTrigger>
@@ -251,7 +248,9 @@ function DeleteBusinessDialog() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button>Delete</Button>
+          <Button type="submit" disabled={deleteMutation.isLoading}>
+            {deleteMutation.isLoading ? "Deleting..." : "Delete"}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
