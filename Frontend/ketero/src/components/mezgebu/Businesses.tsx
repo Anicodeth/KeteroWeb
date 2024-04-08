@@ -22,7 +22,7 @@ import { useMutation } from "react-query";
 import { signUpBusinessMezgeb } from "../../services/AuthService";
 import { toast } from "sonner";
 import { ZodError, z } from "zod";
-import { deleteBusiness } from "@/services/BusinessService";
+import { deleteBusiness, updateBusiness } from "@/services/BusinessService";
 
 const Businesses: React.FC = () => {
   const user =
@@ -54,7 +54,7 @@ const Businesses: React.FC = () => {
   );
 };
 
-const BusinessCard: React.FC<{ business: Business }> = ({ business }) => {
+const BusinessCard: React.FC<{ business: any }> = ({ business }) => {
   return (
     <div className={style.card}>
       <div className={[style.colSpan].join("")}>
@@ -74,7 +74,7 @@ const BusinessCard: React.FC<{ business: Business }> = ({ business }) => {
       </div>
 
       <div className="flex justify-between w-full">
-        <DeleteBusinessDialog />
+        <DeleteBusinessDialog id = {business._id} />
         <UpdateBusinessDialog />
       </div>
     </div>
@@ -223,8 +223,9 @@ function AddBusinessDialog() {
   );
 }
 
-function DeleteBusinessDialog() {
-  const deleteMutation = useMutation((id: string) => deleteBusiness(id), {
+function DeleteBusinessDialog({id}:{id:string}) {
+
+  const deleteMutation = useMutation(() => deleteBusiness(id), {
     onSuccess: () => {
       toast("Business deleted successfully");
     },
@@ -248,7 +249,11 @@ function DeleteBusinessDialog() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button type="submit" disabled={deleteMutation.isLoading}>
+          <Button
+            type="submit"
+            onClick={() => deleteMutation.mutateAsync()}
+            disabled={deleteMutation.isLoading}
+          >
             {deleteMutation.isLoading ? "Deleting..." : "Delete"}
           </Button>
         </DialogFooter>
@@ -258,6 +263,21 @@ function DeleteBusinessDialog() {
 }
 
 function UpdateBusinessDialog() {
+
+  const user =
+      typeof window !== "undefined"
+        ? JSON.parse(sessionStorage.getItem("user")!)
+        : null;
+
+  const updateMutation = useMutation(() => updateBusiness(user._id, business), {
+    onSuccess: () => {
+      toast("Business updated successfully");
+    },
+    onError: (error) => {
+      console.error("Error updating business:", error);
+    },
+  });
+  
   return (
     <Dialog>
       <DialogTrigger>
