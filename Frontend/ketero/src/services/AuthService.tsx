@@ -61,6 +61,7 @@ export async function signIn(login: Login | PhoneLogin): Promise<any> {
 
 export async function signUpBusinessMezgeb(business: Business, email:string): Promise<any> {
   try {
+    console.log("business", business, "email", email)
     const response = await axios.post(`${apiUrl}/business`, business);
     const responseBack = await addMezgebu(response.data._id, email);
 
