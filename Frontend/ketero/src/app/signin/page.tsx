@@ -85,8 +85,8 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
       if (error instanceof ZodError) {
         console.log(error.errors);
       } else {
-        if (error.response) {
-          toast(error.response.data);
+        if (error.response) {        
+          toast(error.response.data.error);
         } else {
           toast("Network Error");
         }
