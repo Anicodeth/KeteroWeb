@@ -230,9 +230,12 @@ function DeleteBusinessDialog() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you sure you want to delete this business?</DialogTitle>
+          <DialogTitle>
+            Are you sure you want to delete this business?
+          </DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete the business.
+            This action cannot be undone. This will permanently delete the
+            business.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
