@@ -74,7 +74,7 @@ const BusinessCard: React.FC<{ business: any }> = ({ business }) => {
       </div>
 
       <div className="flex justify-between w-full">
-        <DeleteBusinessDialog id = {business._id} />
+        <DeleteBusinessDialog id={business._id} />
         <UpdateBusinessDialog />
       </div>
     </div>
@@ -223,8 +223,7 @@ function AddBusinessDialog() {
   );
 }
 
-function DeleteBusinessDialog({id}:{id:string}) {
-
+function DeleteBusinessDialog({ id }: { id: string }) {
   const deleteMutation = useMutation(() => deleteBusiness(id), {
     onSuccess: () => {
       toast("Business deleted successfully");
@@ -262,12 +261,11 @@ function DeleteBusinessDialog({id}:{id:string}) {
   );
 }
 
-function UpdateBusinessDialog({id, business}:{id:string, business:any}) {
-
+function UpdateBusinessDialog({ id, business }: { id: string; business: any }) {
   const user =
-      typeof window !== "undefined"
-        ? JSON.parse(sessionStorage.getItem("user")!)
-        : null;
+    typeof window !== "undefined"
+      ? JSON.parse(sessionStorage.getItem("user")!)
+      : null;
 
   const updateMutation = useMutation(() => updateBusiness(user._id, business), {
     onSuccess: () => {
@@ -277,7 +275,7 @@ function UpdateBusinessDialog({id, business}:{id:string, business:any}) {
       console.error("Error updating business:", error);
     },
   });
-  
+
   return (
     <Dialog>
       <DialogTrigger>
