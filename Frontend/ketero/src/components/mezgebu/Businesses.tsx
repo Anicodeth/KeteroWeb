@@ -102,25 +102,25 @@ export function DialogDemo() {
           </div>
         </div>
         <div className="grid grid-cols-4 items-center gap-4">
-          <Label htmlFor="name" className="text-right">
-            Company Name
+          <Label htmlFor="Phone" className="text-right">
+           Phone
           </Label>
-          <Input id="name" value="Afro Burgers" className="col-span-3" />
+          <Input id="Phone" value="0909090909" className="col-span-3" />
         </div>
         <div className="grid grid-cols-4 items-center gap-4">
-          <Label htmlFor="name" className="text-right">
-            Company Name
+          <Label htmlFor="Email" className="text-right">
+            Email
           </Label>
-          <Input id="name" value="Afro Burgers" className="col-span-3" />
+          <Input id="email" value="afroburgers@gmail.com" className="col-span-3" />
         </div>
         <div className="grid grid-cols-4 items-center gap-4">
-          <Label htmlFor="name" className="text-right">
-            Company Name
+          <Label htmlFor="password" className="text-right">
+            Password
           </Label>
-          <Input id="name" value="Afro Burgers" className="col-span-3" />
+          <Input id="password" value="ak456765hajw.etb" className="col-span-3" />
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button type="submit">Save</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
