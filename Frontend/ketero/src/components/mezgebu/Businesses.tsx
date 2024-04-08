@@ -20,15 +20,15 @@ const Businesses: React.FC = () => {
   } = useQuery("businesses", () => getMezgebuBusinesses(user._id));
   return (
     <div className={style.wrapper}>
-    <DialogDemo></DialogDemo>
-      <h1 className = "text-xl font-bold" >My Businesses</h1>
+      <h1 className="text-xl font-bold">My Businesses</h1>
+      <DialogDemo></DialogDemo>
       {isBusinessesLoading ? (
         <p>Loading....</p>
       ) : businessesError ? (
         <p>Error {businessesError as string}</p>
       ) : (
         <div className={style.listCard}>
-          {businesses.map((business:any) => (
+          {businesses.map((business: any) => (
             <BusinessCard key={business.id} business={business}></BusinessCard>
           ))}
         </div>
