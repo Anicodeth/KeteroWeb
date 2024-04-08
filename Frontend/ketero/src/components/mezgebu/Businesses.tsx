@@ -262,7 +262,7 @@ function DeleteBusinessDialog({id}:{id:string}) {
   );
 }
 
-function UpdateBusinessDialog() {
+function UpdateBusinessDialog({id, business}:{id:string, business:any}) {
 
   const user =
       typeof window !== "undefined"
