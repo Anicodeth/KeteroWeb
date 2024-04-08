@@ -90,8 +90,7 @@ export function DialogDemo() {
     (newBusiness: Business) => signUpBusiness(newBusiness),
     {
       onSuccess: () => {
-          toast("Signup successful");
-          console.log("Signup successful");
+          toast("Business added successfully");
       },
       onError: (error) => {
         // Handle error, e.g., show an error message
