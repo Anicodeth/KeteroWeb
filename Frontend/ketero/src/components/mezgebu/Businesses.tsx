@@ -71,11 +71,16 @@ const BusinessCard: React.FC<{ business: Business }> = ({ business }) => {
       <div className={[style.horizontal].join("")}>
         <FaPhone /> <p>{business.phone}</p>
       </div>
+
+      <div className="flex justify-between w-full">
+        <Button> Delete </Button>
+        <Button> Edit </Button>
+      </div>
     </div>
   );
 };
 
-export function AddBusinessDialog() {
+function AddBusinessDialog() {
   const [businessName, setBusinessName] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [email, setEmail] = useState("");
@@ -216,4 +221,76 @@ export function AddBusinessDialog() {
     </Dialog>
   );
 }
+
+function DeleteBusinessDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger>
+        <Button>Delete Business</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you sure you want to delete this business?</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone. This will permanently delete the business.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button>Delete</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function updateBusinessDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger>
+        <Button>Update Business</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Update Business</DialogTitle>
+          <DialogDescription>Fill the form and Click save</DialogDescription>
+        </DialogHeader>
+        <form>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="compname" className="text-right">
+                Company's Name
+              </Label>
+              <Input id="compname" className="col-span-3" />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Owner's Name
+              </Label>
+              <Input id="name" className="col-span-3" />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="Phone" className="text-right">
+                Phone
+              </Label>
+              <Input id="Phone" className="col-span-3" />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="Email" className="text-right">
+                Email
+              </Label>
+              <Input id="email" className="col-span-3" />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button>Save</Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 export default Businesses;
