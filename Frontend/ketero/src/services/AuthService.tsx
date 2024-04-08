@@ -3,6 +3,7 @@ import { Business } from "@/models/Business";
 import { Client } from "@/models/Client";
 import { Login, PhoneLogin } from "@/models/Login";
 import { Mezgeb } from "@/models/Mezgeb";
+import { addMezgebu } from "./BusinessService";
 
 const apiUrl = "https://ketero-web-dmow.vercel.app/api/v1/auth"; // Assuming this is your base API URL
 
@@ -54,3 +55,19 @@ export async function signIn(login: Login | PhoneLogin): Promise<any> {
         throw e;
     }
 }
+
+
+
+
+export async function signUpBusinessMezgeb(business: Business, email:string): Promise<any> {
+  try {
+    const response = await axios.post(`${apiUrl}/business`, business);
+    const responseBack = await addMezgebu(response.data._id, email);
+
+    return responseBack.data;
+  } catch (e) {
+    console.error("Error signing up business:", e);
+    throw e;
+  }
+}
+

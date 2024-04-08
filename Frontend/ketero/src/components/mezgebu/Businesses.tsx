@@ -75,7 +75,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useMutation } from "react-query";
-import { signUpBusiness } from "../../services/AuthService";
+import { signUpBusiness, signUpBusinessMezgeb } from "../../services/AuthService";
 import { toast } from "sonner";
 import { ZodError, z } from "zod";
 
@@ -85,9 +85,14 @@ export function DialogDemo() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+    const user =
+      typeof window !== "undefined"
+        ? JSON.parse(sessionStorage.getItem("user")!)
+        : null;
+
 
   const signupMutation = useMutation(
-    (newBusiness: Business) => signUpBusiness(newBusiness),
+    (newBusiness: Business) => signUpBusinessMezgeb(newBusiness, user.mezgebuEmail),
     {
       onSuccess: () => {
           toast("Business added successfully");
