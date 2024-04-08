@@ -262,12 +262,8 @@ function DeleteBusinessDialog({ id }: { id: string }) {
 }
 
 function UpdateBusinessDialog({ id, business }: { id: string; business: any }) {
-  const user =
-    typeof window !== "undefined"
-      ? JSON.parse(sessionStorage.getItem("user")!)
-      : null;
 
-  const updateMutation = useMutation(() => updateBusiness(user._id, business), {
+  const updateMutation = useMutation(() => updateBusiness(id, business), {
     onSuccess: () => {
       toast("Business updated successfully");
     },
