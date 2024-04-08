@@ -39,7 +39,7 @@ const Businesses: React.FC = () => {
   return (
     <div className={style.wrapper}>
       <h1 className="text-xl font-bold">My Businesses</h1>
-      <DialogDemo></DialogDemo>
+      <AddBusinessDialog />
       {isBusinessesLoading ? (
         <p>Loading....</p>
       ) : businessesError ? (
@@ -79,7 +79,7 @@ const BusinessCard: React.FC<{ business: Business }> = ({ business }) => {
 
 
 
-export function DialogDemo() {
+export function AddBusinessDialog() {
   const [businessName, setBusinessName] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [email, setEmail] = useState("");
