@@ -74,58 +74,137 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useMutation } from "react-query";
+import { signUpBusiness } from "../../services/AuthService";
+import { toast } from "sonner";
+import { z } from "zod";
 
 export function DialogDemo() {
+  const [businessName, setBusinessName] = useState("");
+  const [ownerName, setOwnerName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+
+  const signupMutation = useMutation(
+    (newBusiness: Business) => signUpBusiness(newBusiness),
+    {
+      onSuccess: () => {
+          toast("Signup successful");
+          console.log("Signup successful");
+      },
+      onError: (error) => {
+        // Handle error, e.g., show an error message
+        console.error("Error signing up:", error);
+      },
+    }
+  );
+
+    const signupSchema = z.object({
+      businessName: z.string().min(2),
+      ownerName: z.string().min(2),
+      email: z.string().email(),
+      password: z.string().min(6),
+      phone: z.string(),
+    });
+
+
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+    try {
+      await signupMutation.mutateAsync({
+        businessName,
+        ownerName,
+        email,
+        phone,
+        password,
+      });
+    } catch (error) {
+      console.error("Error signing up:", error);
+    }
+  };
+
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button>Add Business</Button>
+      <DialogTrigger>
+        <button>Add Business</button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Add a new Business</DialogTitle>
           <DialogDescription>Fill the form and Click save</DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="compname" className="text-right">
-              Company's Name
-            </Label>
-            <Input id="compname" value="Afro Burgers" className="col-span-3" />
-          </div>
+        <form onSubmit={handleSubmit}>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="compname" className="text-right">
+                Company's Name
+              </Label>
+              <Input
+                id="compname"
+                value={businessName}
+                onChange={(e) => setBusinessName(e.target.value)}
+                className="col-span-3"
+              /> 
+            </div>
 
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Owner's Name
-            </Label>
-            <Input id="name" value="Nathan Damtew" className="col-span-3" />
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Owner's Name
+              </Label>
+              <Input
+                id="name"
+                value={ownerName}
+                onChange={(e) => setOwnerName(e.target.value)}
+                className="col-span-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="Phone" className="text-right">
+                Phone
+              </Label>
+              <Input
+                id="Phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="col-span-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="Email" className="text-right">
+                Email
+              </Label>
+              <Input
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="col-span-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="password" className="text-right">
+                Password
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="col-span-3"
+              />
+            </div>
           </div>
-        </div>
-        <div className="grid grid-cols-4 items-center gap-4">
-          <Label htmlFor="Phone" className="text-right">
-           Phone
-          </Label>
-          <Input id="Phone" value="0909090909" className="col-span-3" />
-        </div>
-        <div className="grid grid-cols-4 items-center gap-4">
-          <Label htmlFor="Email" className="text-right">
-            Email
-          </Label>
-          <Input id="email" value="afroburgers@gmail.com" className="col-span-3" />
-        </div>
-        <div className="grid grid-cols-4 items-center gap-4">
-          <Label htmlFor="password" className="text-right">
-            Password
-          </Label>
-          <Input id="password" value="ak456765hajw.etb" className="col-span-3" />
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save</Button>
-        </DialogFooter>
+          <DialogFooter>
+            <button type="submit" disabled={signupMutation.isLoading}>
+              {signupMutation.isLoading ? "Saving..." : "Save"}
+            </button>
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );
 }
-
-
 export default Businesses;
