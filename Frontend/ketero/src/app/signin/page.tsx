@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { FaGoogle, FaFacebookSquare } from "react-icons/fa";
@@ -46,30 +46,32 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
     email: z.string().email(),
     password: z.string().min(6),
   });
-  
+
   const phoneLoginScheme = z.object({
     phone: z.string().min(8),
     password: z.string().min(6),
   });
 
-  const loginMutation = useMutation((login: Login | PhoneLogin) => signIn(login), {
-    onSuccess: (role: string) => {
-      router.push(`/${role.toLowerCase()}`);
+  const loginMutation = useMutation(
+    (login: Login | PhoneLogin) => signIn(login),
+    {
+      onSuccess: (role: string) => {
+        router.push(`/${role.toLowerCase()}`);
 
-      toast("SignIn successful");
-    },
-    onError: (error: any) => {
-
-      toast(error.response.data.error);
-    },
-  });
+        toast("SignIn successful");
+      },
+      onError: (error: any) => {
+        toast(error.response.data.error);
+      },
+    }
+  );
 
   async function handleSubmit(e: any) {
     e.preventDefault();
     try {
       if (loginMethod === "email") {
         loginScheme.parse({ email, password });
-        
+
         await loginMutation.mutateAsync({
           email,
           password,
@@ -84,7 +86,7 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
     } catch (error: any) {
       if (error instanceof ZodError) {
       } else {
-        if (error.response) {        
+        if (error.response) {
           toast(error.response.data.error);
         } else {
           toast("Network Error");
@@ -111,7 +113,6 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
           </div>
 
           <form onSubmit={handleSubmit} className={[styles.form].join(" ")}>
-            
             <div className="flex flex-row items-center justify-between ">
               <div>
                 <p>Login Method</p>
