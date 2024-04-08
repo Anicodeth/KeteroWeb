@@ -75,7 +75,7 @@ const BusinessCard: React.FC<{ business: any }> = ({ business }) => {
 
       <div className="flex justify-between w-full">
         <DeleteBusinessDialog id={business._id} />
-        <UpdateBusinessDialog />
+        <UpdateBusinessDialog id={business._id} business={business} />
       </div>
     </div>
   );
