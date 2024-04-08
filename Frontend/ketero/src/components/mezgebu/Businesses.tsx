@@ -263,62 +263,98 @@ function DeleteBusinessDialog({ id }: { id: string }) {
 
 function UpdateBusinessDialog({ id, business }: { id: string; business: any }) {
 
-  const updateMutation = useMutation(() => updateBusiness(id, business), {
-    onSuccess: () => {
-      toast("Business updated successfully");
-    },
-    onError: (error) => {
-      console.error("Error updating business:", error);
-    },
-  });
+   const [businessName, setBusinessName] = useState(business.businessName);
+   const [ownerName, setOwnerName] = useState(business.ownerName);
+   const [email, setEmail] = useState(business.email);
+   const [phone, setPhone] = useState(business.phone);
 
-  return (
-    <Dialog>
-      <DialogTrigger>
-        <Button>Edit</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Edit Business</DialogTitle>
-          <DialogDescription>Fill the form and Click save</DialogDescription>
-        </DialogHeader>
-        <form>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="compname" className="text-right">
-                Company's Name
-              </Label>
-              <Input id="compname" className="col-span-3" />
-            </div>
+   const updateMutation = useMutation(
+     () => updateBusiness(id, { businessName, ownerName, email, phone }),
+     {
+       onSuccess: () => {
+         toast("Business updated successfully");
+       },
+       onError: (error) => {
+         console.error("Error updating business:", error);
+         toast.error("Failed to update business");
+       },
+     }
+   );
 
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
-                Owner's Name
-              </Label>
-              <Input id="name" className="col-span-3" />
-            </div>
+   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+     e.preventDefault();
+     updateMutation.mutate();
+   };
 
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="Phone" className="text-right">
-                Phone
-              </Label>
-              <Input id="Phone" className="col-span-3" />
-            </div>
+   return (
+     <Dialog>
+       <DialogTrigger>
+         <Button>Edit</Button>
+       </DialogTrigger>
+       <DialogContent>
+         <DialogHeader>
+           <DialogTitle>Edit Business</DialogTitle>
+           <DialogDescription>Fill the form and Click save</DialogDescription>
+         </DialogHeader>
+         <form onSubmit={handleSubmit}>
+           <div className="grid gap-4 py-4">
+             <div className="grid grid-cols-4 items-center gap-4">
+               <label htmlFor="compname" className="text-right">
+                 Company's Name
+               </label>
+               <input
+                 id="compname"
+                 value={businessName}
+                 onChange={(e) => setBusinessName(e.target.value)}
+                 className="col-span-3"
+               />
+             </div>
 
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="Email" className="text-right">
-                Email
-              </Label>
-              <Input id="email" className="col-span-3" />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button>Save</Button>
-          </DialogFooter>
-        </form>
-      </DialogContent>
-    </Dialog>
-  );
+             <div className="grid grid-cols-4 items-center gap-4">
+               <label htmlFor="name" className="text-right">
+                 Owner's Name
+               </label>
+               <input
+                 id="name"
+                 value={ownerName}
+                 onChange={(e) => setOwnerName(e.target.value)}
+                 className="col-span-3"
+               />
+             </div>
+
+             <div className="grid grid-cols-4 items-center gap-4">
+               <label htmlFor="Phone" className="text-right">
+                 Phone
+               </label>
+               <input
+                 id="Phone"
+                 value={phone}
+                 onChange={(e) => setPhone(e.target.value)}
+                 className="col-span-3"
+               />
+             </div>
+
+             <div className="grid grid-cols-4 items-center gap-4">
+               <label htmlFor="Email" className="text-right">
+                 Email
+               </label>
+               <input
+                 id="email"
+                 value={email}
+                 onChange={(e) => setEmail(e.target.value)}
+                 className="col-span-3"
+               />
+             </div>
+           </div>
+           <DialogFooter>
+             <Button type="submit" disabled={updateMutation.isLoading}>
+               {updateMutation.isLoading ? "Saving..." : "Save"}
+             </Button>
+           </DialogFooter>
+         </form>
+       </DialogContent>
+     </Dialog>
+   );
 }
 
 export default Businesses;
