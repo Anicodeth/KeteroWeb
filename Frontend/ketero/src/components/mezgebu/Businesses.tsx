@@ -77,7 +77,7 @@ import { Label } from "@/components/ui/label";
 import { useMutation } from "react-query";
 import { signUpBusiness } from "../../services/AuthService";
 import { toast } from "sonner";
-import { z } from "zod";
+import { ZodError, z } from "zod";
 
 export function DialogDemo() {
   const [businessName, setBusinessName] = useState("");
@@ -112,6 +112,14 @@ export function DialogDemo() {
   const handleSubmit = async (e:any) => {
     e.preventDefault();
     try {
+      signupSchema.parse({
+              businessName,
+              ownerName,
+              email,
+              password,
+              phone,
+            });
+
       await signupMutation.mutateAsync({
         businessName,
         ownerName,
@@ -119,7 +127,12 @@ export function DialogDemo() {
         phone,
         password,
       });
-    } catch (error) {
+    } catch (error:any) {
+        if (error instanceof ZodError) {
+              console.error("Validation error:", error.errors);
+            } else {
+              console.error("Error signing up:", error.response.data);
+            }
       console.error("Error signing up:", error);
     }
   };
@@ -127,7 +140,7 @@ export function DialogDemo() {
   return (
     <Dialog>
       <DialogTrigger>
-        <button>Add Business</button>
+        <Button>Add Business</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -198,9 +211,9 @@ export function DialogDemo() {
             </div>
           </div>
           <DialogFooter>
-            <button type="submit" disabled={signupMutation.isLoading}>
+            <Button type="submit" disabled={signupMutation.isLoading}>
               {signupMutation.isLoading ? "Saving..." : "Save"}
-            </button>
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
