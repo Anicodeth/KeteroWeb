@@ -73,8 +73,8 @@ const BusinessCard: React.FC<{ business: Business }> = ({ business }) => {
       </div>
 
       <div className="flex justify-between w-full">
-        <Button> Delete </Button>
-        <Button> Edit </Button>
+        <DeleteBusinessDialog />
+        <UpdateBusinessDialog />
       </div>
     </div>
   );
@@ -226,7 +226,7 @@ function DeleteBusinessDialog() {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button>Delete Business</Button>
+        <Button>Delete</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -243,15 +243,15 @@ function DeleteBusinessDialog() {
   );
 }
 
-function updateBusinessDialog() {
+function UpdateBusinessDialog() {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button>Update Business</Button>
+        <Button>Edit</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Update Business</DialogTitle>
+          <DialogTitle>Edit Business</DialogTitle>
           <DialogDescription>Fill the form and Click save</DialogDescription>
         </DialogHeader>
         <form>
