@@ -4,7 +4,6 @@ import {CreateService} from "../models/Service"
 const apiUrl = "https://ketero-web-dmow.vercel.app/api/v1/service";
 
 export async function getService(id: string):Promise<any> {
-    console.log(id)
     try {
         const response = await axios.get(`${apiUrl}/${id}`);
         return response.data;
@@ -15,7 +14,6 @@ export async function getService(id: string):Promise<any> {
 }
 
 export async function getServices() :Promise<any> {
-     
     try {
         const response = await axios.get(apiUrl);
         return response.data;
@@ -43,7 +41,7 @@ export async function createService(businessid:string, serviceData: CreateServic
     }
 }
 
-export async function updateService(id: string, serviceData: CreateService):Promise<any> {
+export async function updateService(id: string, serviceData: any):Promise<any> {
     try {
         const response = await axios.put(`${apiUrl}/${id}`, serviceData);
         return response.data;
@@ -62,4 +60,3 @@ export async function deleteService(id: string):Promise<any> {
         throw error;
     }
 }
-
