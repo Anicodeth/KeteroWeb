@@ -13,6 +13,8 @@ import { toast } from "sonner";
 import { useMutation, QueryClient, QueryClientProvider } from "react-query";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import ketero from "@/assets/Ketero.png";
+import Image from "next/image";
 
 const SignIn: React.FC = () => {
   const queryClient = new QueryClient();
@@ -106,6 +108,7 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
         <div className={[styles.mainWrapper].join(" ")}>
           <h1></h1>
           <div>
+            <Image src={ketero} alt="Ketero Logo" />
             <h1 className={[styles.heading].join(" ")}>Welcome</h1>
             <p className={[styles.paragraph].join(" ")}>
               Hi, Enter your details to get logged in to your account
