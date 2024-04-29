@@ -85,6 +85,23 @@ exports.updateBusiness = async (id, updateData) => {
 exports.deleteBusiness = async (id) => {
   try {
     const business = await Business.findByIdAndDelete(id);
+
+    business.services.forEach(async (serviceId) => {
+      await Service.findByIdAndDelete(serviceId);
+    });
+
+    business.mezgebs.forEach(async (mezgebuId) => {
+      const mezgebu = await Mezgebu.findById(mezgebuId);
+
+      mezgebu.businesses.forEach(async (businessId) => {
+        if (businessId.toString() === id.toString()) {
+          mezgebu.businesses.pull(businessId);
+        }
+      });
+
+      await mezgebu.save();
+    });
+
     if (!business) {
       throw new Error("Invalid Business Id");
     }
@@ -100,13 +117,13 @@ exports.addMezgebuToBusiness = async (businessId, mezgebuEmail) => {
     const mezgebu = await Mezgebu.findOne({ email: mezgebuEmail });
     //find the mezgeby by emaul
 
-    if(business.mezgebs.length > 1){
-            throw new Error("You already have a mezgeb");
+    if (business.mezgebs.length > 1) {
+      throw new Error("You already have a mezgeb");
     }
 
     if (!business || !mezgebu) {
       throw new Error("Invalid data entry");
-    } 
+    }
 
     const mezgebuExists = business.mezgebs.find(
       (m) => m.toString() === mezgebu._id.toString()
