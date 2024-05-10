@@ -58,9 +58,12 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
     (login: Login | PhoneLogin) => signIn(login),
     {
       onSuccess: (role: string) => {
-        router.push(`/${role.toLowerCase()}`);
-
-        toast("SignIn successful");
+        // router.push(`/${role.toLowerCase()}`);
+        if (role.toLowerCase() === "mezgebu") {
+          router.push(`/${role.toLowerCase()}`);
+        }
+        router.push(`/comingsoon`);
+        toast(`SignIn successful: ${role}`);
       },
       onError: (error: any) => {
         toast(error.response.data.error);
