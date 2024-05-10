@@ -63,10 +63,8 @@ function Form({ router, loginMethod, setLoginMethod }: FormProps) {
         if (role.toLowerCase() == "mezgebu") {
           console.log("here");
           router.push(`/${role.toLowerCase()}`);
-        }
-        else {
-        router.push(`/comingsoon`);  
-
+        } else {
+          router.push(`/comingsoon`);
         }
       },
       onError: (error: any) => {
