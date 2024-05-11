@@ -30,13 +30,18 @@ const Form: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+
 
   const signupSchema = z.object({
     businessName: z.string().min(2),
     ownerName: z.string().min(2),
     email: z.string().email(),
     password: z.string().min(6),
-    phone:z.string()
+    phone:z.string(),
+    workHours:z.string(),
+
   });
 
   const signupMutation = useMutation(
@@ -58,7 +63,8 @@ const Form: React.FC = () => {
       if (password !== confirmPassword) {
         return "Password not matching";
       }
-      signupSchema.parse({ businessName, ownerName, email, password,phone });
+      const workHours = startTime + " - " + endTime;
+      signupSchema.parse({ businessName, ownerName, email, password,phone, workHours });
       await signupMutation.mutateAsync({
         businessName,
         ownerName,
@@ -177,6 +183,36 @@ const Form: React.FC = () => {
                   className="outline-none border-none"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+              <hr />
+            </div>
+            <div>
+              <div className={[styles.inputWrapper, styles.center].join(" ")}>
+                <div className={[styles.center].join(" ")}>
+                  <CiUser></CiUser>
+                </div>
+                <input
+                  type="time"
+                  placeholder="Start Time"
+                  className="outline-none border-none"
+                  value={startTime}
+                  onChange={(e) => setStartTime(e.target.value)}
+                />
+              </div>
+              <hr />
+            </div>
+            <div>
+              <div className={[styles.inputWrapper, styles.center].join(" ")}>
+                <div className={[styles.center].join(" ")}>
+                  <CiUser></CiUser>
+                </div>
+                <input
+                  type="time"
+                  placeholder="End Time"
+                  className="outline-none border-none"
+                  value={endTime}
+                  onChange={(e) => setEndTime(e.target.value)}
                 />
               </div>
               <hr />
