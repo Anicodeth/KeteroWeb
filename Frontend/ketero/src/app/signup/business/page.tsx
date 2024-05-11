@@ -32,6 +32,7 @@ const Form: React.FC = () => {
   const [phone, setPhone] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [location, setLocation] = useState("");
 
 
   const signupSchema = z.object({
@@ -41,6 +42,7 @@ const Form: React.FC = () => {
     password: z.string().min(6),
     phone:z.string(),
     workHours:z.string(),
+    location:z.string()
 
   });
 
@@ -64,13 +66,15 @@ const Form: React.FC = () => {
         return "Password not matching";
       }
       const workHours = startTime + " - " + endTime;
-      signupSchema.parse({ businessName, ownerName, email, password, phone, workHours });
+      signupSchema.parse({ businessName, ownerName, email, password, phone, workHours, location });
       await signupMutation.mutateAsync({
         businessName,
         ownerName,
         email,
         password,
-        phone
+        phone,
+        workHours,
+        location
       });
     } catch (error: any) {
       if (error instanceof ZodError) {
@@ -189,10 +193,7 @@ const Form: React.FC = () => {
             </div>
 
             <div className="flex justify-between items-center">
-              <h1>
-               
-                <CiUser></CiUser>Working Hours
-              </h1>
+              <h1 className="flex">Working Hours</h1>
               <div>
                 <div className={[styles.inputWrapper, styles.center].join(" ")}>
                   <input
@@ -207,7 +208,6 @@ const Form: React.FC = () => {
               </div>
               <div>
                 <div className={[styles.inputWrapper, styles.center].join(" ")}>
-
                   <input
                     type="time"
                     placeholder="End Time"
@@ -218,6 +218,22 @@ const Form: React.FC = () => {
                 </div>
                 <hr />
               </div>
+            </div>
+
+            <div>
+              <div className={[styles.inputWrapper, styles.center].join(" ")}>
+                <div className={[styles.center].join(" ")}>
+                  <CiUser></CiUser>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Location"
+                  className="outline-none border-none"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
+              </div>
+              <hr />
             </div>
 
             <button
