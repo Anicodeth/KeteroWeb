@@ -64,7 +64,7 @@ const Form: React.FC = () => {
         return "Password not matching";
       }
       const workHours = startTime + " - " + endTime;
-      signupSchema.parse({ businessName, ownerName, email, password,phone, workHours });
+      signupSchema.parse({ businessName, ownerName, email, password, phone, workHours });
       await signupMutation.mutateAsync({
         businessName,
         ownerName,
@@ -187,35 +187,37 @@ const Form: React.FC = () => {
               </div>
               <hr />
             </div>
-            <div>
-              <div className={[styles.inputWrapper, styles.center].join(" ")}>
-                <div className={[styles.center].join(" ")}>
-                  <CiUser></CiUser>
+
+            <div className="flex justify-between items-center">
+              <h1>
+               
+                <CiUser></CiUser>Working Hours
+              </h1>
+              <div>
+                <div className={[styles.inputWrapper, styles.center].join(" ")}>
+                  <input
+                    type="time"
+                    placeholder="Start Time"
+                    className="outline-none border-none"
+                    value={startTime}
+                    onChange={(e) => setStartTime(e.target.value)}
+                  />
                 </div>
-                <input
-                  type="time"
-                  placeholder="Start Time"
-                  className="outline-none border-none"
-                  value={startTime}
-                  onChange={(e) => setStartTime(e.target.value)}
-                />
+                <hr />
               </div>
-              <hr />
-            </div>
-            <div>
-              <div className={[styles.inputWrapper, styles.center].join(" ")}>
-                <div className={[styles.center].join(" ")}>
-                  <CiUser></CiUser>
+              <div>
+                <div className={[styles.inputWrapper, styles.center].join(" ")}>
+
+                  <input
+                    type="time"
+                    placeholder="End Time"
+                    className="outline-none border-none"
+                    value={endTime}
+                    onChange={(e) => setEndTime(e.target.value)}
+                  />
                 </div>
-                <input
-                  type="time"
-                  placeholder="End Time"
-                  className="outline-none border-none"
-                  value={endTime}
-                  onChange={(e) => setEndTime(e.target.value)}
-                />
+                <hr />
               </div>
-              <hr />
             </div>
 
             <button
