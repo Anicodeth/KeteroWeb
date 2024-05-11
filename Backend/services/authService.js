@@ -33,7 +33,7 @@ exports.createBusiness = async (data) => {
     if (!validateData(data, createBusinessDTO)) {
       throw new Error("Not valid Business data");
     }
-    const { ownerName, businessName, phone, email, password } = data;
+    const { ownerName, businessName, location, workHours, phone, email, password } = data;
     if ((await checkEmail(email)) && (await checkPhone(phone))) {
       throw new Error("Email already exists");
     }
@@ -43,6 +43,8 @@ exports.createBusiness = async (data) => {
       phone,
       email,
       password,
+      location,
+      workHours,
     });
     await business.save();
     return business;

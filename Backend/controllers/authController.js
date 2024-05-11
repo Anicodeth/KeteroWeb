@@ -19,13 +19,15 @@ exports.createClient = async (req, res) => {
 // Controller for creating a business
 exports.createBusiness = async (req, res) => {
   try {
-    const { ownerName, phone, businessName, email, password } = req.body;
+    const { ownerName, phone, businessName, email, password, location, workHours } = req.body;
     const business = await createBusiness({
       ownerName,
       businessName,
       phone,
       email,
       password,
+      location,
+      workHours,
     });
     res.status(201).json(business);
   } catch (error) {
