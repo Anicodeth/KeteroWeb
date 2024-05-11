@@ -87,9 +87,9 @@ function AddBusinessDialog() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-    const [startTime, setStartTime] = useState("");
-    const [ endTime, setEndTime] = useState("");
-    const [location, setLocation] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [location, setLocation] = useState("");
 
   const user =
     typeof window !== "undefined"
@@ -115,11 +115,10 @@ function AddBusinessDialog() {
     password: z.string().min(6),
     phone: z.string(),
     location: z.string(),
-    workHours: z.string(), 
+    workHours: z.string(),
   });
 
   const handleSubmit = async (e: any) => {
-
     const workHours = startTime + " - " + endTime;
     e.preventDefault();
     try {
@@ -221,7 +220,6 @@ function AddBusinessDialog() {
                 onChange={(e) => setLocation(e.target.value)}
                 className="col-span-3"
               />
-
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="StartTime" className="text-right">
@@ -234,9 +232,8 @@ function AddBusinessDialog() {
                 onChange={(e) => setStartTime(e.target.value)}
                 className="col-span-3"
               />
-
             </div>
-            
+
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="EndTime" className="text-right">
                 End Time
@@ -248,10 +245,7 @@ function AddBusinessDialog() {
                 onChange={(e) => setEndTime(e.target.value)}
                 className="col-span-3"
               />
-
             </div>
-
-
 
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="password" className="text-right">
@@ -323,7 +317,6 @@ function UpdateBusinessDialog({ id, business }: { id: string; business: any }) {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [location, setLocation] = useState("");
-
 
   const updateMutation = useMutation(
     () => updateBusiness(id, { businessName, ownerName, email, phone }),
@@ -413,7 +406,6 @@ function UpdateBusinessDialog({ id, business }: { id: string; business: any }) {
                 onChange={(e) => setLocation(e.target.value)}
                 className="col-span-3"
               />
-
             </div>
 
             <div className="grid grid-cols-4 items-center gap-4">
@@ -427,8 +419,7 @@ function UpdateBusinessDialog({ id, business }: { id: string; business: any }) {
                 onChange={(e) => setStartTime(e.target.value)}
                 className="col-span-3"
               />
-
-              </div>
+            </div>
 
             <div className="grid grid-cols-4 items-center gap-4">
               <label htmlFor="EndTime" className="text-right">
@@ -441,8 +432,7 @@ function UpdateBusinessDialog({ id, business }: { id: string; business: any }) {
                 onChange={(e) => setEndTime(e.target.value)}
                 className="col-span-3"
               />
-
-              </div>
+            </div>
           </div>
           <DialogFooter>
             <Button type="submit" disabled={updateMutation.isLoading}>
