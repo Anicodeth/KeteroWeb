@@ -228,6 +228,7 @@ function AddBusinessDialog() {
                 Start Time
               </Label>
               <Input
+                type="time"
                 id="starttime"
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
@@ -241,6 +242,7 @@ function AddBusinessDialog() {
                 End Time
               </Label>
               <Input
+                type="time"
                 id="endtime"
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
