@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaUserTie } from "react-icons/fa";
-import { FaEnvelope } from "react-icons/fa";
+import { FaEnvelope, FaHome, FaClock } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
 import style from "./Businesses.module.css";
 import { useQuery } from "react-query";
@@ -71,13 +71,13 @@ const BusinessCard: React.FC<{ business: any }> = ({ business }) => {
 
       {business.location && (
         <div className={[style.horizontal].join("")}>
-          <FaPhone /> <p>{business.location}</p>
+          <FaHome /> <p>{business.location}</p>
         </div>
       )}
 
       {business.workHours && (
         <div className={[style.horizontal].join("")}>
-          <FaPhone /> <p>{business.workHours}</p>
+          <FaClock /> <p>{business.workHours}</p>
         </div>
       )}
 
