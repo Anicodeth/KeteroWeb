@@ -69,6 +69,18 @@ const BusinessCard: React.FC<{ business: any }> = ({ business }) => {
         <FaEnvelope /> <p>{business.email}</p>
       </div>
 
+      {business.location && (
+        <div className={[style.horizontal].join("")}>
+          <FaPhone /> <p>{business.location}</p>
+        </div>
+      )}
+
+      {business.workHours && (
+        <div className={[style.horizontal].join("")}>
+          <FaPhone /> <p>{business.workHours}</p>
+        </div>
+      )}
+
       <div className={[style.horizontal].join("")}>
         <FaPhone /> <p>{business.phone}</p>
       </div>
