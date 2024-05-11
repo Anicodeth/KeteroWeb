@@ -87,6 +87,10 @@ function AddBusinessDialog() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+    const [startTime, setStartTime] = useState("");
+    const [ endTime, setEndTime] = useState("");
+    const [location, setLocation] = useState("");
+
   const user =
     typeof window !== "undefined"
       ? JSON.parse(sessionStorage.getItem("user")!)
@@ -110,9 +114,13 @@ function AddBusinessDialog() {
     email: z.string().email(),
     password: z.string().min(6),
     phone: z.string(),
+    location: z.string(),
+    workHours: z.string(), 
   });
 
   const handleSubmit = async (e: any) => {
+
+    const workHours = startTime + " - " + endTime;
     e.preventDefault();
     try {
       signupSchema.parse({
@@ -121,6 +129,8 @@ function AddBusinessDialog() {
         email,
         password,
         phone,
+        location,
+        workHours,
       });
       await signupMutation.mutateAsync({
         businessName,
@@ -128,6 +138,8 @@ function AddBusinessDialog() {
         email,
         phone,
         password,
+        location,
+        workHours,
       });
     } catch (error: any) {
       if (error instanceof ZodError) {
@@ -198,6 +210,46 @@ function AddBusinessDialog() {
                 className="col-span-3"
               />
             </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="location" className="text-right">
+                Location
+              </Label>
+              <Input
+                id="location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="col-span-3"
+              />
+
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="StartTime" className="text-right">
+                Start Time
+              </Label>
+              <Input
+                id="starttime"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                className="col-span-3"
+              />
+
+            </div>
+            
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="EndTime" className="text-right">
+                End Time
+              </Label>
+              <Input
+                id="endtime"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                className="col-span-3"
+              />
+
+            </div>
+
+
 
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="password" className="text-right">
