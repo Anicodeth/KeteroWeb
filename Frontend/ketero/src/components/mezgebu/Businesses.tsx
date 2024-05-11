@@ -320,6 +320,10 @@ function UpdateBusinessDialog({ id, business }: { id: string; business: any }) {
   const [ownerName, setOwnerName] = useState(business.ownerName);
   const [email, setEmail] = useState(business.email);
   const [phone, setPhone] = useState(business.phone);
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [location, setLocation] = useState("");
+
 
   const updateMutation = useMutation(
     () => updateBusiness(id, { businessName, ownerName, email, phone }),
@@ -398,6 +402,47 @@ function UpdateBusinessDialog({ id, business }: { id: string; business: any }) {
                 className="col-span-3"
               />
             </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <label htmlFor="location" className="text-right">
+                Location
+              </label>
+              <input
+                id="location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="col-span-3"
+              />
+
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <label htmlFor="StartTime" className="text-right">
+                Start Time
+              </label>
+              <input
+                type="time"
+                id="starttime"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                className="col-span-3"
+              />
+
+              </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <label htmlFor="EndTime" className="text-right">
+                End Time
+              </label>
+              <input
+                type="time"
+                id="endtime"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                className="col-span-3"
+              />
+
+              </div>
           </div>
           <DialogFooter>
             <Button type="submit" disabled={updateMutation.isLoading}>
