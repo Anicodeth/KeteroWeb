@@ -117,7 +117,7 @@ function Form() {
           <div className={[style.inputFields].join(" ")}>
             <div>
               <label htmlFor="serviceName" className={[style.block].join(" ")}>
-                Service Title
+                New Service
               </label>
               <input
                 type="text"
@@ -129,7 +129,7 @@ function Form() {
             </div>
             <div>
               <label htmlFor="payment" className={[style.block].join(" ")}>
-                Payment
+                Price
               </label>
               <input
                 type="text"
