@@ -422,7 +422,7 @@ function UpdateBusinessDialog({ id, business }: { id: string; business: any }) {
 
             <div className="grid grid-cols-4 items-center gap-4">
               <label htmlFor="StartTime" className="text-right">
-                Start Time
+                Opening Time
               </label>
               <input
                 type="time"
@@ -435,7 +435,7 @@ function UpdateBusinessDialog({ id, business }: { id: string; business: any }) {
 
             <div className="grid grid-cols-4 items-center gap-4">
               <label htmlFor="EndTime" className="text-right">
-                End Time
+                Closing Time
               </label>
               <input
                 type="time"

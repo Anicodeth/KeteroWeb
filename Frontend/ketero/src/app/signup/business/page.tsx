@@ -198,7 +198,7 @@ const Form: React.FC = () => {
                 <div className={[styles.inputWrapper, styles.center].join(" ")}>
                   <input
                     type="time"
-                    placeholder="Start Time"
+                    placeholder="Opening Time"
                     className="outline-none border-none"
                     value={startTime}
                     onChange={(e) => setStartTime(e.target.value)}
@@ -210,7 +210,7 @@ const Form: React.FC = () => {
                 <div className={[styles.inputWrapper, styles.center].join(" ")}>
                   <input
                     type="time"
-                    placeholder="End Time"
+                    placeholder="Closing Time"
                     className="outline-none border-none"
                     value={endTime}
                     onChange={(e) => setEndTime(e.target.value)}
