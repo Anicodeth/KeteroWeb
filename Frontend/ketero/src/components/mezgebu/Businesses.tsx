@@ -235,7 +235,7 @@ function AddBusinessDialog() {
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="StartTime" className="text-right">
-                Start Time
+                Opening Time
               </Label>
               <Input
                 type="time"
@@ -248,7 +248,7 @@ function AddBusinessDialog() {
 
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="EndTime" className="text-right">
-                End Time
+                Closing Time
               </Label>
               <Input
                 type="time"
